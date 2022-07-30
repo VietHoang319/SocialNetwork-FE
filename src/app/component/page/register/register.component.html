@@ -13,11 +13,22 @@
             <span class="d-block">Already have an account? <a href="sign-in.html">Sign in here</a></span>
           </div>
           <!-- Form START -->
-          <form class="mt-4" [formGroup]="registerForm" (submit)="register()">
+          <form class="mt-4" [formGroup]="registerForm" (submit)="register()" novalidate>
             <!-- Email -->
             <div class="mb-3 input-group-lg">
               <input type="text" class="form-control" placeholder="User name" formControlName="username">
               <small></small>
+            </div>
+            <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+              <div style="color: red" *ngIf="username?.errors?.['required']">
+                <small>User name is required</small>
+              </div>
+              <div style="color: red" *ngIf="username?.errors?.['minlength']">
+               <small>Min Length is 6</small>
+              </div>
+              <div style="color: red" *ngIf="username?.errors?.['maxlength']">
+                <small>Max Length is 30</small>
+              </div>
             </div>
             <!-- New password -->
             <div class="mb-3 position-relative">
@@ -26,24 +37,70 @@
                 <input class="form-control fakepassword" type="password" id="psw-input" placeholder="Enter new password" formControlName="password">
               </div>
             </div>
+
+            <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+              <div style="color: red" *ngIf="password?.errors?.['required']">
+               <small> Password is required</small>
+              </div>
+              <div style="color: red" *ngIf="password?.errors?.['minlength']">
+               <small> Min Length is 6</small>
+              </div>
+              <div style="color: red" *ngIf="password?.errors?.['maxlength']">
+                <small>Min Length is 30</small>
+              </div>
+            </div>
             <!-- Confirm password -->
             <div class="mb-3 input-group-lg">
-              <input class="form-control" type="password" placeholder="Confirm password" formControlName="confirmPassword">
+              <input class="form-control" type="password" placeholder="Confirm password" formControlName="confirmPassword" (change)="checkConfirmPassword()">
+            </div>
+            <div style="visibility: hidden;color: red" id="abc" >
+              <small>Mật khẩu nhập lại không đúng</small>
+            </div>
+            <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)">
+              <div style="color: red" *ngIf="confirmPassword?.errors?.['required']">
+                <small>Confirm Password is required</small>
+              </div>
+              <div style="color: red" *ngIf="confirmPassword?.errors?.['minlength']">
+                <small>Min Length is 6</small>
+              </div>
+              <div style="color: red" *ngIf="confirmPassword?.errors?.['maxlength']">
+                <small>Min Length is 30</small>
+              </div>
             </div>
             <div class="mb-3 input-group-lg">
               <input type="email" class="form-control" placeholder="Email" formControlName="email">
-              <small></small>
+            </div>
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+              <div style="color: red" *ngIf="email?.errors?.['required']">
+                <small>Email is required</small>
+              </div>
+              <div style="color: red" *ngIf="email?.errors?.['email']">
+                <small>Email needs to be in the correct format</small>
+              </div>
             </div>
             <div class="mb-3 input-group-lg">
               <input type="text" class="form-control" placeholder="Phone" formControlName="phone">
-              <small></small>
             </div>
+            <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+              <div style="color: red" *ngIf="email?.errors?.['required']">
+                <small>Phone is required</small>
+              </div>
+              <div style="color: red" *ngIf="email?.errors?.['phone']">
+                <small>Phone needs to be in the correct format</small>
+              </div>
+            </div>
+
             <div class="mb-3 input-group-lg">
               <input type="date" class="form-control" placeholder="Birthday" formControlName="birthday">
-              <small></small>
             </div>
+            <div *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)">
+              <div style="color: red" *ngIf="birthday?.errors?.['required']">
+                <small>Birthday is required</small>
+              </div>
+            </div>
+
             <!-- Button -->
-            <div class="d-grid"><button type="submit" class="btn btn-lg btn-primary">Sign me up</button></div>
+            <div class="d-grid"><button type="submit" [disabled]="!registerForm.valid" class="btn btn-lg btn-primary">Sign me up</button></div>
           </form>
           <!-- Form END -->
         </div>

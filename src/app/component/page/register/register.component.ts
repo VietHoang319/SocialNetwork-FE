@@ -12,18 +12,45 @@ import {User} from "../../../model/user";
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
+    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
     email:new FormControl('',[Validators.required, Validators.email]),
     phone:new FormControl('', [Validators.required,Validators.pattern("/(03|05|07|08|09)+([0-9]{8})")]),
-    birthday:new FormControl('')
+    birthday:new FormControl('' , [Validators.required])
   });
+
+  get username(){
+    return this.registerForm.get('username')
+  }
+
+  get password(){
+    return this.registerForm.get('password')
+  }
+
+  get confirmPassword(){
+    return this.registerForm.get('confirmPassword')
+  }
+
+  get email(){
+    return this.registerForm.get('email')
+  }
+
+  get phone(){
+    return this.registerForm.get('phone')
+  }
+
+  get birthday(){
+    return this.registerForm.get('birthday')
+  }
+
   constructor(private authenticationService:AuthenticationService,
               private router:Router) { }
 
   ngOnInit(): void {
   }
+
+
 
   register() {
     const user = this.setNewUser();
@@ -52,5 +79,15 @@ export class RegisterComponent implements OnInit {
     };
     return user;
   }
+
+  checkConfirmPassword() {
+    if (this.registerForm.get('password')?.value != this.registerForm.get('confirmPassword')?.value) {
+      // @ts-ignore
+      document.getElementById("abc").style.visibility = "visible";
+    }
+  }
+
+
+
 
 }
