@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../../service/authentication.service";
+import {AuthenticationService} from "../../../service/authentication.service";
 import {first} from "rxjs";
+import {disableVersionCheck} from "@angular/cli/src/utilities/environment-options";
 
 @Component({
   selector: 'app-login',
@@ -31,14 +32,16 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('ROLE', data.roles[0].authority);
       localStorage.setItem('USERNAME', data.username);
       localStorage.setItem('IMAGE', data.image);
+      localStorage.setItem('ID', data.id);
       if (data.roles[0].authority == "ROLE_USER") {
         this.router.navigate(['/']);
       }
-      // else {
-      //   this.router.navigate(['/admin']);
-      // }
+
     }, error => {
-      alert("Tài khoản của bạn bị sai")
+      if (error.status == 401){
+        // @ts-ignore
+        document.getElementById("error").style.visibility = 'visible'
+      }
     })
   }
 }
