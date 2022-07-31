@@ -1,25 +1,26 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
-import { RegisterComponent } from './component/page/register/register.component';
-import { LoginComponent } from './component/page/login/login.component';
+import {RegisterComponent} from './component/page/register/register.component';
+import {LoginComponent} from './component/page/login/login.component';
 import {NavbarComponent} from "./component/block/navbar/navbar.component";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
-
+import {ProfileUpdateComponent} from './component/user/profile-update/profile-update.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        RegisterComponent,
-        LoginComponent,
-        NavbarComponent,
-    ],
+  declarations: [
+    AppComponent,
+    RegisterComponent,
+    LoginComponent,
+    NavbarComponent,
+    ProfileUpdateComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,4 +32,5 @@ import {environment} from "../environments/environment";
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
