@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
-
-const API_URL = environment.apiUrl + "users"
+import {User} from "../model/user";
+const API_URL = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http : HttpClient) { }
 
-  showAllUser(): Observable<any> {
-    return this.httpClient.get(API_URL)
+  getUserProfile(id: number): Observable<User> {
+    return this.http.get<User>(API_URL + `users/${id}`);
+  }
+
+  updateUserProfile(id: number, user: User): Observable<User> {
+    return this.http.put<User>(API_URL + `users/${id}`, user);
+  }
+
+  updatePassword(id : number, user: User): Observable<User> {
+    return this.http.put<User>(API_URL + `users/change-password/${id}`, user);
   }
 }
