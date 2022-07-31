@@ -10,13 +10,13 @@
           <div class="text-center">
             <!-- Title -->
             <h1 class="mb-2">Đăng ký tài khoản</h1>
-            <span class="d-block">Bạn đã sẵn sàng đăng ký tài khoản?<a href="sign-in.html">Đăng nhập</a></span>
+            <span class="d-block">Bạn đã sẵn sàng đăng ký tài khoản?<a routerLink="/login"> Đăng nhập</a></span>
           </div>
           <!-- Form START -->
           <form class="mt-4" [formGroup]="registerForm" (submit)="register()" novalidate>
             <!-- Email -->
             <div class="mb-3 input-group-lg">
-              <input type="text" class="form-control" placeholder="Tên tài khoản" formControlName="username">
+              <input type="text" class="form-control" placeholder="Nhập tên tài khoản" formControlName="username">
               <small></small>
             </div>
             <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
@@ -37,7 +37,7 @@
             <div class="mb-3 position-relative">
               <!-- Input group -->
               <div class="input-group input-group-lg">
-                <input class="form-control fakepassword" type="password" id="psw-input" placeholder="Enter new password" formControlName="password">
+                <input class="form-control fakepassword" type="password" id="psw-input" placeholder="Nhập mật khẩu" formControlName="password">
               </div>
             </div>
 
@@ -54,7 +54,7 @@
             </div>
             <!-- Confirm password -->
             <div class="mb-3 input-group-lg">
-              <input class="form-control" type="password" placeholder="Confirm password" formControlName="confirmPassword" (change)="checkConfirmPassword()">
+              <input class="form-control" type="password" placeholder="Nhập lại mật khẩu" formControlName="confirmPassword" (change)="checkConfirmPassword()">
             </div>
             <div style="display: none;color: red" id="abc" >
               <small>Mật khẩu nhập lại không đúng</small>
@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="mb-3 input-group-lg">
-              <input type="email" class="form-control" placeholder="Email" formControlName="email">
+              <input type="email" class="form-control" placeholder="Nhập email" formControlName="email">
             </div>
             <div style="display: none;color: red" id="check-email" >
               <small>Email đã tồn tại</small>
@@ -85,7 +85,7 @@
               </div>
             </div>
             <div class="mb-3 input-group-lg">
-              <input type="text" class="form-control" placeholder="Phone" formControlName="phone">
+              <input type="text" class="form-control" placeholder="Nhập số điện thoại" formControlName="phone">
             </div>
             <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
               <div style="color: red" *ngIf="phone?.errors?.['required']">
@@ -97,7 +97,7 @@
             </div>
 
             <div class="mb-3 input-group-lg">
-              <input type="date" class="form-control" placeholder="Birthday" formControlName="birthday">
+              <input type="date" class="form-control" formControlName="birthday">
             </div>
             <div *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)">
               <div style="color: red" *ngIf="birthday?.errors?.['required']">
@@ -106,7 +106,7 @@
             </div>
 
             <!-- Button -->
-            <div class="d-grid"><button type="submit" [disabled]="!registerForm.valid" class="btn btn-lg btn-primary">Sign me up</button></div>
+            <div class="d-grid"><button type="submit" [disabled]="!registerForm.valid" class="btn btn-lg btn-primary">Đăng ký</button></div>
           </form>
           <!-- Form END -->
         </div>
