@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
     email:new FormControl('',[Validators.required, Validators.email]),
-    phone:new FormControl('', [Validators.required,Validators.pattern("/(03|05|07|08|09)+([0-9]{8})")]),
+    phone:new FormControl('', [Validators.required,Validators.pattern("(03|05|07|08|09)+([0-9]{8})")]),
     birthday:new FormControl('' , [Validators.required])
   });
 
@@ -50,21 +50,24 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
   register() {
     const user = this.setNewUser();
     this.authenticationService.register(user).subscribe((data) => {
-      console.log(data);
-      alert("thành công")
       this.registerForm.reset();
       // this.router.navigate(['/login']);
     }, err => {
-      console.log(err);
+      if(err.error == "Tên người dùng đã tồn tại"){
+        // @ts-ignore
+        document.getElementById("check-username").style.display="block"
+      }
+      if(err.error == "Email đã tồn tại"){
+        // @ts-ignore
+        document.getElementById("check-email").style.display="block"
+      }
+      console.log(err.error);
     });
     console.log(user);
   }
-
 
   private setNewUser() {
     // @ts-ignore
@@ -83,11 +86,9 @@ export class RegisterComponent implements OnInit {
   checkConfirmPassword() {
     if (this.registerForm.get('password')?.value != this.registerForm.get('confirmPassword')?.value) {
       // @ts-ignore
-      document.getElementById("abc").style.visibility = "visible";
+      document.getElementById("abc").style.display = "block";
     }
   }
-
-
 
 
 }
