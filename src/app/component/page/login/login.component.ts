@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   login() {
     // @ts-ignore
     this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password).pipe(first()).subscribe(data => {
@@ -31,12 +32,12 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('ACCESS_TOKEN', data.accessToken);
       localStorage.setItem('ROLE', data.roles[0].authority);
       localStorage.setItem('USERNAME', data.username);
-      localStorage.setItem('IMAGE', data.image);
+      localStorage.setItem('AVATAR', data.avatar);
       localStorage.setItem('ID', data.id);
+      localStorage.setItem('FULLNAME', data.fullname);
       if (data.roles[0].authority == "ROLE_USER") {
         this.router.navigate(['/']);
       }
-
     }, error => {
       if (error.status == 401){
         // @ts-ignore

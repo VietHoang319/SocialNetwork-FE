@@ -5,7 +5,7 @@
     <div class="container">
       <!-- Logo START -->
       <a class="navbar-brand" href="index-2.html">
-        <img class="light-mode-item navbar-brand-item" src="assets/assets/images/logo.svg" alt="logo">
+        <img class="light-mode-item navbar-brand-item" src="https://firebasestorage.googleapis.com/v0/b/socialnetwork-f5a61.appspot.com/o/logo-removebg.png?alt=media&token=83b7a0e2-01bc-4789-8ea8-d5192f7eed6e" alt="logo">
       </a>
       <!-- Logo END -->
 
@@ -38,11 +38,6 @@
         <li class="nav-item ms-2">
           <a class="nav-link icon-md btn btn-light p-0" href="messaging.html">
             <i class="bi bi-chat-left-text-fill fs-6"> </i>
-          </a>
-        </li>
-        <li class="nav-item ms-2">
-          <a class="nav-link icon-md btn btn-light p-0" href="settings.html">
-            <i class="bi bi-gear-fill fs-6"> </i>
           </a>
         </li>
         <li class="nav-item dropdown ms-2">
@@ -129,7 +124,7 @@
 
         <li class="nav-item ms-2 dropdown">
           <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-            <img class="avatar-img rounded-2" src="assets/assets/images/avatar/07.jpg" alt="">
+            <img class="avatar-img rounded-2" src="{{avatar}}" alt="">
           </a>
           <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="profileDropdown">
             <!-- Profile info -->
@@ -137,19 +132,18 @@
               <div class="d-flex align-items-center position-relative">
                 <!-- Avatar -->
                 <div class="avatar me-3">
-                  <img class="avatar-img rounded-circle" src="assets/assets/images/avatar/07.jpg" alt="avatar">
+                  <img class="avatar-img rounded-circle" src="{{avatar}}" alt="avatar">
                 </div>
                 <div>
-                  <a class="h6 stretched-link" href="#">Lori Ferguson</a>
-                  <p class="small m-0">Web Developer</p>
+                  <a class="h6 stretched-link" href="#">{{fullname}}</a>
                 </div>
               </div>
-              <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href="my-profile.html">View profile</a>
             </li>
             <!-- Links -->
-            <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear fa-fw me-2"></i>Settings & Privacy</a></li>
             <li class="dropdown-divider"></li>
-            <li><a class="dropdown-item bg-danger-soft-hover" href="sign-in-advance.html"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+            <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear fa-fw me-2"></i> Cài đặt</a></li>
+            <li class="dropdown-divider"></li>
+            <li><a class="dropdown-item bg-danger-soft-hover" (click)="logout()"><i class="bi bi-power fa-fw me-2"></i> Đăng xuất</a></li>
           </ul>
         </li>
         <!-- Profile START -->

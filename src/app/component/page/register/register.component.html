@@ -27,7 +27,7 @@
                <small>Tên tài khoản phải ít nhất 6 kí tự</small>
               </div>
               <div style="color: red" *ngIf="username?.errors?.['maxlength']">
-                <small>Tên tài khoản tối đa 30 kí tự</small>
+                <small>Tên tài khoản tối đa 32 kí tự</small>
               </div>
             </div>
             <div style="display: none;color: red" id="check-username" >
@@ -49,7 +49,7 @@
                <small> Mật khẩu phải có ít nhất 6 kí tự</small>
               </div>
               <div style="color: red" *ngIf="password?.errors?.['maxlength']">
-                <small>Mật khẩu tối đa 30 kí tự</small>
+                <small>Mật khẩu tối đa 32 kí tự</small>
               </div>
             </div>
             <!-- Confirm password -->
@@ -67,7 +67,7 @@
                 <small>Xác nhận mật khẩu phải có ít nhất 6 kí tự </small>
               </div>
               <div style="color: red" *ngIf="confirmPassword?.errors?.['maxlength']">
-                <small>Xác nhận mật khẩu tối đa 30 kí tự</small>
+                <small>Xác nhận mật khẩu tối đa 32 kí tự</small>
               </div>
             </div>
             <div class="mb-3 input-group-lg">
