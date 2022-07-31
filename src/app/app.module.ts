@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import { ProfileUpdateComponent } from './component/user/profile-update/profile-update.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProfileUpdateComponent
   ],
   imports: [
     BrowserModule,
