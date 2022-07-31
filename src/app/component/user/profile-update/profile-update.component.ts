@@ -10,7 +10,8 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 })
 export class ProfileUpdateComponent implements OnInit {
 
-  id: number = 0;
+  // @ts-ignore
+  id = parseInt(localStorage.getItem("ID"));
 
   userForm: FormGroup = new FormGroup({
     fullname: new FormControl(),
@@ -23,8 +24,6 @@ export class ProfileUpdateComponent implements OnInit {
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      // @ts-ignore
-      this.id = +paramMap.get('id');
       this.getProfile(this.id);
     });
   }

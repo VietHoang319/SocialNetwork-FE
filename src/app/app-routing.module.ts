@@ -4,7 +4,7 @@ import {ProfileUpdateComponent} from "./component/user/profile-update/profile-up
 
 const routes: Routes = [
   {
-    path : "user/profile/:id",
+    path : "setting-user",
     component : ProfileUpdateComponent
   }
 ];
