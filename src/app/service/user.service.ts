@@ -9,5 +9,9 @@ const API_URL = environment.apiUrl + "users"
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
+
+  showAllUser(): Observable<any> {
+    return this.httpClient.get(API_URL)
+  }
 }
