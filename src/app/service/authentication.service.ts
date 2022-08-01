@@ -36,6 +36,9 @@ export class AuthenticationService {
     localStorage.removeItem('USERNAME');
     localStorage.removeItem('ROLE');
     localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem('ID');
+    localStorage.removeItem('FULLNAME');
+    localStorage.removeItem('AVATAR');
   }
 
   register(user: User): Observable<User> {

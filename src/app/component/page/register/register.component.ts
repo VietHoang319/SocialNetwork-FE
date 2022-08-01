@@ -12,9 +12,9 @@ import {User} from "../../../model/user";
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]),
+    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]),
     email:new FormControl('',[Validators.required, Validators.email]),
     phone:new FormControl('', [Validators.required,Validators.pattern("(03|05|07|08|09)+([0-9]{8})")]),
     birthday:new FormControl('' , [Validators.required])
@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
       email:this.registerForm.value.email,
       phone:this.registerForm.value.phone,
       birthday:this.registerForm.value.birthday,
-      avatar:"src/assets/assets/images/avatar/placeholder.jpg"
+      avatar:"https://firebasestorage.googleapis.com/v0/b/socialnetwork-f5a61.appspot.com/o/placeholder.jpg?alt=media&token=9e94915b-2d37-4ca9-939e-28195a28ed90"
     };
     return user;
   }

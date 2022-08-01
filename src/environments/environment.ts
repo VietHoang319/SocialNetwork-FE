@@ -4,7 +4,17 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/'
+  apiUrl: 'http://localhost:8080/',
+  firebaseConfig: {
+    apiKey: "AIzaSyDns2MU4xJ0OeUibfJCbpgVCZblg7twyIw",
+    authDomain: "socialnetwork-f5a61.firebaseapp.com",
+    databaseURL: "https://socialnetwork-f5a61-default-rtdb.firebaseio.com/",
+    projectId: "socialnetwork-f5a61",
+    storageBucket: "socialnetwork-f5a61.appspot.com",
+    messagingSenderId: "489861803967",
+    appId: "1:489861803967:web:39d795d1be36507eb93b0a",
+    measurementId: "G-9PEB58VR21"
+  }
 };
 
 /*
