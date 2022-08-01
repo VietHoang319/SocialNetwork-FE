@@ -4,6 +4,7 @@ import {RegisterComponent} from "./component/page/register/register.component";
 import {LoginComponent} from "./component/page/login/login.component";
 import {HomepageComponent} from "./component/page/homepage/homepage.component";
 import {ProfileUpdateComponent} from "./component/user/profile-update/profile-update.component";
+import {ChangePasswordComponent} from "./component/user/change-password/change-password.component";
 
 const routes: Routes = [
   {
@@ -26,7 +27,10 @@ const routes: Routes = [
     path: ":id",
     component: HomepageComponent
   },
-
+  {
+    path : "setting-password",
+    component : ChangePasswordComponent
+  }
 ];
 
 @NgModule({

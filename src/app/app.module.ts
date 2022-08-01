@@ -14,6 +14,7 @@ import {environment} from "../environments/environment";
 import { ProfileComponent } from './component/user/profile/profile.component';
 import { HomepageComponent } from './component/page/homepage/homepage.component';
 import {ProfileUpdateComponent} from './component/user/profile-update/profile-update.component';
+import { ChangePasswordComponent } from './component/user/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {ProfileUpdateComponent} from './component/user/profile-update/profile-up
     NavbarComponent,
     ProfileComponent,
     HomepageComponent,
-    ProfileUpdateComponent
+    ProfileUpdateComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -36,5 +38,4 @@ import {ProfileUpdateComponent} from './component/user/profile-update/profile-up
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
