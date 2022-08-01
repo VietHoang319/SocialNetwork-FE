@@ -7,6 +7,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import { RegisterComponent } from './component/page/register/register.component';
 import { LoginComponent } from './component/page/login/login.component';
+import { StatusListComponent } from './component/status/status-list/status-list.component';
+import { StatusCreateComponent } from './component/status/status-create/status-create.component';
 
 
 @NgModule({
@@ -14,6 +16,8 @@ import { LoginComponent } from './component/page/login/login.component';
     AppComponent,
     RegisterComponent,
     LoginComponent,
+    StatusListComponent,
+    StatusCreateComponent,
   ],
   imports: [
     BrowserModule,
