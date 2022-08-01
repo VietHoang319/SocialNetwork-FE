@@ -35,12 +35,19 @@ export class ChangePasswordComponent implements OnInit {
           document.getElementById("error").style.visibility = "hidden"
           // @ts-ignore
           document.getElementById("sussec").style.visibility = "visible"
+          // @ts-ignore
+          document.getElementById("fail").style.visibility = "hidden"
         },error => {
           // @ts-ignore
           document.getElementById("error").style.visibility = "visible"
           // @ts-ignore
           document.getElementById("sussec").style.visibility = "hidden"
+          // @ts-ignore
+          document.getElementById("fail").style.visibility = "hidden"
         });
+      }else {
+        // @ts-ignore
+        document.getElementById("fail").style.visibility = "visible"
       }
     }
   }
