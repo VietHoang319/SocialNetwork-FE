@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {RegisterComponent} from "./component/page/register/register.component";
 import {LoginComponent} from "./component/page/login/login.component";
 import {ProfileUpdateComponent} from "./component/user/profile-update/profile-update.component";
+import {ChangePasswordComponent} from "./component/user/change-password/change-password.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path : "setting-user",
     component : ProfileUpdateComponent
+  },
+  {
+    path : "setting-password",
+    component : ChangePasswordComponent
   }
 ];
 

@@ -8,13 +8,15 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { RegisterComponent } from './component/page/register/register.component';
 import { LoginComponent } from './component/page/login/login.component';
 import { ProfileUpdateComponent } from './component/user/profile-update/profile-update.component';
+import { ChangePasswordComponent } from './component/user/change-password/change-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileUpdateComponent
+    ProfileUpdateComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
