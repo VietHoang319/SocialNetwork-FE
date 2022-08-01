@@ -11,6 +11,8 @@ import {NavbarComponent} from "./component/block/navbar/navbar.component";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
+import { ProfileComponent } from './component/user/profile/profile.component';
+import { HomepageComponent } from './component/page/homepage/homepage.component';
 import {ProfileUpdateComponent} from './component/user/profile-update/profile-update.component';
 
 @NgModule({
@@ -19,6 +21,8 @@ import {ProfileUpdateComponent} from './component/user/profile-update/profile-up
     RegisterComponent,
     LoginComponent,
     NavbarComponent,
+    ProfileComponent,
+    HomepageComponent,
     ProfileUpdateComponent
   ],
   imports: [
