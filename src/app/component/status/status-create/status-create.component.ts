@@ -23,7 +23,7 @@ export class StatusCreateComponent implements OnInit {
   });
 
   constructor(private statusService: StatusService,
-              private iamgeService: ImageService,
+              private imageService: ImageService,
               private storage: AngularFireStorage) {
   }
 
@@ -51,10 +51,11 @@ export class StatusCreateComponent implements OnInit {
             },
             image: item
           }
-          this.iamgeService.save(images).subscribe(() => {
+          this.imageService.save(images).subscribe(() => {
           });
         }
         this.statusForm.reset();
+        this.imgs = []
       }, error => {
       });
     }}

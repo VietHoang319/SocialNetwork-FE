@@ -25,16 +25,16 @@ const routes: Routes = [
   //   component: HomepageComponent
   // },
   {
-    path: ":id",
-    component: HomepageComponent
-  },
-  {
     path: "status-list",
     component: StatusListComponent
   },
   {
     path: "status-create",
     component: StatusCreateComponent
+  },
+  {
+    path: ":id",
+    component: HomepageComponent
   }
 ];
 
