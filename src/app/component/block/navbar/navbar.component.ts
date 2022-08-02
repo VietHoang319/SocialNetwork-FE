@@ -10,12 +10,14 @@ import {Router} from "@angular/router";
 export class NavbarComponent implements OnInit {
   fullname: any
   avatar: any
+  id: any
   constructor(private authenticationService : AuthenticationService,
               private router : Router) { }
 
   ngOnInit(): void {
     this.avatar = localStorage.getItem("AVATAR")
     this.fullname = localStorage.getItem("FULLNAME")
+    this.id = localStorage.getItem("ID")
   }
 
   logout() {
