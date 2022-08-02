@@ -45,6 +45,11 @@
                       class="bi bi-pencil-fill pe-1"></i>Xác nhận
                     </button>
                   </div>
+                  <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="(relationship.user1.id == id) && (relationship.user2.id == currentId)">
+                    <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i
+                      class="bi bi-pencil-fill pe-1"></i>Xóa
+                    </button>
+                  </div>
                   <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="(relationship.user1.id == currentId) && (relationship.user2.id == id)">
                     <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i
                       class="bi bi-pencil-fill pe-1"></i> Hủy yêu cầu kết bạn
