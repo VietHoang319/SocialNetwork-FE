@@ -18,29 +18,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "setting-user",
-    component: ProfileUpdateComponent
+    path: "",
+    component: HomepageComponent,
+    loadChildren: () => import("./component/page/home-routing.module").then(module => module.HomeRoutingModule)
   },
-  // {
-  //   path: "",
-  //   component: HomepageComponent
-  // },
-  {
-    path: "status-list",
-    component: StatusListComponent
-  },
-  {
-    path: "status-create",
-    component: StatusCreateComponent
-  },
-  {
-    path: ":id",
-    component: HomepageComponent
-  },
-  {
-    path : "setting-password",
-    component : ChangePasswordComponent
-  }
 ];
 
 @NgModule({
