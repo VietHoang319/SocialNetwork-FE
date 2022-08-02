@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
 
   friendConfirmation() {
     this.relationshipService.friendConfirmation(this.relationship.id).subscribe(data => {
-      console.log(data)
+      this.relationship.status=2
     })
   }
 }
