@@ -34,16 +34,22 @@
                   class="bi bi-pencil-fill pe-1"></i> Kết bạn
                 </button>
               </div>
+<!--              <h1>id: {{id}}</h1>-->
+<!--              <h1>ID: {{currentId}}</h1>-->
+<!--              <h1>us1: {{relationship.user1}}</h1>-->
+<!--              <h1>us2: {{relationship.user2}}</h1>-->
               <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="relationship !== null">
-                <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="relationship.status==1 && relationship.userId2 == currentId">
-                  <button class="btn btn-danger-soft me-2" type="button" (click)="friendConfirmation()"><i
-                    class="bi bi-pencil-fill pe-1"></i> Xác nhận
-                  </button>
-                </div>
-                <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="relationship.status == 1 && relationship.userId1 !== currentId">
-                  <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i
-                    class="bi bi-pencil-fill pe-1"></i> Hủy yêu cầu kết bạn
-                  </button>
+                <div *ngIf="relationship.status == 1">
+                  <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="(relationship.user1.id == id) && (relationship.user2.id == currentId)">
+                    <button class="btn btn-danger-soft me-2" type="button" (click)="friendConfirmation()"><i
+                      class="bi bi-pencil-fill pe-1"></i>Xác nhận
+                    </button>
+                  </div>
+                  <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="(relationship.user1.id == currentId) && (relationship.user2.id == id)">
+                    <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i
+                      class="bi bi-pencil-fill pe-1"></i> Hủy yêu cầu kết bạn
+                    </button>
+                  </div>
                 </div>
                 <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="relationship.status == 2">
                   <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i

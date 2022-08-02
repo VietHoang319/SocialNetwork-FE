@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   user: any
   currentId: any
   relationship: any
-  userId1:any
+  userId1: any
 
   constructor(private userService: UserService,
               private relationshipService: RelationshipService,
@@ -35,11 +35,11 @@ export class ProfileComponent implements OnInit {
     this.getRelationship()
   }
 
-  getRelationship(){
-    this.userId1=localStorage.getItem("ID")
-    this.relationshipService.getRelationship(this.userId1,this.id).subscribe(data=>{
+  getRelationship() {
+    this.userId1 = localStorage.getItem("ID")
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
       console.log(data);
-      this.relationship= data
+      this.relationship = data
     })
   }
 
@@ -53,21 +53,20 @@ export class ProfileComponent implements OnInit {
       },
     }
     console.log(relationship)
-      this.relationshipService.addFiend(relationship).subscribe(data => {
-        this.relationship = data;
-        alert("đã gửi")
-      })
-  }
-
-  deleteRelationship(){
-    this.relationshipService.deleteRelationship(this.relationship.id).subscribe(id=>{
-      console.log(id)
-      this.relationship=null;
+    this.relationshipService.addFiend(relationship).subscribe(data => {
+      this.relationship = data;
     })
   }
 
-  friendConfirmation(){
-    this.relationshipService.friendConfirmation(this.relationship.id).subscribe(data=>{
+  deleteRelationship() {
+    this.relationshipService.deleteRelationship(this.relationship.id).subscribe(id => {
+      console.log(id)
+      this.relationship = null;
+    })
+  }
+
+  friendConfirmation() {
+    this.relationshipService.friendConfirmation(this.relationship.id).subscribe(data => {
       console.log(data)
     })
   }
