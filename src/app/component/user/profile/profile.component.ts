@@ -28,7 +28,6 @@ export class ProfileComponent implements OnInit {
       this.id = param.get("id");
       this.userService.getUserProfile(this.id).subscribe(data => {
         this.user = data
-        console.log(this.user)
       })
     })
 
@@ -38,7 +37,6 @@ export class ProfileComponent implements OnInit {
   getRelationship() {
     this.userId1 = localStorage.getItem("ID")
     this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
-      console.log(data);
       this.relationship = data
     })
   }
@@ -60,7 +58,6 @@ export class ProfileComponent implements OnInit {
 
   deleteRelationship() {
     this.relationshipService.deleteRelationship(this.relationship.id).subscribe(id => {
-      console.log(id)
       this.relationship = null;
     })
   }

@@ -18,6 +18,8 @@ import { StatusListComponent } from './component/status/status-list/status-list.
 import { StatusCreateComponent } from './component/status/status-create/status-create.component';
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component';
 import { PostsComponent } from './component/user/posts/posts.component';
+import { RelationshipComponent } from './component/user/relationship/relationship.component';
+import { ListFriendComponent } from './component/block/list-friend/list-friend.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { PostsComponent } from './component/user/posts/posts.component';
     StatusListComponent,
     StatusCreateComponent,
     ChangePasswordComponent,
-    PostsComponent
+    PostsComponent,
+    RelationshipComponent,
+    ListFriendComponent
   ],
   imports: [
     BrowserModule,
