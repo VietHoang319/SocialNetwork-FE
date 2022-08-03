@@ -26,13 +26,13 @@ import {NgToastModule} from "ng-angular-popup";
     RegisterComponent,
     LoginComponent,
     NavbarComponent,
-    ProfileComponent,
     HomepageComponent,
     ProfileUpdateComponent,
     StatusListComponent,
     StatusCreateComponent,
     ChangePasswordComponent,
-    PostsComponent
+    PostsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
