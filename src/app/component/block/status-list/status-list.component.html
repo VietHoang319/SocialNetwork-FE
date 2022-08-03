@@ -12,7 +12,7 @@
           <div>
             <div class="nav nav-divider">
               <h6 class="nav-item card-title mb-0"><a href="#!"> {{s.owner.fullname}} </a></h6>
-              <span class="nav-item small"> 2hr</span>
+              <span class="nav-item small"> {{s.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</span>
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@
       <!-- Card img -->
       <div class="card-body position-relative pt-0">
         <div class="row g-2">
-          <div *ngFor="let img of statuses[1][i]" class="col-2">
+          <div *ngFor="let img of statuses[1][i]" class="col-4">
             <img class="rounded img-fluid" src="{{img.image}}">
           </div>
         </div>

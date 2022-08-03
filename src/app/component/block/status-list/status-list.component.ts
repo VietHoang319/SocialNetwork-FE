@@ -15,9 +15,10 @@ export class StatusListComponent implements OnInit {
   currentID : any;
   @Input()
   id : any
+  currentTime: any
   constructor() { }
 
   ngOnInit(): void {
+    this.currentTime = new Date()
   }
-
 }
