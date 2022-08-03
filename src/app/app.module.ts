@@ -17,6 +17,8 @@ import {ProfileUpdateComponent} from './component/user/profile-update/profile-up
 import { StatusListComponent } from './component/status/status-list/status-list.component';
 import { StatusCreateComponent } from './component/status/status-create/status-create.component';
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component';
+import { PostsComponent } from './component/user/posts/posts.component';
+import {NgToastModule} from "ng-angular-popup";
 import { StatusUpdateComponent } from './component/status/status-update/status-update.component';
 
 @NgModule({
@@ -31,6 +33,7 @@ import { StatusUpdateComponent } from './component/status/status-update/status-u
     StatusListComponent,
     StatusCreateComponent,
     ChangePasswordComponent,
+    PostsComponent,
     StatusUpdateComponent,
   ],
   imports: [
@@ -38,6 +41,7 @@ import { StatusUpdateComponent } from './component/status/status-update/status-u
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgToastModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud")
   ],

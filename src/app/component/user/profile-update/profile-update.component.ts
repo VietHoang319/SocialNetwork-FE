@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../service/user.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {NgToastService} from "ng-angular-popup";
 
 @Component({
   selector: 'app-profile-update',
@@ -22,7 +23,7 @@ export class ProfileUpdateComponent implements OnInit {
     address: new FormControl(),
   })
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router, private toast : NgToastService) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.getProfile(this.id);
     });
@@ -44,8 +45,8 @@ export class ProfileUpdateComponent implements OnInit {
   updateProfile(id: number) {
     const user = this.userForm.value;
     this.userService.updateUserProfile(id, user).subscribe(() => {
-      alert('Cập nhật thành công');
-      this.router.navigate(['/']);
+      this.toast.success({detail: "Thông Báo", summary: "Sửa thông tin thành công", duration: 3000, position: "br"})
+      localStorage.setItem("FULLNAME", user.fullname)
     }, e => {
       console.log(e);
     });

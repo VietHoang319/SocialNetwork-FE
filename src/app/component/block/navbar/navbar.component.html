@@ -1,4 +1,4 @@
-<header class="navbar-light fixed-top header-static bg-mode">
+  <header class="navbar-light fixed-top header-static bg-mode">
 
   <!-- Logo Nav START -->
   <nav class="navbar navbar-expand-lg">
@@ -135,13 +135,13 @@
                   <img class="avatar-img rounded-circle" src="{{avatar}}" alt="avatar">
                 </div>
                 <div>
-                  <a class="h6 stretched-link" href="#">{{fullname}}</a>
+                  <a class="h6 stretched-link" routerLink="{{id}}">{{fullname}}</a>
                 </div>
               </div>
             </li>
             <!-- Links -->
             <li class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear fa-fw me-2"></i> Cài đặt</a></li>
+            <li><a class="dropdown-item" routerLink="/setting-user"><i class="bi bi-gear fa-fw me-2"></i> Cài đặt</a></li>
             <li class="dropdown-divider"></li>
             <li><a class="dropdown-item bg-danger-soft-hover" (click)="logout()"><i class="bi bi-power fa-fw me-2"></i> Đăng xuất</a></li>
           </ul>

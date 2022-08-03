@@ -19,24 +19,13 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "setting-user",
-    component: ProfileUpdateComponent
-  },
-  // {
-  //   path: "",
-  //   component: HomepageComponent
-  // },
-  {
     path: "",
-    component: StatusListComponent
+    component: HomepageComponent,
+    loadChildren: () => import("./component/page/home-routing.module").then(module => module.HomeRoutingModule)
   },
   {
     path: "status-create",
     component: StatusCreateComponent
-  },
-  {
-    path: "edit/:id",
-    component: StatusUpdateComponent
   },
   {
     path: ":id",
