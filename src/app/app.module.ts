@@ -18,6 +18,7 @@ import { StatusListComponent } from './component/status/status-list/status-list.
 import { StatusCreateComponent } from './component/status/status-create/status-create.component';
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component';
 import { PostsComponent } from './component/user/posts/posts.component';
+import {NgToastModule} from "ng-angular-popup";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PostsComponent } from './component/user/posts/posts.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgToastModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud")
   ],
