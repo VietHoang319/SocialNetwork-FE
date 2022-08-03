@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../service/user.service";
 import {RelationshipService} from "../../../service/relationship.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-relationship',
@@ -19,32 +19,28 @@ export class RelationshipComponent implements OnInit {
 
   constructor(private userService: UserService,
               private relationshipService: RelationshipService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router : Router) {
   }
 
   ngOnInit(): void {
     this.currentId = localStorage.getItem("ID")
-    console.log(this.currentId)
-    this.activatedRoute.paramMap.subscribe((param) => {
-      this.id = param.get("id");
-      console.log(this.id)
-      this.userService.getUserProfile(this.id).subscribe(data => {
-        this.user = data
-      })
-    })
-    this.getAllListFriend()
+    this.id = this.router.url.split("/")[1];
+    this.getAllListFriend(this.id)
+    this.getRelationship()
   }
 
-  getAllListFriend() {
-    this.relationshipService.findAllFriendListByUserId(this.id).subscribe(data => {
+  getAllListFriend(id) {
+    this.relationshipService.findAllFriendListByUserId(id).subscribe(data => {
       console.log("list", data)
-      // this.listFriend = data;
-      // for (let i = 0; i < this.listFriend.length; i++) {
-      //   if (this.currentId != this.relationship.user1.id) {
-      //     this.listCheck = this.listFriend;
-      //   }
-      // }
+      this.listFriend = data;
     })
   }
 
+  getRelationship() {
+    this.userId1 = localStorage.getItem("ID")
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
+      this.relationship = data
+    })
+  }
 }

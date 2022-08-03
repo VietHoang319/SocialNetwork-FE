@@ -8,17 +8,21 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ListFriendComponent implements OnInit {
 
   @Input()
-  id:any
+  id: any
   @Input()
-  listFriend :any=[];
+  listFriend: any = [];
   @Input()
   user: any
   @Input()
   currentId: any
   @Input()
-  listCheck:any=[]
-  constructor() { }
+  listCheck: any = []
+  @Input()
+  relationship: any
+  constructor() {
+  }
 
   ngOnInit(): void {
+    console.log(this.id)
   }
 }

@@ -6,12 +6,12 @@ import {RelationshipComponent} from "../../user/relationship/relationship.compon
 
 const routes: Routes = [
   {
-    path: "",
-    component: PostsComponent
+    path: "list-friend",
+    component: RelationshipComponent
   },
   {
-    path: "list-friend/:id",
-    component: RelationshipComponent
+    path: "",
+    component: PostsComponent
   }
 ];
 
