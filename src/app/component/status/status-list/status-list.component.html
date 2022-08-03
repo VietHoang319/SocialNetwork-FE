@@ -14,9 +14,7 @@
     <td>{{status.createAt}}</td>
     <td>{{status.status}}</td>
     <td>{{status.owner.fullname}}</td>
-    <td><a [routerLink]="['/edit', status.id]">Edit</a></td>
-<!--    <button (click)="delete(student.id)" class="btn btn-success">xoá</button>-->
+    <td><a [routerLink]="['/edit', status.id]" class="btn btn-danger">Edit</a></td>
+    <button (click)="delete2(status.id)" class="btn btn-success">xoá</button>
   </tr>
 </table>
-<!--<h3><a routerLink="create">Create</a></h3>-->
-<!--<router-outlet></router-outlet>-->

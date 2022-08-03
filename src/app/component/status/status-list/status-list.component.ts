@@ -27,4 +27,17 @@ export class StatusListComponent implements OnInit {
       console.log(error);
     })
   }
+
+  delete2(id: any) {
+    if (confirm('ban muon xoa ?')) {
+      this.statusService.delete(id).subscribe(() => {
+        alert("Ok");
+        this.showAll()
+      }, e => {
+        console.log(e);
+      });
+    }
+  }
+
+
 }

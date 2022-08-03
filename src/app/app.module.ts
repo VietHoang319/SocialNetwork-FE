@@ -17,6 +17,8 @@ import {ProfileUpdateComponent} from './component/user/profile-update/profile-up
 import { StatusListComponent } from './component/status/status-list/status-list.component';
 import { StatusCreateComponent } from './component/status/status-create/status-create.component';
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component';
+import { StatusUpdateComponent } from './component/status/status-update/status-update.component';
+import { StatusDeleteComponent } from './component/status/status-delete/status-delete.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ChangePasswordComponent } from './component/user/change-password/change
     ProfileUpdateComponent,
     StatusListComponent,
     StatusCreateComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    StatusUpdateComponent,
+    StatusDeleteComponent
   ],
   imports: [
     BrowserModule,

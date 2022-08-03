@@ -18,4 +18,5 @@ export class ImageService {
   showFullStatus(id: any):Observable<any>{
     return this.httpClient.get(API_URL + `/${id}`);
   }
+
 }

@@ -7,6 +7,7 @@ import {ProfileUpdateComponent} from "./component/user/profile-update/profile-up
 import {StatusListComponent} from "./component/status/status-list/status-list.component";
 import {StatusCreateComponent} from "./component/status/status-create/status-create.component";
 import {ChangePasswordComponent} from "./component/user/change-password/change-password.component";
+import {StatusUpdateComponent} from "./component/status/status-update/status-update.component";
 
 const routes: Routes = [
   {
@@ -26,12 +27,16 @@ const routes: Routes = [
   //   component: HomepageComponent
   // },
   {
-    path: "status-list",
+    path: "",
     component: StatusListComponent
   },
   {
     path: "status-create",
     component: StatusCreateComponent
+  },
+  {
+    path: "edit/:id",
+    component: StatusUpdateComponent
   },
   {
     path: ":id",
