@@ -35,30 +35,37 @@ export class ChangePasswordComponent implements OnInit {
         password: this.userForm.value.password,
         confirmPassword: this.userForm.value.confirmPassword
       }
-      if (this.userForm.value.password == this.userForm.value.confirmPassword) {
-        // @ts-ignore
-        this.userService.updatePassword(id, user, this.userForm.value.currentPassword).subscribe(() => {
-          this.toast.success({detail: "Thông Báo", summary: "Đổi mật khẩu thành công", duration: 3000, position: "br"})
+      if (this.userForm.value.currentPassword !=this.userForm.value.password ){
+        if (this.userForm.value.password == this.userForm.value.confirmPassword) {
           // @ts-ignore
-          document.getElementById("error").style.visibility = "hidden"
+          this.userService.updatePassword(id, user, this.userForm.value.currentPassword).subscribe(() => {
+            this.toast.success({detail: "Thông Báo", summary: "Đổi mật khẩu thành công", duration: 3000, position: "br"})
+            // @ts-ignore
+            document.getElementById("error").style.visibility = "none"
+            // @ts-ignore
+            document.getElementById("fail").style.display = "none"
+            document.getElementById("fail1").style.display = "none"
+          }, error => {
+            // @ts-ignore
+            document.getElementById("error").style.display = "block"
+            // @ts-ignore
+            document.getElementById("fail").style.display = "none"
+            document.getElementById("fail1").style.display = "none"
+          });
+        } else {
           // @ts-ignore
-          document.getElementById("success").style.visibility = "visible"
+          document.getElementById("fail").style.display = "block"
           // @ts-ignore
-          document.getElementById("fail").style.visibility = "hidden"
-        }, error => {
-          // @ts-ignore
-          document.getElementById("error").style.visibility = "visible"
-          // @ts-ignore
-          document.getElementById("success").style.visibility = "hidden"
-          // @ts-ignore
-          document.getElementById("fail").style.visibility = "hidden"
-        });
-      } else {
-        // @ts-ignore
-        document.getElementById("fail").style.visibility = "visible"
-        // @ts-ignore
-        document.getElementById("error").style.visibility = "hidden"
+          document.getElementById("error").style.display = "none"
+          document.getElementById("fail1").style.display = "none"
+        }
       }
+      else {
+        document.getElementById("fail1").style.display = "block"
+        document.getElementById("error").style.display = "none"
+        document.getElementById("fail").style.display = "none"
+      }
+
     }
   }
 
