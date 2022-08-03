@@ -20,4 +20,18 @@ export class StatusService {
   getById(id: string):Observable<Status>{
     return this.httpClien.get<Status>(API_URL+`/${id}`);
   }
+  edit(id:string,status: Status): Observable<Status>{
+    return this.httpClien.put<Status>(API_URL+`/${id}`,status);
+  }
+  delete(id:any): Observable<Status> {
+    return this.httpClien.delete<Status>(API_URL+`/${id}`);
+  }
+
+  findAllByOwnerId(id : any) : Observable<Status>{
+    return  this.httpClien.get<Status>(API_URL + `/find-all-by-user/${id}`)
+  }
+
+  // delete(id:string,status: Status): Observable<Status>{
+  //   return this.httpClien.put<Status>(API_URL+`/${id}`,status);
+  // }
 }

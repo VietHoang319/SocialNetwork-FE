@@ -14,11 +14,13 @@ import {environment} from "../environments/environment";
 import { ProfileComponent } from './component/user/profile/profile.component';
 import { HomepageComponent } from './component/page/homepage/homepage.component';
 import {ProfileUpdateComponent} from './component/user/profile-update/profile-update.component';
-import { StatusListComponent } from './component/status/status-list/status-list.component';
 import { StatusCreateComponent } from './component/status/status-create/status-create.component';
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component';
 import { PostsComponent } from './component/user/posts/posts.component';
 import {NgToastModule} from "ng-angular-popup";
+import { StatusUpdateComponent } from './component/status/status-update/status-update.component';
+import { StatusListComponent } from './component/block/status-list/status-list.component';
+import {StatusOwnerListComponent} from "./component/status/status-owner-list/status-owner-list.component";
 
 @NgModule({
   declarations: [
@@ -26,13 +28,15 @@ import {NgToastModule} from "ng-angular-popup";
     RegisterComponent,
     LoginComponent,
     NavbarComponent,
+    ProfileComponent,
     HomepageComponent,
     ProfileUpdateComponent,
-    StatusListComponent,
     StatusCreateComponent,
     ChangePasswordComponent,
     PostsComponent,
-    ProfileComponent
+    StatusUpdateComponent,
+    StatusListComponent,
+    StatusOwnerListComponent,
   ],
   imports: [
     BrowserModule,
