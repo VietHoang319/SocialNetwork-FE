@@ -58,7 +58,8 @@ export class StatusCreateComponent implements OnInit {
         this.imgs = []
       }, error => {
       });
-    }}
+    }
+  }
 
   // upload ảnh
   async upload() {

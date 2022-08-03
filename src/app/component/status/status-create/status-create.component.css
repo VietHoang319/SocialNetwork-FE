@@ -1,7 +1,10 @@
+/*id*/
 #inputGroupFile01{
   display: none;
 }
 
+/*class*/
 .img-fluid {
- height: 100px;
+ height: 200px;
 }
+

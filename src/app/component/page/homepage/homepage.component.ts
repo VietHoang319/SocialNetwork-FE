@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-homepage',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-
-  constructor() { }
+  fullname: any
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
+    this.fullname = localStorage.getItem("FULLNAME");
+    if (this.fullname == "null") {
+      this.router.navigate(["/setting-user"])
+    }
   }
-
 }
