@@ -16,6 +16,7 @@ export class StatusNewFeedComponent implements OnInit {
   avatar :any
   fullname : any;
   relationship: any;
+  numberStatusOwner: any;
 
   constructor(private statusService : StatusService,private activatedRoute : ActivatedRoute,private relationshipService: RelationshipService,private router: Router) {
 
@@ -32,6 +33,8 @@ export class StatusNewFeedComponent implements OnInit {
         console.log(status)
       })
     })
-
+    this.statusService.findAllByOwnerId(this.currentId).subscribe((status) => {
+      this.numberStatusOwner = status;
+    })
   }
 }

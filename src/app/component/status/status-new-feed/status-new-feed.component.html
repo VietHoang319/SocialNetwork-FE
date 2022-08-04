@@ -47,7 +47,7 @@
                     <div style="margin-top: 5%" class="hstack gap-2 gap-xl-3 justify-content-center">
                       <!-- User stat item -->
                       <div>
-                        <h6 class="mb-0">{{statuses.length}}</h6>
+                        <h6 class="mb-0">{{numberStatusOwner[0].length}}</h6>
                         <small>Post</small>
                       </div>
                       <!-- Divider -->
@@ -154,7 +154,7 @@
       <!-- Main content START -->
       <div class="col-md-8 col-lg-4 vstack gap-4">
         <app-status-create></app-status-create>
-        <app-status-list [statuses]="statuses" [currentID]="currentId" [id]="id"></app-status-list>
+        <app-status-list [statuses]="statuses" [currentID]="currentId" [id]="id" style="margin-top: -3%"></app-status-list>
       </div>
     </div>
   </div>
