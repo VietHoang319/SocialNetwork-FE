@@ -17,21 +17,21 @@
             <!-- Email -->
             <div class="mb-3 input-group-lg">
               <input type="text" class="form-control" placeholder="Nhập tên tài khoản" formControlName="username">
-              <small></small>
+              <div></div>
             </div>
             <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
               <div style="color: red" *ngIf="username?.errors?.['required']">
-                <small>Tên tài khoản không được bỏ trống</small>
+                <div>Tên tài khoản không được bỏ trống</div>
               </div>
               <div style="color: red" *ngIf="username?.errors?.['minlength']">
-               <small>Tên tài khoản phải ít nhất 6 kí tự</small>
+               <div>Tên tài khoản phải ít nhất 6 kí tự</div>
               </div>
               <div style="color: red" *ngIf="username?.errors?.['maxlength']">
-                <small>Tên tài khoản tối đa 32 kí tự</small>
+                <div>Tên tài khoản tối đa 32 kí tự</div>
               </div>
             </div>
             <div style="display: none;color: red" id="check-username" >
-              <small>Tài khoản đã tồn tại</small>
+              <div>Tài khoản đã tồn tại</div>
             </div>
             <!-- New password -->
             <div class="mb-3 position-relative">
@@ -43,13 +43,13 @@
 
             <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
               <div style="color: red" *ngIf="password?.errors?.['required']">
-               <small> Mật khẩu không được bỏ trống</small>
+               <div> Mật khẩu không được bỏ trống</div>
               </div>
               <div style="color: red" *ngIf="password?.errors?.['minlength']">
-               <small> Mật khẩu phải có ít nhất 6 kí tự</small>
+               <div> Mật khẩu phải có ít nhất 6 kí tự</div>
               </div>
               <div style="color: red" *ngIf="password?.errors?.['maxlength']">
-                <small>Mật khẩu tối đa 32 kí tự</small>
+                <div>Mật khẩu tối đa 32 kí tự</div>
               </div>
             </div>
             <!-- Confirm password -->
@@ -57,31 +57,31 @@
               <input class="form-control" type="password" placeholder="Nhập lại mật khẩu" formControlName="confirmPassword" (change)="checkConfirmPassword()">
             </div>
             <div style="display: none;color: red" id="abc" >
-              <small>Mật khẩu nhập lại không đúng</small>
+              <div>Mật khẩu nhập lại không đúng</div>
             </div>
             <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)">
               <div style="color: red" *ngIf="confirmPassword?.errors?.['required']">
-                <small>Xác nhận mật khẩu không được bỏ trống</small>
+                <div>Xác nhận mật khẩu không được bỏ trống</div>
               </div>
               <div style="color: red" *ngIf="confirmPassword?.errors?.['minlength']">
-                <small>Xác nhận mật khẩu phải có ít nhất 6 kí tự </small>
+                <div>Xác nhận mật khẩu phải có ít nhất 6 kí tự </div>
               </div>
               <div style="color: red" *ngIf="confirmPassword?.errors?.['maxlength']">
-                <small>Xác nhận mật khẩu tối đa 32 kí tự</small>
+                <div>Xác nhận mật khẩu tối đa 32 kí tự</div>
               </div>
             </div>
             <div class="mb-3 input-group-lg">
               <input type="email" class="form-control" placeholder="Nhập email" formControlName="email">
             </div>
             <div style="display: none;color: red" id="check-email" >
-              <small>Email đã tồn tại</small>
+              <div>Email đã tồn tại</div>
             </div>
             <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
               <div style="color: red" *ngIf="email?.errors?.['required']">
-                <small>Email không được bỏ trống</small>
+                <div>Email không được bỏ trống</div>
               </div>
               <div style="color: red" *ngIf="email?.errors?.['email']">
-                <small>Email nhập không dúng định dạng</small>
+                <div>Email nhập không dúng định dạng</div>
               </div>
             </div>
             <div class="mb-3 input-group-lg">
@@ -89,19 +89,19 @@
             </div>
             <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
               <div style="color: red" *ngIf="phone?.errors?.['required']">
-                <small>Số điện thoại không được bỏ trống</small>
+                <div>Số điện thoại không được bỏ trống</div>
               </div>
               <div style="color: red" *ngIf="phone?.errors?.['pattern']">
-                <small>Số điện thoại không đúng định dạng</small>
+                <div>Số điện thoại không đúng định dạng</div>
               </div>
             </div>
 
             <div class="mb-3 input-group-lg">
-              <input type="date" class="form-control" formControlName="birthday">
+              <input type="date" class="form-control" id="datePickerId" formControlName="birthday">
             </div>
             <div *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)">
               <div style="color: red" *ngIf="birthday?.errors?.['required']">
-                <small>Ngày sinh không được bỏ trống</small>
+                <div>Ngày sinh không được bỏ trống</div>
               </div>
             </div>
 
