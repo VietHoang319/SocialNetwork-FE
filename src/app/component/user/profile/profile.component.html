@@ -13,14 +13,18 @@
           <div class="d-sm-flex align-items-start text-center text-sm-start">
             <div>
               <!-- Avatar -->
-              <div class="avatar avatar-xxl mt-n5 mb-3"  type="button" data-bs-toggle="modal"
-                      data-bs-target="#modalAvatar">
-                <img class="avatar-img rounded-circle border border-white border-3" src="{{user.avatar}}" alt="">
+              <label for="avatar">
+                <div class="avatar avatar-xxl mt-n5 mb-3" type="button" data-bs-toggle="modal"
+                     data-bs-target="#modalAvatar" id="avatar-frame">
+                  <img class="avatar-img rounded-circle border border-white border-3" src="{{user.avatar}}"
+                       alt="">
+                </div>
+              </label>
+              <div *ngIf="currentId == id">
+                <input type="file" formControlName="avatar" (change)="onFileSelected($event)"
+                       accept="image/png, image/gif, image/jpeg" id="avatar">
+<!--                <button (click)="updateAvatar(currentId)">Thay đổi</button>-->
               </div>
-              <form [formGroup]="userForm" (ngSubmit)="updateAvatar(id)">
-                <input type="file" formControlName="avatar" (change)="onFileSelected($event)">
-                <button type="submit">Thay đổi</button>
-              </form>
             </div>
             <div class="ms-sm-4 mt-sm-3">
               <!-- Info -->
@@ -35,22 +39,26 @@
             </div>
             <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="user.id != currentId">
               <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="relationship == null">
-                <button id="relationship" class="btn btn-primary-soft me-2" type="button" (click)="addFriend()"><i class="fa-solid fa-user-plus"></i> Kết bạn
+                <button id="relationship" class="btn btn-primary-soft me-2" type="button" (click)="addFriend()"><i
+                  class="fa-solid fa-user-plus"></i> Kết bạn
                 </button>
               </div>
               <div class="d-flex mt-3 justify-content-center ms-sm-auto" *ngIf="relationship !== null">
                 <div *ngIf="relationship.status == 1">
                   <div class="d-flex mt-3 justify-content-center ms-sm-auto"
                        *ngIf="(relationship.user1.id == id) && (relationship.user2.id == currentId)">
-                    <button class="btn btn-success-soft me-2" type="button" (click)="friendConfirmation()"><i class="fa-solid fa-user-plus"></i> Chấp nhận lời mời
+                    <button class="btn btn-success-soft me-2" type="button" (click)="friendConfirmation()"><i
+                      class="fa-solid fa-user-plus"></i> Chấp nhận lời mời
                     </button>
-                    <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i class="fa-solid fa-user-minus"></i> Xóa lời mời
+                    <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i
+                      class="fa-solid fa-user-minus"></i> Xóa lời mời
                     </button>
                   </div>
 
                   <div class="d-flex mt-3 justify-content-center ms-sm-auto"
                        *ngIf="(relationship.user1.id == currentId) && (relationship.user2.id == id)">
-                    <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i class="fa-solid fa-user-minus"></i> Hủy yêu cầu kết bạn
+                    <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i
+                      class="fa-solid fa-user-minus"></i> Hủy yêu cầu kết bạn
                     </button>
                   </div>
                 </div>
@@ -94,7 +102,8 @@
             <!-- Button -->
             <div class="modal-footer">
               <div class="col-lg-8 text-sm-end">
-                <button type="button" class="btn btn-danger-soft me-2" (click)="deleteRelationship()" data-bs-dismiss="modal"> Xác nhận
+                <button type="button" class="btn btn-danger-soft me-2" (click)="deleteRelationship()"
+                        data-bs-dismiss="modal"> Xác nhận
                 </button>
                 <button type="button" class="btn btn-success-soft" data-bs-dismiss="modal" aria-label="Close">Hủy
                 </button>
