@@ -1,6 +1,6 @@
 <div class="card" *ngFor="let s of statuses[0],index as i">
   <!-- Card header START -->
-  <div *ngIf="!((currentID != s.owner.id) && (s.status == 2) &&(relationship != null))">
+  <div *ngIf="!((currentID != s.owner.id) && (s.status == 2))">
     <div class="card-header border-0 pb-0">
       <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
