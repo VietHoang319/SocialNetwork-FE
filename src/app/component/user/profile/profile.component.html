@@ -13,9 +13,14 @@
           <div class="d-sm-flex align-items-start text-center text-sm-start">
             <div>
               <!-- Avatar -->
-              <div class="avatar avatar-xxl mt-n5 mb-3">
+              <div class="avatar avatar-xxl mt-n5 mb-3"  type="button" data-bs-toggle="modal"
+                      data-bs-target="#modalAvatar">
                 <img class="avatar-img rounded-circle border border-white border-3" src="{{user.avatar}}" alt="">
               </div>
+              <form [formGroup]="userForm" (ngSubmit)="updateAvatar(id)">
+                <input type="file" formControlName="avatar" (change)="onFileSelected($event)">
+                <button type="submit">Thay đổi</button>
+              </form>
             </div>
             <div class="ms-sm-4 mt-sm-3">
               <!-- Info -->
@@ -100,6 +105,7 @@
         </div>
       </div>
       <!-- Modal create feed END -->
+
       <!-- My profile END -->
       <router-outlet style="margin-top: -5%"></router-outlet>
 

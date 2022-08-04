@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../service/user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {RelationshipService} from "../../../service/relationship.service";
+import {FormControl, FormGroup} from "@angular/forms";
+import {NgToastService} from "ng-angular-popup";
+import {finalize} from "rxjs";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Component({
   selector: 'app-profile',
@@ -14,10 +18,12 @@ export class ProfileComponent implements OnInit {
   currentId: any
   relationship: any
   userId1: any
-
+  userForm: FormGroup = new FormGroup({
+    avatar: new FormControl(),
+  })
   constructor(private userService: UserService,
               private relationshipService: RelationshipService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,private toast : NgToastService,private storage: AngularFireStorage,private router: Router) {
   }
 
   ngOnInit(): void {
@@ -64,5 +70,51 @@ export class ProfileComponent implements OnInit {
     this.relationshipService.friendConfirmation(this.relationship.id).subscribe(data => {
       this.relationship.status=2
     })
+  }
+
+  updateAvatar(id : any){
+    this.userForm.value.avatar = this.fb;
+    const user = this.userForm.value;
+    console.log(user)
+    this.userService.updateAvatar(id,user).subscribe( () =>{
+      this.toast.success({detail: "Thông Báo", summary: "Sửa ảnh thành công", duration: 3000, position: "br"})
+    })
+    localStorage.setItem("AVATAR",this.fb);
+    this.reloadCurrentRoute();
+  }
+
+  fb: any
+  downloadURL: any;
+  onFileSelected(event: any) {
+    var n = Date.now();
+    const file = event.target.files[0];
+    const filePath = `cloud/${n}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(`cloud/${n}`, file);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          this.downloadURL.subscribe((url: any) => {
+            if (url) {
+              this.fb = url;
+            }
+            console.log(this.fb);
+          });
+        })
+      )
+      .subscribe((url: any) => {
+        if (url) {
+          console.log(url);
+        }
+      });
+  }
+
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 }
