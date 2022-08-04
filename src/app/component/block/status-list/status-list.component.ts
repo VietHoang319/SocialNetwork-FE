@@ -18,7 +18,8 @@ export class StatusListComponent implements OnInit {
   currentID: any;
   @Input()
   id: any
-
+  @Input()
+  relationship: any
   statusz: Status = {
     owner: {
       id: 0,
