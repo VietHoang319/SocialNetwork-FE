@@ -26,14 +26,19 @@
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction1">
             <div>
               <li>
-                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateStatusModal" (click)="getStatus(s.id)"><i
+                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateStatusModal"
+                        (click)="getStatus(s.id)"><i
                   class="bi bi-pencil-fill pe-1"></i> Sửa bài đăng
                 </button>
               </li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#"> <i class="fa-solid fa-trash"></i> Xóa bài đăng</a></li>
+              <li>
+                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalDeleteStatus"
+                        (click)="getStatus(s.id)"><i class="fa-solid fa-trash"></i> Xóa bài đăng
+                </button>
+              </li>
             </div>
           </ul>
         </div>
@@ -97,7 +102,7 @@
             </div>
             <!-- Feed box  -->
             <form class="w-100">
-              <textarea class="form-control pe-4 fs-3 lh-1 border-0" rows="4" placeholder="nội dung chỉnh sữa"
+              <textarea class="form-control pe-4 fs-3 lh-1 border-0" rows="4" placeholder="Nội dung chỉnh sữa"
                         formControlName="content"
                         ngModel="{{statusz.content}}"></textarea>
             </form>
@@ -129,4 +134,30 @@
       </div>
     </div>
   </form>
+</div>
+
+<!-- Modal unfriend START -->
+<div class="modal fade" id="modalDeleteStatus" tabindex="-1" aria-labelledby="modalLabelUnfriend" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <!-- Modal feed header START -->
+      <div class="modal-header">
+        <h3 id="modalLabelUnfriend" style="text-align: center">Bạn muốn hủy kết bạn</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>Bạn có chắc chắn muốn xóa bài đăng không?</h6>
+      </div>
+      <!-- Button -->
+      <div class="modal-footer">
+        <div class="col-lg-8 text-sm-end">
+          <button type="button" class="btn btn-danger-soft me-2" (click)="delete(statusz.id)" data-bs-dismiss="modal">
+            Xác nhận
+          </button>
+          <button type="button" class="btn btn-success-soft" data-bs-dismiss="modal" aria-label="Close">Hủy
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
