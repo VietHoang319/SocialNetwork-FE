@@ -21,6 +21,9 @@ import {NgToastModule} from "ng-angular-popup";
 import { StatusUpdateComponent } from './component/status/status-update/status-update.component';
 import { StatusListComponent } from './component/block/status-list/status-list.component';
 import {StatusOwnerListComponent} from "./component/status/status-owner-list/status-owner-list.component";
+import { RelationshipComponent } from './component/user/relationship/relationship.component';
+import { ListFriendComponent } from './component/block/list-friend/list-friend.component';
+import { StatusNewFeedComponent } from './component/status/status-new-feed/status-new-feed.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +38,11 @@ import {StatusOwnerListComponent} from "./component/status/status-owner-list/sta
     ChangePasswordComponent,
     PostsComponent,
     StatusUpdateComponent,
+    RelationshipComponent,
+    ListFriendComponent,
     StatusListComponent,
     StatusOwnerListComponent,
+    StatusNewFeedComponent,
   ],
   imports: [
     BrowserModule,

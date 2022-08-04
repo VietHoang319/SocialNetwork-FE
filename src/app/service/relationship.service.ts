@@ -27,5 +27,7 @@ export class RelationshipService {
     return this.httpClient.put(API_URL + "relationships/" + id,null);
   }
 
-
+  findAllFriendListByUserId(id:any){
+    return this.httpClient.get(API_URL +"relationships/" + id+ "/find-all-friend-by-userId/")
+  }
 }
