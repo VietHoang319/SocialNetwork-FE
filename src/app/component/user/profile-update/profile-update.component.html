@@ -77,7 +77,7 @@
           <!-- Account setting tab START -->
           <div class="tab-pane show active fade" id="nav-setting-tab-1">
             <!-- Account settings START -->
-            <div class="card mb-4">
+            <div class="card mb-4" style="padding-left: 4%;padding-right: 4%">
 
               <!-- Title START -->
               <div class="card-header border-0 pb-0">
@@ -94,8 +94,8 @@
                     <input type="text" class="form-control" formControlName="fullname">
                     <div
                       *ngIf="!fullname?.valid && (fullname?.dirty)" style="color: red">
-                      <div [hidden]="!fullname?.errors?.['required']"> không được để trống</div>
-                      <div [hidden]="!fullname?.errors?.['pattern']">  không chứa kí tự đặc biệt</div>
+                      <div [hidden]="!fullname?.errors?.['required']"> Không được để trống</div>
+                      <div [hidden]="!fullname?.errors?.['pattern']">  Không chứa kí tự đặc biệt</div>
                     </div>
                   </div>
                   <!-- Phone -->
@@ -104,8 +104,8 @@
                     <input type="text" class="form-control" formControlName="phone">
                     <div
                       *ngIf="!phone?.valid && (phone?.dirty)" style="color: red">
-                      <div [hidden]="!phone?.errors?.['required']">số điện thoại không được để trống</div>
-                      <div [hidden]="!phone?.errors?.['pattern']">số điện thoại không đúng định dạng</div>
+                      <div [hidden]="!phone?.errors?.['required']">Số điện thoại không được để trống</div>
+                      <div [hidden]="!phone?.errors?.['pattern']">Số điện thoại không đúng định dạng</div>
                     </div>
                   </div>
                   <!-- address -->
@@ -114,13 +114,13 @@
                     <input type="text" class="form-control" formControlName="address">
                     <div
                       *ngIf="!address?.valid && (address?.dirty)" style="color: red">
-                      <div [hidden]="!address?.errors?.['pattern']">không chứa kí tự đặc biệt</div>
+                      <div [hidden]="!address?.errors?.['pattern']">Không chứa kí tự đặc biệt</div>
                     </div>
                   </div>
                   <!-- Birthday -->
                   <div class="col-lg-6">
                     <label class="form-label">Ngày sinh </label>
-                    <input type="date" class="form-control flatpickr" value="12/12/1990" formControlName="birthday">
+                    <input type="date" class="form-control flatpickr" id="datePickerId" formControlName="birthday">
                   </div>
                   <!-- Email -->
                   <div class="col-sm-6">
@@ -139,12 +139,12 @@
                     <input type="text" class="form-control" formControlName="hobby">
                     <div
                       *ngIf="!hobby?.valid && (hobby?.dirty)" style="color: red">
-                      <div [hidden]="!hobby?.errors?.['pattern']">không chứa kí tự đặc biệt</div>
+                      <div [hidden]="!hobby?.errors?.['pattern']">Không chứa kí tự đặc biệt</div>
                     </div>
                   </div>
                   <!-- Button  -->
                   <div class="col-12 text-end">
-                    <button type="submit" class="btn btn-sm btn-primary mb-0" [disabled]="!userForm.valid">Thay đổi
+                    <button type="submit" class="btn btn-primary mb-0" [disabled]="!userForm.valid">Thay đổi
                     </button>
                   </div>
                 </form>
