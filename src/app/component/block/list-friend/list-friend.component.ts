@@ -16,13 +16,13 @@ export class ListFriendComponent implements OnInit {
   @Input()
   currentId: any
   @Input()
-  listCheck: any = []
-  @Input()
   relationship: any
+  @Input()
+  listMutualFriend:any=[];
   constructor() {
   }
 
   ngOnInit(): void {
-    console.log(this.id)
+
   }
 }

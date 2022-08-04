@@ -30,4 +30,8 @@ export class RelationshipService {
   findAllFriendListByUserId(id:any){
     return this.httpClient.get(API_URL +"relationships/" + id+ "/find-all-friend-by-userId/")
   }
+
+  findMutualFriend(currentId:any,id:any){
+    return this.httpClient.get(API_URL+"relationships/find-mutual-friends?currentId=" + currentId +"&id=" + id)
+  }
 }
