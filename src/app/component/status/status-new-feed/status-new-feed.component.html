@@ -38,11 +38,11 @@
                   <div class="text-center">
                     <!-- Avatar -->
                     <div class="avatar avatar-lg mt-n5 mb-3">
-                      <a href="#!"><img class="avatar-img rounded border border-white border-3"
+                      <a routerLink="/{{currentId}}"><img class="avatar-img rounded border border-white border-3"
                                         src="{{avatar}}" alt=""></a>
                     </div>
                     <!-- Info -->
-                    <h5 class="mb-0"><a href="#!">{{fullname}}</a></h5>
+                    <h5 class="mb-0"><a routerLink="/{{currentId}}">{{fullname}}</a></h5>
                     <!-- User stat START -->
                     <div style="margin-top: 5%" class="hstack gap-2 gap-xl-3 justify-content-center">
                       <!-- User stat item -->
@@ -54,15 +54,8 @@
                       <div class="vr"></div>
                       <!-- User stat item -->
                       <div>
-                        <h6 class="mb-0"></h6>
+                        <h6 class="mb-0">{{numberFriend.length}}</h6>
                         <small>Friend</small>
-                      </div>
-                      <!-- Divider -->
-                      <div class="vr"></div>
-                      <!-- User stat item -->
-                      <div>
-                        <h6 class="mb-0">365</h6>
-                        <small>Following</small>
                       </div>
                     </div>
                     <!-- User stat END -->
@@ -74,40 +67,16 @@
                   <!-- Side Nav START -->
                   <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
                     <li class="nav-item">
-                      <a class="nav-link" href="my-profile.html"> <img class="me-2 h-20px fa-fw"
+                      <a class="nav-link" routerLink="/"> <img class="me-2 h-20px fa-fw"
                                                                        src="assets/assets/images/icon/home-outline-filled.svg"
-                                                                       alt=""><span>Feed </span></a>
+                                                                       alt=""><span>Trang chủ </span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="my-profile-connections.html"> <img class="me-2 h-20px fa-fw"
+                      <a class="nav-link" routerLink="/{{currentId}}/list-friend"> <img class="me-2 h-20px fa-fw"
                                                                                    src="assets/assets/images/icon/person-outline-filled.svg"
-                                                                                   alt=""><span>Connections </span></a>
+                                                                                   alt=""><span>Bạn bè </span></a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="blog.html"> <img class="me-2 h-20px fa-fw"
-                                                                 src="assets/assets/images/icon/earth-outline-filled.svg"
-                                                                 alt=""><span>Latest News </span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="events.html"> <img class="me-2 h-20px fa-fw"
-                                                                   src="assets/assets/images/icon/calendar-outline-filled.svg"
-                                                                   alt=""><span>Events </span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="groups.html"> <img class="me-2 h-20px fa-fw"
-                                                                   src="assets/assets/images/icon/chat-outline-filled.svg"
-                                                                   alt=""><span>Groups </span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="notifications.html"> <img class="me-2 h-20px fa-fw"
-                                                                          src="assets/assets/images/icon/notification-outlined-filled.svg"
-                                                                          alt=""><span>Notifications </span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="settings.html"> <img class="me-2 h-20px fa-fw"
-                                                                     src="assets/assets/images/icon/cog-outline-filled.svg"
-                                                                     alt=""><span>Settings </span></a>
-                    </li>
+
                   </ul>
                   <!-- Side Nav END -->
                 </div>
@@ -118,32 +87,6 @@
                 </div>
               </div>
               <!-- Card END -->
-
-              <!-- Helper link START -->
-              <ul class="nav small mt-4 justify-content-center lh-1">
-                <li class="nav-item">
-                  <a class="nav-link" href="my-profile-about.html">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="settings.html">Settings</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" target="_blank" href="https://support.webestica.com/login">Support </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" target="_blank" href="docs/index.html">Docs </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="help.html">Help</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="privacy-and-terms.html">Privacy & terms</a>
-                </li>
-              </ul>
-              <!-- Helper link END -->
-              <!-- Copyright -->
-              <p class="small text-center mt-1">©2022 <a class="text-body" target="_blank"
-                                                         href="https://www.webestica.com/"> Webestica </a></p>
             </div>
           </div>
         </nav>
