@@ -17,6 +17,7 @@ export class StatusNewFeedComponent implements OnInit {
   fullname : any;
   relationship: any;
   numberStatusOwner: any;
+  numberFriend: any;
 
   constructor(private statusService : StatusService,private activatedRoute : ActivatedRoute,private relationshipService: RelationshipService,private router: Router) {
 
@@ -35,6 +36,9 @@ export class StatusNewFeedComponent implements OnInit {
     })
     this.statusService.findAllByOwnerId(this.currentId).subscribe((status) => {
       this.numberStatusOwner = status;
+    })
+    this.relationshipService.findAllFriendListByUserId(this.currentId).subscribe(data => {
+      this.numberFriend = data;
     })
   }
 }

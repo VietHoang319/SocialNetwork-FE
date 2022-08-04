@@ -96,4 +96,9 @@ export class StatusCreateComponent implements OnInit {
       this.selectedImages = [];
     }
   }
+
+  deleteImg(i:any) {
+    this.imgs.splice(i, 1)
+  }
+
 }

@@ -52,6 +52,8 @@ export class ProfileUpdateComponent implements OnInit {
     });
   }
 
+
+
   get fullname() {
     return this.userForm.get('fullname');
   }
