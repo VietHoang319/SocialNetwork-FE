@@ -11,8 +11,8 @@ export class StatusService {
 
   constructor(private httpClien: HttpClient) { }
 
-  findAll(): Observable<any> {
-    return this.httpClien.get(API_URL);
+  findAll(currentId : any): Observable<any> {
+    return this.httpClien.get(API_URL+`/?currentId=`+currentId);
   };
   save(status: any): Observable<any>{
     return this.httpClien.post(API_URL , status);
@@ -27,4 +27,12 @@ export class StatusService {
     return this.httpClien.delete<Status>(API_URL+`/${id}`);
   }
 
+  findAllByOwnerId(id : any) : Observable<Status>{
+    return  this.httpClien.get<Status>(API_URL + `/find-all-by-user/${id}`)
+  }
+
+
+  // delete(id:string,status: Status): Observable<Status>{
+  //   return this.httpClien.put<Status>(API_URL+`/${id}`,status);
+  // }
 }

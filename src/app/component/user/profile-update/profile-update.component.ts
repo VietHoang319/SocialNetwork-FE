@@ -75,6 +75,8 @@ export class ProfileUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // @ts-ignore
+    document.getElementById("datePickerId").max = new Date().toISOString().split("T")[0];
   }
 
 }
