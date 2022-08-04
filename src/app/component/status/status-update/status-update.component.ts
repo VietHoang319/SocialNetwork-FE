@@ -64,5 +64,4 @@ export class StatusUpdateComponent implements OnInit {
       console.log(error);
     })
   }
-
 }

@@ -19,7 +19,7 @@
               </div>
 
               <div *ngIf="loginForm.controls.username?.errors?.pattern">
-                <small  style="color: red; float: left "  >Username sai định dạng</small>
+                <div  style="color: red; float: left "  >Username sai định dạng</div>
               </div>
 
             </div>
@@ -35,7 +35,7 @@
           </div>
           <!-- Remember me -->
           <!-- Button -->
-          <div>  <small id="error" style="color: red; visibility: hidden"  >Đăng nhập không thành công!</small></div>
+          <div>  <div id="error" style="color: red; visibility: hidden"  >Đăng nhập không thành công!</div></div>
           <div class="d-grid"><button type="submit"  class="btn btn-lg btn-primary"> Đăng nhập</button></div>
           <!-- Copyright -->
         </form>
