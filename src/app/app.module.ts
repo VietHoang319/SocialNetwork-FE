@@ -38,7 +38,7 @@ import { ListFriendComponent } from './component/block/list-friend/list-friend.c
     PostsComponent,
     StatusUpdateComponent,
     RelationshipComponent,
-    ListFriendComponent
+    ListFriendComponent,
     StatusListComponent,
     StatusOwnerListComponent,
   ],
