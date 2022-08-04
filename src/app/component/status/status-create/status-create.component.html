@@ -56,8 +56,8 @@
             <div class="card-body position-relative pt-0">
               <div class="row g-2">
                 <!-- Photos item -->
-                <div class="col-12" style="height: 200px; overflow: auto">
-                  <img class="rounded img-fluid" *ngFor="let img of imgs;let i = index;" src="{{img}}" alt="" style="height: 100%" (click)="deleteImg(i)">
+                <div class="col-12" style="height: 150px; overflow: auto">
+                  <img class="rounded img-fluid col-4" *ngFor="let img of imgs;let i = index;" src="{{img}}" alt="" style="height: 100%" (click)="deleteImg(i)">
                   <!-- glightbox Albums left bar END  -->
                 </div>
               </div>
@@ -86,14 +86,14 @@
           <!-- Select -->
           <div class="col-lg-4">
             <select class="form-select js-choice" data-position="top" data-search-enabled="false"
-                    formControlName="status">
+                    formControlName="status" id="selectStatus">
               <option value="1">Công khai</option>
               <option value="2">Chỉ mình tôi</option>
             </select>
           </div>
           <!-- Button -->
           <div class="col-lg-7 text-sm-end">
-            <button type="submit" class="btn btn-success-soft" data-bs-dismiss="modal">Đăng bài</button>
+            <button type="submit" class="btn btn-primary-soft" data-bs-dismiss="modal">Đăng bài</button>
           </div>
         </div>
       </div>

@@ -37,9 +37,9 @@
                 <div *ngIf="relationship.status == 1">
                   <div class="d-flex mt-3 justify-content-center ms-sm-auto"
                        *ngIf="(relationship.user1.id == id) && (relationship.user2.id == currentId)">
-                    <button class="btn btn-success-soft me-2" type="button" (click)="friendConfirmation()"><i class="fa-solid fa-user-plus"></i> Xác nhận
+                    <button class="btn btn-success-soft me-2" type="button" (click)="friendConfirmation()"><i class="fa-solid fa-user-plus"></i> Chấp nhận lời mời
                     </button>
-                    <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i class="fa-solid fa-user-minus"></i> Xóa
+                    <button class="btn btn-danger-soft me-2" type="button" (click)="deleteRelationship()"><i class="fa-solid fa-user-minus"></i> Xóa lời mời
                     </button>
                   </div>
 
