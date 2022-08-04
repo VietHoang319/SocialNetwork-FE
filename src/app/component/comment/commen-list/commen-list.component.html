@@ -1,0 +1,33 @@
+<!--<form action="">-->
+<!--    <div class="d-flex mb-3">-->
+<!--      &lt;!&ndash; Avatar &ndash;&gt;-->
+<!--      <div class="avatar avatar-xs me-2">-->
+<!--        <a href="#!"> <img class="avatar-img rounded-circle" src="assets/images/avatar/12.jpg" alt=""> </a>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; Comment box  &ndash;&gt;-->
+<!--      <form class="w-100">-->
+<!--        <textarea data-autoresize class="form-control pe-4 bg-light" rows="1" placeholder="Thêm một bình luận..."></textarea>-->
+<!--        <button>gui</button>-->
+<!--      </form>-->
+
+<!--    </div>-->
+<!--</form>-->
+
+
+<p>Danh sach comment</p>
+<table border="1px">
+  <tr>
+    <td>status</td>
+    <td>content</td>
+    <td> userComment</td>
+    <td>createAt</td>
+    <td>active</td>
+  </tr>
+  <tr *ngFor = "let comments of commentz" >
+    <td>{{comments.status.owner.username}}</td>
+    <td>{{comments.content}}</td>
+    <td>{{comments.userComment.fullname}}</td>
+    <td>{{comments.createAt}}</td>
+    <td>{{comments.active}}</td>
+  </tr>
+</table>
