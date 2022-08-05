@@ -77,9 +77,9 @@ export class ProfileComponent implements OnInit {
     const user = this.userForm.value;
     console.log(user)
     this.userService.updateAvatar(id,user).subscribe( () =>{
-      this.toast.success({detail: "Thông Báo", summary: "Sửa ảnh đại diện thành công", duration: 3000, position: "br"})
+      this.toast.success({detail: "Thông Báo", summary: "Sửa ảnh đại diện thành công", duration: 3000})
       localStorage.setItem("AVATAR",this.fb);
-      this.reloadCurrentRoute();
+      window.setTimeout(function(){location.reload()},1500)
     })
   }
 

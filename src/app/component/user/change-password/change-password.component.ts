@@ -39,7 +39,7 @@ export class ChangePasswordComponent implements OnInit {
         if (this.userForm.value.password == this.userForm.value.confirmPassword) {
           // @ts-ignore
           this.userService.updatePassword(id, user, this.userForm.value.currentPassword).subscribe(() => {
-            this.toast.success({detail: "Thông Báo", summary: "Đổi mật khẩu thành công", duration: 3000, position: "br"})
+            this.toast.success({detail: "Thông Báo", summary: "Đổi mật khẩu thành công", duration: 3000})
             // @ts-ignore
             document.getElementById("error").style.visibility = "none"
             // @ts-ignore
