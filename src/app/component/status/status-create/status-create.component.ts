@@ -4,6 +4,7 @@ import {StatusService} from "../../../service/status.service";
 import {finalize, Observable} from "rxjs";
 import {ImageService} from "../../../service/image.service";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-status-create',
@@ -24,7 +25,8 @@ export class StatusCreateComponent implements OnInit {
 
   constructor(private statusService: StatusService,
               private imageService: ImageService,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -56,6 +58,7 @@ export class StatusCreateComponent implements OnInit {
         }
         this.statusForm.reset();
         this.imgs = []
+        this.reloadCurrentRoute()
       }, error => {
       });
     }
@@ -97,8 +100,14 @@ export class StatusCreateComponent implements OnInit {
     }
   }
 
-  deleteImg(i:any) {
+  deleteImg(i: any) {
     this.imgs.splice(i, 1)
   }
 
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
 }

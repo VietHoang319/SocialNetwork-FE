@@ -52,7 +52,7 @@ export class StatusListComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private fb: FormBuilder,
-              private toast : NgToastService) {
+              private toast: NgToastService) {
   }
 
   ngOnInit(): void {
@@ -87,6 +87,16 @@ export class StatusListComponent implements OnInit {
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);
+    });
+  }
+
+  delete(id: any) {
+    this.statusService.delete(id).subscribe(() => {
+      this.toast.success({detail: "Thông Báo", summary: "Xóa bài đăng thành công", duration: 3000, position: "br"})
+      this.reloadCurrentRoute()
+    }, e => {
+      this.toast.error({detail: "Thông Báo", summary: "Sửa bài đăng thất bại", duration: 3000, position: "br"})
+      console.log(e);
     });
   }
 }
