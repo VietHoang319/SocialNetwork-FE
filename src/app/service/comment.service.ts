@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Status} from "../model/status";
+
+const API_URL = 'http://localhost:8080/comments'
+@Injectable({
+  providedIn: 'root'
+})
+export class CommentService {
+
+  constructor(private httpClien: HttpClient) { }
+
+  findAll(): Observable<any> {
+    return this.httpClien.get(API_URL);
+  };
+  save(status: any): Observable<any>{
+    return this.httpClien.post(API_URL , status);
+  };
+  getById(id: string):Observable<Status>{
+    return this.httpClien.get<Status>(API_URL+`/${id}`);
+  }
+  edit(id:string,status: Status): Observable<Status>{
+    return this.httpClien.put<Status>(API_URL+`/${id}`,status);
+  }
+  delete(id:any): Observable<Status> {
+    return this.httpClien.delete<Status>(API_URL+`/${id}`);
+  }
+}

@@ -24,6 +24,8 @@ import {StatusOwnerListComponent} from "./component/status/status-owner-list/sta
 import { RelationshipComponent } from './component/user/relationship/relationship.component';
 import { ListFriendComponent } from './component/block/list-friend/list-friend.component';
 import { StatusNewFeedComponent } from './component/status/status-new-feed/status-new-feed.component';
+import { CommenListComponent } from './component/comment/commen-list/commen-list.component';
+import { CommentCreateComponent } from './component/comment/comment-create/comment-create.component';
 import { StatusDetailComponent } from './component/status/status-detail/status-detail.component';
 
 @NgModule({
@@ -39,6 +41,8 @@ import { StatusDetailComponent } from './component/status/status-detail/status-d
     ChangePasswordComponent,
     PostsComponent,
     StatusUpdateComponent,
+    CommenListComponent,
+    CommentCreateComponent,
     RelationshipComponent,
     ListFriendComponent,
     StatusListComponent,
