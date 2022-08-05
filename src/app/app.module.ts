@@ -24,6 +24,7 @@ import {StatusOwnerListComponent} from "./component/status/status-owner-list/sta
 import { RelationshipComponent } from './component/user/relationship/relationship.component';
 import { ListFriendComponent } from './component/block/list-friend/list-friend.component';
 import { StatusNewFeedComponent } from './component/status/status-new-feed/status-new-feed.component';
+import { StatusDetailComponent } from './component/status/status-detail/status-detail.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { StatusNewFeedComponent } from './component/status/status-new-feed/statu
     StatusListComponent,
     StatusOwnerListComponent,
     StatusNewFeedComponent,
+    StatusDetailComponent,
   ],
   imports: [
     BrowserModule,
