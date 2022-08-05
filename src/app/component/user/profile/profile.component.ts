@@ -32,10 +32,9 @@ export class ProfileComponent implements OnInit {
       this.id = param.get("id");
       this.userService.getUserProfile(this.id).subscribe(data => {
         this.user = data
+        this.getRelationship()
       })
     })
-
-    this.getRelationship()
   }
 
   getRelationship() {
