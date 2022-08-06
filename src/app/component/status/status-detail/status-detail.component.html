@@ -16,7 +16,7 @@
                 <!-- Info -->
                 <div>
                   <div class="nav nav-divider">
-                    <h6 class="nav-item card-title mb-0"> <a href="#!"> {{status.owner.fullname}} </a></h6>
+                    <h6 class="nav-item card-title mb-0"><a href="#!"> {{status.owner.fullname}} </a></h6>
                     <span class="nav-item small"> {{status.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</span>
                   </div>
                   <p class="mb-0 small" *ngIf="status.status == 1"><i class="fa-solid fa-globe"></i> Công khai</p>
@@ -26,16 +26,20 @@
               </div>
               <!-- Card feed action dropdown START -->
               <div class="dropdown">
-                <a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2" id="cardFeedAction" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2" id="cardFeedAction"
+                   data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="bi bi-three-dots"></i>
                 </a>
                 <!-- Card feed action dropdown menu -->
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction">
                   <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Save post</a></li>
-                  <li><a class="dropdown-item" href="#"> <i class="bi bi-person-x fa-fw pe-2"></i>Unfollow lori ferguson </a></li>
+                  <li><a class="dropdown-item" href="#"> <i class="bi bi-person-x fa-fw pe-2"></i>Unfollow lori ferguson
+                  </a></li>
                   <li><a class="dropdown-item" href="#"> <i class="bi bi-x-circle fa-fw pe-2"></i>Hide post</a></li>
                   <li><a class="dropdown-item" href="#"> <i class="bi bi-slash-circle fa-fw pe-2"></i>Block</a></li>
-                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
                   <li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report post</a></li>
                 </ul>
               </div>
@@ -67,12 +71,17 @@
                 </a>
                 <!-- Card share action dropdown menu -->
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardShareAction">
-                  <li><a class="dropdown-item" href="#"> <i class="bi bi-envelope fa-fw pe-2"></i>Send via Direct Message</a></li>
-                  <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark-check fa-fw pe-2"></i>Bookmark </a></li>
+                  <li><a class="dropdown-item" href="#"> <i class="bi bi-envelope fa-fw pe-2"></i>Send via Direct
+                    Message</a></li>
+                  <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark-check fa-fw pe-2"></i>Bookmark </a>
+                  </li>
                   <li><a class="dropdown-item" href="#"> <i class="bi bi-link fa-fw pe-2"></i>Copy link to post</a></li>
                   <li><a class="dropdown-item" href="#"> <i class="bi bi-share fa-fw pe-2"></i>Share post via …</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#"> <i class="bi bi-pencil-square fa-fw pe-2"></i>Share to News Feed</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#"> <i class="bi bi-pencil-square fa-fw pe-2"></i>Share to News
+                    Feed</a></li>
                 </ul>
               </li>
               <!-- Card share action END -->
@@ -82,60 +91,59 @@
             <!-- Comment wrap START -->
             <ul class="comment-wrap list-unstyled">
               <!-- Comment item START -->
-              <li class="comment-item">
+              <li class="comment-item" *ngFor="let commentOfStatus of listCommentOfStatus">
                 <div class="d-flex position-relative">
                   <!-- Avatar -->
                   <div class="avatar avatar-xs">
-                    <a href="#!"><img class="avatar-img rounded-circle" src="assets/assets/images/avatar/05.jpg" alt=""></a>
+                    <a routerLink="/{{commentOfStatus.userComment.id}}"><img class="avatar-img rounded-circle" src="{{commentOfStatus.userComment.avatar}}"
+                                      alt=""></a>
                   </div>
                   <div class="ms-2">
                     <!-- Comment by -->
                     <div class="bg-light rounded-start-top-0 p-3 rounded">
                       <div class="d-flex justify-content-between">
-                        <h6 class="mb-1"> <a href="#!"> Frances Guerrero </a></h6>
-                        <small class="ms-2">5hr</small>
+                        <h6 class="mb-1"><a routerLink="/{{commentOfStatus.userComment.id}}"> {{commentOfStatus.userComment.fullname}} </a></h6>
+                        <small class="ms-2">{{commentOfStatus.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</small>
                       </div>
-                      <p class="small mb-0">Removed demands expense account in outward tedious do. Particular way thoroughly unaffected projection.</p>
+                      <p class="small mb-0">{{commentOfStatus.content}}</p>
                     </div>
                     <!-- Comment react -->
                     <ul class="nav nav-divider py-2 small">
                       <li class="nav-item">
-                        <a class="nav-link" href="#!"> Like (3)</a>
+                        <a class="nav-link" href="#!"> Thích (3)</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#!"> Reply</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#!"> View 5 replies</a>
+                        <a class="nav-link" href="#!"> Trả lời</a>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <!-- Comment item nested START -->
-                <ul class="comment-item-nested list-unstyled">
+                <ul class="comment-item-nested list-unstyled" *ngFor="let commentOfComment of listCommentOfComment">
                   <!-- Comment item START -->
-                  <li class="comment-item">
+                  <li class="comment-item" *ngIf="commentOfStatus.id == commentOfComment.comment.id">
                     <div class="d-flex">
                       <!-- Avatar -->
                       <div class="avatar avatar-xs">
-                        <a href="#!"><img class="avatar-img rounded-circle" src="assets/assets/images/avatar/06.jpg" alt=""></a>
+                        <a routerLink="/{{commentOfComment.userComment.id}}"><img class="avatar-img rounded-circle" src="{{commentOfComment.userComment.avatar}}"
+                                          alt=""></a>
                       </div>
                       <!-- Comment by -->
                       <div class="ms-2">
                         <div class="bg-light p-3 rounded">
                           <div class="d-flex justify-content-between">
-                            <h6 class="mb-1"> <a href="#!"> Lori Stevens </a> </h6>
-                            <small class="ms-2">2hr</small>
+                            <h6 class="mb-1"><a routerLink="/{{commentOfComment.userComment.id}}"> {{commentOfComment.userComment.fullname}} </a></h6>
+                            <small class="ms-2">{{commentOfComment.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</small>
                           </div>
-                          <p class="small mb-0">See resolved goodness felicity shy civility domestic had but Drawings offended yet answered Jennings perceive.</p>
+                          <p class="small mb-0">{{commentOfComment.content}}</p>
                         </div>
                         <!-- Comment react -->
                         <ul class="nav nav-divider py-2 small">
                           <li class="nav-item">
-                            <a class="nav-link" href="#!"> Like (5)</a>
+                            <a class="nav-link" href="#!"> Thích (5)</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="#!"> Reply</a>
+                            <a class="nav-link" href="#!"> Trả lời</a>
                           </li>
                         </ul>
                       </div>

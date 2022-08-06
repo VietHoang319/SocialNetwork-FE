@@ -9,21 +9,25 @@ const API_URL = 'http://localhost:8080/comments'
 })
 export class CommentService {
 
-  constructor(private httpClien: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   findAll(): Observable<any> {
-    return this.httpClien.get(API_URL);
+    return this.httpClient.get(API_URL);
   };
   save(status: any): Observable<any>{
-    return this.httpClien.post(API_URL , status);
+    return this.httpClient.post(API_URL , status);
   };
   getById(id: string):Observable<Status>{
-    return this.httpClien.get<Status>(API_URL+`/${id}`);
+    return this.httpClient.get<Status>(API_URL+`/${id}`);
   }
   edit(id:string,status: Status): Observable<Status>{
-    return this.httpClien.put<Status>(API_URL+`/${id}`,status);
+    return this.httpClient.put<Status>(API_URL+`/${id}`,status);
   }
   delete(id:any): Observable<Status> {
-    return this.httpClien.delete<Status>(API_URL+`/${id}`);
+    return this.httpClient.delete<Status>(API_URL+`/${id}`);
+  }
+
+  getAllByStatus(id:any): Observable<any> {
+    return this.httpClient.get<any>(API_URL+`/find-all-by-status?statusId=${id}`);
   }
 }
