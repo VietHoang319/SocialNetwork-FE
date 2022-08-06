@@ -1,20 +1,11 @@
-<h1>Tạo comment</h1>
-<form [formGroup]="commentForm" (ngSubmit)="submit()">
-  <table>
-    <tr>
-      <td>content</td>
-      <td><input type="text" formControlName="content"></td>
-    </tr>
-    <tr>
-      <td>active</td>
-      <td><input type="number" formControlName="active"></td>
-    </tr>
-    <tr>
-      <td><button type="submit">Tạo mới</button></td>
-    </tr>
-    <tr>
+<div class="d-flex mb-3">
+  <!-- Avatar -->
 
-    </tr>
-
-  </table>
-</form>
+  <div class="avatar avatar-xs me-2">
+    <a href="#!"> <img class="avatar-img rounded-circle" src="assets/images/avatar/12.jpg" alt=""> </a>
+  </div>
+  <form class="position-relative w-100" [formGroup]="commentForm" (keydown.enter)="submit()">
+    <textarea data-autoresize class="form-control pe-4 bg-light"
+              rows="1" placeholder="Thêm một bình luận..." formControlName="content"></textarea>
+  </form>
+</div>

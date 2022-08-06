@@ -14,8 +14,8 @@ export class CommentService {
   findAll(): Observable<any> {
     return this.httpClient.get(API_URL);
   };
-  save(status: any): Observable<any>{
-    return this.httpClient.post(API_URL , status);
+  save(comment: any): Observable<any>{
+    return this.httpClient.post(API_URL , comment);
   };
   getById(id: string):Observable<Status>{
     return this.httpClient.get<Status>(API_URL+`/${id}`);
