@@ -19,7 +19,11 @@ export class StatusListComponent implements OnInit {
   @Input()
   id: any
   @Input()
+  img : any
+  @Input()
   relationship: any
+  @Input()
+  statuz : any;
   statusz: Status = {
     owner: {
       id: 0,

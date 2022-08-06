@@ -13,7 +13,7 @@ export class ImageService {
     return this.httpClient.post(API_URL , image);
   }
   findByIdStatus(id: any):Observable<any>{
-    return this.httpClient.get(API_URL + `/status/${id}`);
+    return this.httpClient.get(API_URL + `/${id}`);
   }
   showFullStatus(id: any):Observable<any>{
     return this.httpClient.get(API_URL + `/${id}`);

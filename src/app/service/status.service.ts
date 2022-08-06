@@ -27,9 +27,11 @@ export class StatusService {
     return this.httpClien.delete<Status>(API_URL+`/${id}`);
   }
 
-  findAllByOwnerId(id : any) : Observable<Status>{
-    return  this.httpClien.get<Status>(API_URL + `/find-all-by-user/${id}`)
+  findAllByOwnerId(id : any) : Observable<Status[]>{
+    return  this.httpClien.get<Status[]>(API_URL + `/find-all-by-user/${id}`)
   }
+
+
 
 
   // delete(id:string,status: Status): Observable<Status>{

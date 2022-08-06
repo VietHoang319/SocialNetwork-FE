@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
     this.userId1 = localStorage.getItem("ID")
     this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
       this.relationship = data
-    })
+    },error => {})
   }
 
   addFriend() {
@@ -62,13 +62,13 @@ export class ProfileComponent implements OnInit {
   deleteRelationship() {
     this.relationshipService.deleteRelationship(this.relationship.id).subscribe(id => {
       this.relationship = null;
-    })
+    },error => {})
   }
 
   friendConfirmation() {
     this.relationshipService.friendConfirmation(this.relationship.id).subscribe(data => {
       this.relationship.status=2
-    })
+    },error => {})
   }
 
   updateAvatar(id : any){
@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
       this.toast.success({detail: "Thông Báo", summary: "Sửa ảnh đại diện thành công", duration: 3000})
       localStorage.setItem("AVATAR",this.fb);
       window.setTimeout(function(){location.reload()},1500)
-    })
+    },error => {})
   }
 
   fb: any
@@ -112,10 +112,4 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  reloadCurrentRoute() {
-    let currentUrl = this.router.url;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate([currentUrl]);
-    });
-  }
 }

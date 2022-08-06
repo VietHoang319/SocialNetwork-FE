@@ -25,6 +25,7 @@ import { RelationshipComponent } from './component/user/relationship/relationshi
 import { ListFriendComponent } from './component/block/list-friend/list-friend.component';
 import { StatusNewFeedComponent } from './component/status/status-new-feed/status-new-feed.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
