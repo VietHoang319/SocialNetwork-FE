@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {RegisterComponent} from "./component/page/register/register.component";
 import {LoginComponent} from "./component/page/login/login.component";
 import {HomepageComponent} from "./component/page/homepage/homepage.component";
-import {CommenListComponent} from "./component/comment/commen-list/commen-list.component";
 import {CommentCreateComponent} from "./component/comment/comment-create/comment-create.component";
 
 const routes: Routes = [
@@ -14,10 +13,6 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent
-  },
-  {
-    path: "comment-list",
-    component: CommenListComponent
   },
   {
     path: "comment-create",
