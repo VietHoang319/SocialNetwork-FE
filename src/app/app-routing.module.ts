@@ -15,10 +15,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "comment-create",
-    component: CommentCreateComponent
-  },
-  {
     path: "",
     component: HomepageComponent,
     loadChildren: () => import("./component/page/home-routing.module").then(module => module.HomeRoutingModule)

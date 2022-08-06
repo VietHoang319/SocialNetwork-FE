@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Image} from "../../../model/image";
 import {CommentService} from "../../../service/comment.service";
 import {Comment} from "../../../model/comment";
+import {RelationshipService} from "../../../service/relationship.service";
 
 @Component({
   selector: 'app-status-detail',
@@ -11,16 +12,22 @@ import {Comment} from "../../../model/comment";
   styleUrls: ['./status-detail.component.css']
 })
 export class StatusDetailComponent implements OnInit {
+  currentUserId: any
+  relationship: any
   statusId: any
   status: any
   listImage: Image[] = []
   listCommentOfStatus: any[] = []
   listCommentOfComment: any[] = []
 
-  constructor(private statusService: StatusService, private activatedRoute: ActivatedRoute, private commentService: CommentService) {
+  constructor(private statusService: StatusService,
+              private activatedRoute: ActivatedRoute,
+              private commentService: CommentService,
+              private relationshipService : RelationshipService) {
   }
 
   ngOnInit(): void {
+    this.currentUserId = localStorage.getItem("ID")
     this.activatedRoute.paramMap.subscribe((param) => {
       this.statusId = param.get("id");
       this.getStatus(this.statusId)
@@ -31,6 +38,9 @@ export class StatusDetailComponent implements OnInit {
   getStatus(id) {
     this.statusService.getById(id).subscribe(data => {
       this.status = data[0][0]
+      this.relationshipService.getRelationship(this.currentUserId, this.status.owner.id).subscribe(data => {
+        this.relationship = data
+      })
       this.listImage = data[1]
     }, error => {
       console.log(error)
@@ -51,5 +61,10 @@ export class StatusDetailComponent implements OnInit {
     }, error => {
       console.log(error)
     })
+  }
+
+  openChildCommentInput(index) {
+    // @ts-ignore
+    document.getElementsByClassName("child-comment-input")[index].style.display = "block"
   }
 }
