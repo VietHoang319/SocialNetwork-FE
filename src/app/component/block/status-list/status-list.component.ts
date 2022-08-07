@@ -60,8 +60,7 @@ export class StatusListComponent implements OnInit {
 
   getStatus(id) {
     this.statusService.getById(id).subscribe(result => {
-      this.statusz = result;
-      console.log(result);
+      this.statusz = result[0][0];
     }, error => {
       console.log(error);
     })
