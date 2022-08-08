@@ -31,24 +31,39 @@ export class CommentCreateComponent implements OnInit {
   }
 
   submit() {
-    this.comment = {
-      content: this.commentForm.value.content,
-      userComment: {
-        id: localStorage.getItem('ID')
-      },
-      status: {
-        id: this.statusId,
-      },
-      comment: {
-        id: this.commentId,
-      },
-      active: 1
+    if (this.commentId != 0) {
+      this.comment = {
+        content: this.commentForm.value.content,
+        userComment: {
+          id: localStorage.getItem('ID')
+        },
+        status: {
+          id: this.statusId,
+        },
+        comment: this.commentId,
+        active: 1
+      }
     }
-    this.commentService.save(this.comment).subscribe(() => {
-    })
+    else {
+      this.comment = {
+        content: this.commentForm.value.content,
+        userComment: {
+          id: localStorage.getItem('ID')
+        },
+        status: {
+          id: this.statusId,
+        },
+        active: 1
+      }
+    }
     console.log(this.comment)
-    this.commentForm.reset()
-    this.reloadCurrentRoute()
+    this.commentService.save(this.comment).subscribe(() => {
+      console.log(this.comment)
+      this.commentForm.reset()
+      this.reloadCurrentRoute()
+    }, error => {
+      console.log(error)
+    })
   }
 
   reloadCurrentRoute() {
