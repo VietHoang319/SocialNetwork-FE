@@ -6,14 +6,14 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080/',
   firebaseConfig: {
-    apiKey: "AIzaSyDns2MU4xJ0OeUibfJCbpgVCZblg7twyIw",
-    authDomain: "socialnetwork-f5a61.firebaseapp.com",
-    databaseURL: "https://socialnetwork-f5a61-default-rtdb.firebaseio.com/",
-    projectId: "socialnetwork-f5a61",
-    storageBucket: "socialnetwork-f5a61.appspot.com",
-    messagingSenderId: "489861803967",
-    appId: "1:489861803967:web:39d795d1be36507eb93b0a",
-    measurementId: "G-9PEB58VR21"
+    apiKey: "AIzaSyDUaBbdIV90k3yk-fyUe467G-xajOeINmw",
+    authDomain: "socialnetwork-cb9cc.firebaseapp.com",
+    databaseURL: "https://socialnetwork-cb9cc-default-rtdb.firebaseio.com/",
+    projectId: "socialnetwork-cb9cc",
+    storageBucket: "socialnetwork-cb9cc.appspot.com",
+    messagingSenderId: "52946647881",
+    appId: "1:52946647881:web:fbe0737e06b7aeb3eeb898",
+    measurementId: "G-XKPR9XRX4T"
   }
 };
 
