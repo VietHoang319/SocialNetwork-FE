@@ -17,16 +17,19 @@ export class ProfileComponent implements OnInit {
   user: any
   currentId: any
   relationship: any
+  relationshipTemp: any
   userId1: any
   userForm: FormGroup = new FormGroup({
     avatar: new FormControl(),
   })
+
   constructor(private userService: UserService,
               private relationshipService: RelationshipService,
-              private activatedRoute: ActivatedRoute,private toast : NgToastService,private storage: AngularFireStorage,private router: Router) {
+              private activatedRoute: ActivatedRoute, private toast: NgToastService, private storage: AngularFireStorage, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.userId1 = localStorage.getItem("ID")
     this.currentId = localStorage.getItem("ID")
     this.activatedRoute.paramMap.subscribe((param) => {
       this.id = param.get("id");
@@ -38,52 +41,84 @@ export class ProfileComponent implements OnInit {
   }
 
   getRelationship() {
-    this.userId1 = localStorage.getItem("ID")
     this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
       this.relationship = data
     })
   }
 
   addFriend() {
-    const relationship = {
-      user1: {
-        id: localStorage.getItem("ID")
-      },
-      user2: {
-        id: this.id
-      },
-    }
-    console.log(relationship)
-    this.relationshipService.addFiend(relationship).subscribe(data => {
-      this.relationship = data;
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
+      this.relationshipTemp = data
+      if ((this.relationshipTemp == null && this.relationship != null) || (this.relationshipTemp != null && this.relationship == null)) {
+        this.reloadCurrentRoute()
+      }
+      if (((this.relationshipTemp != null && this.relationship != null) && (this.relationshipTemp.status == this.relationship.status)) || (this.relationshipTemp == null && this.relationship == null)) {
+        const relationship = {
+          user1: {
+            id: localStorage.getItem("ID")
+          },
+          user2: {
+            id: this.id
+          },
+        }
+        console.log(relationship)
+        this.relationshipService.addFiend(relationship).subscribe(data => {
+          this.relationship = data;
+        })
+      } else {
+        this.reloadCurrentRoute()
+      }
     })
   }
 
   deleteRelationship() {
-    this.relationshipService.deleteRelationship(this.relationship.id).subscribe(id => {
-      this.relationship = null;
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
+      this.relationshipTemp = data
+      if ((this.relationshipTemp == null && this.relationship != null) || (this.relationshipTemp != null && this.relationship == null)) {
+        this.reloadCurrentRoute()
+      }
+      if (((this.relationshipTemp != null && this.relationship != null) && (this.relationshipTemp.status == this.relationship.status)) || (this.relationshipTemp == null && this.relationship == null)) {
+        this.relationshipService.deleteRelationship(this.relationship.id).subscribe(id => {
+          this.relationship = null;
+        })
+      } else {
+        this.reloadCurrentRoute()
+      }
     })
   }
 
   friendConfirmation() {
-    this.relationshipService.friendConfirmation(this.relationship.id).subscribe(data => {
-      this.relationship.status=2
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
+      this.relationshipTemp = data
+      if ((this.relationshipTemp == null && this.relationship != null) || (this.relationshipTemp != null && this.relationship == null)) {
+        this.reloadCurrentRoute()
+      }
+      if (((this.relationshipTemp != null && this.relationship != null) && (this.relationshipTemp.status == this.relationship.status)) || (this.relationshipTemp == null && this.relationship == null)) {
+        this.relationshipService.friendConfirmation(this.relationship.id).subscribe(data => {
+          this.relationship.status = 2
+        })
+      } else {
+        this.reloadCurrentRoute()
+      }
     })
   }
 
-  updateAvatar(id : any){
+  updateAvatar(id: any) {
     this.userForm.value.avatar = this.fb;
     const user = this.userForm.value;
     console.log(user)
-    this.userService.updateAvatar(id,user).subscribe( () =>{
+    this.userService.updateAvatar(id, user).subscribe(() => {
       this.toast.success({detail: "Thông Báo", summary: "Sửa ảnh đại diện thành công", duration: 3000})
-      localStorage.setItem("AVATAR",this.fb);
-      window.setTimeout(function(){location.reload()},1500)
+      localStorage.setItem("AVATAR", this.fb);
+      window.setTimeout(function () {
+        location.reload()
+      }, 1500)
     })
   }
 
   fb: any
   downloadURL: any;
+
   onFileSelected(event: any) {
     this.fb = ""
     var n = Date.now();
