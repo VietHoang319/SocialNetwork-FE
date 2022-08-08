@@ -5,6 +5,7 @@ import {ProfileComponent} from "../user/profile/profile.component";
 import {ProfileUpdateComponent} from "../user/profile-update/profile-update.component";
 import {ChangePasswordComponent} from "../user/change-password/change-password.component";
 import {StatusNewFeedComponent} from "../status/status-new-feed/status-new-feed.component";
+import {StatusDetailComponent} from "../status/status-detail/status-detail.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
     path: ":id",
     component: ProfileComponent,
     loadChildren: () => import("./homepage/profile-routing.module").then(routes => routes.ProfileRoutingModule)
+  },
+  {
+    path: "status/:id",
+    component: StatusDetailComponent
   },
   {
     path :"",
