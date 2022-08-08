@@ -22,9 +22,10 @@ export class ProfileComponent implements OnInit {
   userForm: FormGroup = new FormGroup({
     avatar: new FormControl(),
   })
+
   constructor(private userService: UserService,
               private relationshipService: RelationshipService,
-              private activatedRoute: ActivatedRoute,private toast : NgToastService,private storage: AngularFireStorage,private router: Router) {
+              private activatedRoute: ActivatedRoute, private toast: NgToastService, private storage: AngularFireStorage, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -46,7 +47,7 @@ export class ProfileComponent implements OnInit {
   }
 
   addFriend() {
-    this.relationshipService.getRelationship(this.userId1, this.id).subscribe( data => {
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
       this.relationshipTemp = data
       if ((this.relationshipTemp == null && this.relationship != null) || (this.relationshipTemp != null && this.relationship == null)) {
         this.reloadCurrentRoute()
@@ -64,15 +65,14 @@ export class ProfileComponent implements OnInit {
         this.relationshipService.addFiend(relationship).subscribe(data => {
           this.relationship = data;
         })
-      }
-      else {
+      } else {
         this.reloadCurrentRoute()
       }
     })
   }
 
   deleteRelationship() {
-    this.relationshipService.getRelationship(this.userId1, this.id).subscribe( data => {
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
       this.relationshipTemp = data
       if ((this.relationshipTemp == null && this.relationship != null) || (this.relationshipTemp != null && this.relationship == null)) {
         this.reloadCurrentRoute()
@@ -81,43 +81,44 @@ export class ProfileComponent implements OnInit {
         this.relationshipService.deleteRelationship(this.relationship.id).subscribe(id => {
           this.relationship = null;
         })
-      }
-      else {
+      } else {
         this.reloadCurrentRoute()
       }
     })
   }
 
   friendConfirmation() {
-    this.relationshipService.getRelationship(this.userId1, this.id).subscribe( data => {
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
       this.relationshipTemp = data
       if ((this.relationshipTemp == null && this.relationship != null) || (this.relationshipTemp != null && this.relationship == null)) {
         this.reloadCurrentRoute()
       }
       if (((this.relationshipTemp != null && this.relationship != null) && (this.relationshipTemp.status == this.relationship.status)) || (this.relationshipTemp == null && this.relationship == null)) {
         this.relationshipService.friendConfirmation(this.relationship.id).subscribe(data => {
-          this.relationship.status=2
+          this.relationship.status = 2
         })
-      }
-      else {
+      } else {
         this.reloadCurrentRoute()
       }
     })
   }
 
-  updateAvatar(id : any){
+  updateAvatar(id: any) {
     this.userForm.value.avatar = this.fb;
     const user = this.userForm.value;
     console.log(user)
-    this.userService.updateAvatar(id,user).subscribe( () =>{
+    this.userService.updateAvatar(id, user).subscribe(() => {
       this.toast.success({detail: "Thông Báo", summary: "Sửa ảnh đại diện thành công", duration: 3000})
-      localStorage.setItem("AVATAR",this.fb);
-      window.setTimeout(function(){location.reload()},1500)
+      localStorage.setItem("AVATAR", this.fb);
+      window.setTimeout(function () {
+        location.reload()
+      }, 1500)
     })
   }
 
   fb: any
   downloadURL: any;
+
   onFileSelected(event: any) {
     this.fb = ""
     var n = Date.now();
