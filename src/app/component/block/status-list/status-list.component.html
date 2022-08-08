@@ -1,5 +1,5 @@
-<div >
-  <div class="card" *ngFor="let s of statusesOwner[0],index as i" >
+<div>
+  <div class="card" *ngFor="let s of statusesOwner[0],index as i">
     <!-- Card header START -->
     <div *ngIf="(currentID == id) ||(currentID != id && relationship == null && s.status == 1) || (currentID != id && relationship != null && (s.status == 1 || s.status == 3))">
       <div class="card-header border-0 pb-0">
@@ -61,32 +61,22 @@
             </div>
           </div>
         </div>
-
+        <br>
         <!-- Feed react START -->
-        <ul class="nav nav-stack py-3 small">
+        <ul class="nav nav-pills nav-pills-light nav-fill nav-stack small border-top py-1">
           <li class="nav-item">
-            <a class="nav-link active" href="#!"> <i class="bi bi-hand-thumbs-up-fill pe-1"></i>Thích (56)</a>
+            <a class="nav-link mb-0" href="#!"> <i class="bi bi-heart pe-1"></i>Thích (56)</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#!"> <i class="bi bi-chat-fill pe-1"></i>Bình luận (12)</a>
+            <a class="nav-link mb-0" routerLink="/status/{{s.id}}"> <i class="bi bi-chat-fill pe-1"></i>Comment</a>
           </li>
-          <!-- Card share action START -->
-          <!--        <li class="nav-item dropdown ms-sm-auto">-->
-          <!--          <a class="nav-link mb-0" href="#" id="cardShareAction8" data-bs-toggle="dropdown" aria-expanded="false">-->
-          <!--            <i class="bi bi-reply-fill flip-horizontal ps-1"></i>Share (3)-->
-          <!--          </a>-->
-          <!--          &lt;!&ndash; Card share action dropdown menu &ndash;&gt;-->
-          <!--        </li>-->
-          <!-- Card share action END -->
         </ul>
+        <!-- Feed react START -->
       </div>
     </div>
-
     <!-- Card body END -->
   </div>
 </div>
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="updateStatusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -132,6 +122,7 @@
                     formControlName="status" ngModel="{{statusz.status}}">
               <option value="1">Công khai</option>
               <option value="2">Chỉ mình tôi</option>
+              <option value="3">Bạn bè</option>
             </select>
           </div>
           <!-- Button -->
