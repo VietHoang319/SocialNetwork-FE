@@ -75,7 +75,7 @@ export class StatusListComponent implements OnInit {
     console.log(status);
     // @ts-ignore
     this.statusService.edit(this.statusz.id, status).subscribe(() => {
-      this.toast.success({detail: "Thông Báo", summary: "Sửa bài đăng thành công", duration: 3000, position: "br"})
+      this.toast.success({detail: "Thông Báo", summary: "Sửa bài đăng thành công", duration: 3000})
       this.reloadCurrentRoute()
     }, error => {
       console.log(error);
@@ -91,10 +91,10 @@ export class StatusListComponent implements OnInit {
 
   delete(id: any) {
     this.statusService.delete(id).subscribe(() => {
-      this.toast.success({detail: "Thông Báo", summary: "Xóa bài đăng thành công", duration: 3000, position: "br"})
+      this.toast.success({detail: "Thông Báo", summary: "Xóa bài đăng thành công", duration: 3000})
       this.reloadCurrentRoute()
     }, e => {
-      this.toast.error({detail: "Thông Báo", summary: "Sửa bài đăng thất bại", duration: 3000, position: "br"})
+      this.toast.error({detail: "Thông Báo", summary: "Sửa bài đăng thất bại", duration: 3000})
       console.log(e);
     });
   }

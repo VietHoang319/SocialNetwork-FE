@@ -12,6 +12,7 @@ import {RelationshipService} from "../../../service/relationship.service";
   styleUrls: ['./status-detail.component.css']
 })
 export class StatusDetailComponent implements OnInit {
+  commentId: any
   currentUserId: any
   relationship: any
   statusId: any
@@ -23,7 +24,8 @@ export class StatusDetailComponent implements OnInit {
   constructor(private statusService: StatusService,
               private activatedRoute: ActivatedRoute,
               private commentService: CommentService,
-              private relationshipService : RelationshipService) {
+              private relationshipService : RelationshipService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -66,5 +68,24 @@ export class StatusDetailComponent implements OnInit {
   openChildCommentInput(index) {
     // @ts-ignore
     document.getElementsByClassName("child-comment-input")[index].style.display = "block"
+  }
+
+  delete(id) {
+    this.commentService.delete(id).subscribe(() => {
+      this.reloadCurrentRoute()
+    }, error => {
+      console.log(error)
+    })
+  }
+
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
+
+  getCommentId(id) {
+    this.commentId = id
   }
 }

@@ -45,8 +45,9 @@ export class ProfileUpdateComponent implements OnInit {
   updateProfile(id: number) {
     const user = this.userForm.value;
     this.userService.updateUserProfile(id, user).subscribe(() => {
-      this.toast.success({detail: "Thông Báo", summary: "Sửa thông tin thành công", duration: 3000, position: "br"})
+      this.toast.success({detail: "Thông Báo", summary: "Sửa thông tin thành công", duration: 3000})
       localStorage.setItem("FULLNAME", user.fullname)
+      window.setTimeout(function(){location.reload()},1500)
     }, e => {
       console.log(e);
     });

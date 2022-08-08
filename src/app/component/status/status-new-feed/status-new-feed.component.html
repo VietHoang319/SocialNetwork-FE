@@ -7,16 +7,6 @@
       <!-- Sidenav START -->
       <div class="col-lg-3">
 
-        <!-- Advanced filter responsive toggler START -->
-        <div class="d-flex align-items-center d-lg-none">
-          <button class="border-0 bg-transparent" type="button" data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasSideNavbar" aria-controls="offcanvasSideNavbar">
-            <i class="btn btn-primary fw-bold fa-solid fa-sliders-h"></i>
-            <span class="h6 mb-0 fw-bold d-lg-none ms-2">My profile</span>
-          </button>
-        </div>
-        <!-- Advanced filter responsive toggler END -->
-
         <!-- Navbar START-->
         <nav class="navbar navbar-expand-lg mx-0">
           <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSideNavbar">
@@ -48,14 +38,14 @@
                       <!-- User stat item -->
                       <div>
                         <h6 class="mb-0">{{numberStatusOwner[0].length}}</h6>
-                        <small>Post</small>
+                        <small>Số bài đăng</small>
                       </div>
                       <!-- Divider -->
                       <div class="vr"></div>
                       <!-- User stat item -->
                       <div>
                         <h6 class="mb-0">{{numberFriend.length}}</h6>
-                        <small>Friend</small>
+                        <small>Bạn bè</small>
                       </div>
                     </div>
                     <!-- User stat END -->
@@ -83,7 +73,7 @@
                 <!-- Card body END -->
                 <!-- Card footer -->
                 <div class="card-footer text-center py-2">
-                  <a class="btn btn-link btn-sm" href="my-profile.html">View Profile </a>
+                  <a class="btn btn-link btn-sm" routerLink="/{{currentId}}">Đến trang cá nhân </a>
                 </div>
               </div>
               <!-- Card END -->

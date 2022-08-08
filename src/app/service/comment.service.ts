@@ -23,8 +23,8 @@ export class CommentService {
   edit(id:string,status: Status): Observable<Status>{
     return this.httpClient.put<Status>(API_URL+`/${id}`,status);
   }
-  delete(id:any): Observable<Status> {
-    return this.httpClient.delete<Status>(API_URL+`/${id}`);
+  delete(id:any): Observable<any> {
+    return this.httpClient.delete<any>(API_URL+`/${id}`);
   }
 
   getAllByStatus(id:any): Observable<any> {

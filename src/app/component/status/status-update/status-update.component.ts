@@ -57,7 +57,6 @@ export class StatusUpdateComponent implements OnInit {
     // @ts-ignore
     // @ts-ignore
     this.statusService.edit(this.statusz.id, status).subscribe(() => {
-      alert("Ok");
       this.router.navigate(['/'])
       // @ts-ignore
     }, error => {
