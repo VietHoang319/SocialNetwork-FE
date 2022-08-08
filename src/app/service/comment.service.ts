@@ -17,11 +17,11 @@ export class CommentService {
   save(comment: any): Observable<any>{
     return this.httpClient.post(API_URL , comment);
   };
-  getById(id: string):Observable<Status>{
-    return this.httpClient.get<Status>(API_URL+`/${id}`);
+  getById(id: any):Observable<Comment>{
+    return this.httpClient.get<Comment>(API_URL+`/${id}`);
   }
-  edit(id:string,status: Status): Observable<Status>{
-    return this.httpClient.put<Status>(API_URL+`/${id}`,status);
+  edit(id:any,comment: Comment): Observable<Comment>{
+    return this.httpClient.put<Comment>(API_URL+`/${id}`,comment);
   }
   delete(id:any): Observable<any> {
     return this.httpClient.delete<any>(API_URL+`/${id}`);
