@@ -7,10 +7,19 @@
   white-space: break-spaces
 }
 
+.child-comment-content {
+  word-break: break-all;
+  white-space: break-spaces
+}
+
 .card-body {
   padding-bottom: 0;
 }
 
 .comment-update {
+  display: none;
+}
+
+.child-comment-update {
   display: none;
 }

@@ -96,10 +96,24 @@ export class StatusDetailComponent implements OnInit {
     document.getElementsByClassName("comment-update")[index].style.display = "block"
   }
 
+  childUpdate(index) {
+    // @ts-ignore
+    document.getElementsByClassName("child-comment-content")[index].style.display = "none"
+    // @ts-ignore
+    document.getElementsByClassName("child-comment-update")[index].style.display = "block"
+  }
+
   cancel(index) {
     // @ts-ignore
     document.getElementsByClassName("comment-content")[index].style.display = "block"
     // @ts-ignore
     document.getElementsByClassName("comment-update")[index].style.display = "none"
+  }
+
+  childCancel(index) {
+    // @ts-ignore
+    document.getElementsByClassName("child-comment-content")[index].style.display = "block"
+    // @ts-ignore
+    document.getElementsByClassName("child-comment-update")[index].style.display = "none"
   }
 }

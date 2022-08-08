@@ -84,12 +84,14 @@
                         </a>
                         <!-- Card feed action dropdown menu -->
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="commentAction">
-                          <li><a class="dropdown-item" (click)="update(i)"> <i class="bi bi-pencil-fill pe-1" ></i> Chỉnh sửa</a>
+                          <li><a class="dropdown-item" (click)="update(i)"> <i class="bi bi-pencil-fill pe-1"></i> Chỉnh
+                            sửa</a>
                           </li>
                           <li>
                             <hr class="dropdown-divider">
                           </li>
-                          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalDeleteStatus" (click)="getCommentId(commentOfStatus.id)"> <i class="fa-solid fa-trash"></i> Xóa</a>
+                          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalDeleteStatus"
+                                 (click)="getCommentId(commentOfStatus.id)"> <i class="fa-solid fa-trash"></i> Xóa</a>
                           </li>
                         </ul>
                       </div>
@@ -113,14 +115,12 @@
                       <li class="nav-item">
                         <a class="nav-link" href="#!"> Thích (3)</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" (click)="openChildCommentInput(i)"> Trả lời</a>
-                      </li>
                     </ul>
                   </div>
                 </div>
                 <!-- Comment item nested START -->
-                <ul class="comment-item-nested list-unstyled" *ngFor="let commentOfComment of listCommentOfComment">
+                <ul class="comment-item-nested list-unstyled"
+                    *ngFor="let commentOfComment of listCommentOfComment, index as j">
                   <!-- Comment item START -->
                   <li class="comment-item" *ngIf="commentOfStatus.id == commentOfComment.comment.id">
                     <div class="d-flex">
@@ -154,7 +154,13 @@
                                 </h6>
                                 <small class="ms-2">{{commentOfComment.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</small>
                               </div>
-                              <p class="small mb-0 comment-content">{{commentOfComment.content}}</p>
+                              <div>
+                                <p class="small mb-0 child-comment-content">{{commentOfComment.content}}</p>
+                              </div>
+                              <div class="child-comment-update">
+                                <app-comment-update [id]="commentOfComment.id"></app-comment-update>
+                                <small><a class="ms-2" (click)="childCancel(j)">Hủy</a></small>
+                              </div>
                             </div>
                           </div>
                           <div class="col-1">
@@ -165,13 +171,14 @@
                             </a>
                             <!-- Card feed action dropdown menu -->
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="childCommentAction">
-                              <li><a class="dropdown-item" href="#"> <i class="bi bi-pencil-fill pe-1"></i> Chỉnh
-                                sửa</a>
+                              <li><a class="dropdown-item" (click)="childUpdate(j)"> <i class="bi bi-pencil-fill pe-1"></i>
+                                Chỉnh sửa</a>
                               </li>
                               <li>
                                 <hr class="dropdown-divider">
                               </li>
-                              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalDeleteStatus" (click)="getCommentId(commentOfComment.id)"> <i class="fa-solid fa-trash"></i> Xóa</a>
+                              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalDeleteStatus"
+                                     (click)="getCommentId(commentOfComment.id)"> <i class="fa-solid fa-trash"></i> Xóa</a>
                               </li>
                             </ul>
                           </div>
