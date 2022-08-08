@@ -27,19 +27,19 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userId1 = localStorage.getItem("ID")
     this.currentId = localStorage.getItem("ID")
     this.activatedRoute.paramMap.subscribe((param) => {
       this.id = param.get("id");
       this.userService.getUserProfile(this.id).subscribe(data => {
         this.user = data
-        this.getRelationship()
+        this.getRelationship(this.userId1, this.id)
       })
     })
   }
 
-  getRelationship() {
-    this.userId1 = localStorage.getItem("ID")
-    this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
+  getRelationship(user1, user2) {
+    this.relationshipService.getRelationship(user1, user2).subscribe(data => {
       this.relationship = data
     },error => {})
   }

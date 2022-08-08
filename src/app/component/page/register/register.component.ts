@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
       email: this.registerForm.value.email,
       phone: this.registerForm.value.phone,
       birthday: this.registerForm.value.birthday,
-      avatar: "https://firebasestorage.googleapis.com/v0/b/socialnetwork-f5a61.appspot.com/o/placeholder.jpg?alt=media&token=9e94915b-2d37-4ca9-939e-28195a28ed90"
+      avatar: "https://firebasestorage.googleapis.com/v0/b/socialnetwork-cb9cc.appspot.com/o/placeholder.jpg?alt=media&token=13e667fe-53b7-4020-be14-d9a668ee9422"
     };
     return user;
   }

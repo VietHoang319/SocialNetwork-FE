@@ -23,26 +23,6 @@
                   <p class="mb-0 small" *ngIf="status.status == 3"><i class="fa-solid fa-user-group"></i> Bạn bè</p>
                 </div>
               </div>
-              <!-- Card feed action dropdown START -->
-              <div class="dropdown">
-                <a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2" id="cardFeedAction"
-                   data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi bi-three-dots"></i>
-                </a>
-                <!-- Card feed action dropdown menu -->
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction">
-                  <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Save post</a></li>
-                  <li><a class="dropdown-item" href="#"> <i class="bi bi-person-x fa-fw pe-2"></i>Unfollow lori ferguson
-                  </a></li>
-                  <li><a class="dropdown-item" href="#"> <i class="bi bi-x-circle fa-fw pe-2"></i>Hide post</a></li>
-                  <li><a class="dropdown-item" href="#"> <i class="bi bi-slash-circle fa-fw pe-2"></i>Block</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report post</a></li>
-                </ul>
-              </div>
-              <!-- Card feed action dropdown END -->
             </div>
             <!-- Feed meta Info -->
             <p>{{status.content}}  </p>
@@ -54,17 +34,14 @@
                 </div>
               </div>
             </div>
-
+            <br>
             <!-- Feed react START -->
-            <ul class="nav nav-stack flex-wrap small mb-3">
+            <ul class="nav nav-pills nav-pills-light nav-fill nav-stack small border-top py-1">
               <li class="nav-item">
-                <a class="nav-link" href="#!"> <i class="bi bi-hand-thumbs-up-fill pe-1"></i>(56)</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#!"> <i class="bi bi-chat-fill pe-1"></i>(12)</a>
+                <a class="nav-link mb-0" href="#!"> <i class="bi bi-heart pe-1"></i>Thích (56)</a>
               </li>
             </ul>
-            <!-- Feed react END -->
+            <!-- Feed react START -->
             <div
               *ngIf="currentUserId == status.owner.id || (currentUserId != status.owner.id && relationship != null && relationship.status == 2)">
               <app-comment-create [statusId]="statusId"></app-comment-create>
@@ -106,7 +83,7 @@
                           <li>
                             <hr class="dropdown-divider">
                           </li>
-                          <li><a class="dropdown-item" (click)="delete(commentOfStatus.id)"> <i class="fa-solid fa-trash"></i> Xóa</a>
+                          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalDeleteStatus" (click)="getCommentId(commentOfStatus.id)"> <i class="fa-solid fa-trash"></i> Xóa</a>
                           </li>
                         </ul>
                       </div>
@@ -188,7 +165,7 @@
                               <li>
                                 <hr class="dropdown-divider">
                               </li>
-                              <li><a class="dropdown-item" (click)="delete(commentOfComment.id)"> <i class="fa-solid fa-trash"></i> Xóa</a>
+                              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalDeleteStatus" (click)="getCommentId(commentOfComment.id)"> <i class="fa-solid fa-trash"></i> Xóa</a>
                               </li>
                             </ul>
                           </div>
@@ -222,3 +199,29 @@
   </div>
   <!-- Container END -->
 </main>
+
+<!-- Modal delete START -->
+<div class="modal fade" id="modalDeleteStatus" tabindex="-1" aria-labelledby="modalLabelUnfriend" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <!-- Modal feed header START -->
+      <div class="modal-header">
+        <h3 id="modalLabelUnfriend" style="text-align: center">Bạn muốn xóa bình luận</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>Bạn có chắc chắn muốn xóa bình luận không?</h6>
+      </div>
+      <!-- Button -->
+      <div class="modal-footer">
+        <div class="col-lg-8 text-sm-end">
+          <button type="button" class="btn btn-danger-soft me-2" (click)="delete(commentId)" data-bs-dismiss="modal">
+            Xác nhận
+          </button>
+          <button type="button" class="btn btn-success-soft" data-bs-dismiss="modal" aria-label="Close">Hủy
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
