@@ -26,6 +26,7 @@ import { ListFriendComponent } from './component/block/list-friend/list-friend.c
 import { StatusNewFeedComponent } from './component/status/status-new-feed/status-new-feed.component';
 import { CommentCreateComponent } from './component/comment/comment-create/comment-create.component';
 import { StatusDetailComponent } from './component/status/status-detail/status-detail.component';
+import { CommentUpdateComponent } from './component/comment/comment-update/comment-update.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { StatusDetailComponent } from './component/status/status-detail/status-d
     StatusOwnerListComponent,
     StatusNewFeedComponent,
     StatusDetailComponent,
+    CommentUpdateComponent,
   ],
   imports: [
     BrowserModule,
