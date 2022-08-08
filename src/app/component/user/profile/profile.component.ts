@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   user: any
   currentId: any
   relationship: any
+  relationshipTemp: any
   userId1: any
   userForm: FormGroup = new FormGroup({
     avatar: new FormControl(),
@@ -33,41 +34,74 @@ export class ProfileComponent implements OnInit {
       this.id = param.get("id");
       this.userService.getUserProfile(this.id).subscribe(data => {
         this.user = data
-        this.getRelationship(this.userId1, this.id)
+        this.getRelationship()
       })
     })
   }
 
-  getRelationship(user1, user2) {
-    this.relationshipService.getRelationship(user1, user2).subscribe(data => {
+  getRelationship() {
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe(data => {
       this.relationship = data
     })
   }
 
   addFriend() {
-    const relationship = {
-      user1: {
-        id: localStorage.getItem("ID")
-      },
-      user2: {
-        id: this.id
-      },
-    }
-    console.log(relationship)
-    this.relationshipService.addFiend(relationship).subscribe(data => {
-      this.relationship = data;
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe( data => {
+      this.relationshipTemp = data
+      if ((this.relationshipTemp == null && this.relationship != null) || (this.relationshipTemp != null && this.relationship == null)) {
+        this.reloadCurrentRoute()
+      }
+      if (((this.relationshipTemp != null && this.relationship != null) && (this.relationshipTemp.status == this.relationship.status)) || (this.relationshipTemp == null && this.relationship == null)) {
+        const relationship = {
+          user1: {
+            id: localStorage.getItem("ID")
+          },
+          user2: {
+            id: this.id
+          },
+        }
+        console.log(relationship)
+        this.relationshipService.addFiend(relationship).subscribe(data => {
+          this.relationship = data;
+        })
+      }
+      else {
+        this.reloadCurrentRoute()
+      }
     })
   }
 
   deleteRelationship() {
-    this.relationshipService.deleteRelationship(this.relationship.id).subscribe(id => {
-      this.relationship = null;
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe( data => {
+      this.relationshipTemp = data
+      if ((this.relationshipTemp == null && this.relationship != null) || (this.relationshipTemp != null && this.relationship == null)) {
+        this.reloadCurrentRoute()
+      }
+      if (((this.relationshipTemp != null && this.relationship != null) && (this.relationshipTemp.status == this.relationship.status)) || (this.relationshipTemp == null && this.relationship == null)) {
+        this.relationshipService.deleteRelationship(this.relationship.id).subscribe(id => {
+          this.relationship = null;
+        })
+      }
+      else {
+        this.reloadCurrentRoute()
+      }
     })
   }
 
   friendConfirmation() {
-    this.relationshipService.friendConfirmation(this.relationship.id).subscribe(data => {
-      this.relationship.status=2
+    this.relationshipService.getRelationship(this.userId1, this.id).subscribe( data => {
+      this.relationshipTemp = data
+      if ((this.relationshipTemp == null && this.relationship != null) || (this.relationshipTemp != null && this.relationship == null)) {
+        this.reloadCurrentRoute()
+      }
+      if (((this.relationshipTemp != null && this.relationship != null) && (this.relationshipTemp.status == this.relationship.status)) || (this.relationshipTemp == null && this.relationship == null)) {
+        this.relationshipService.friendConfirmation(this.relationship.id).subscribe(data => {
+          this.relationship.status=2
+        })
+      }
+      else {
+        this.reloadCurrentRoute()
+      }
     })
   }
 
