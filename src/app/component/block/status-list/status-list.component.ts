@@ -21,6 +21,7 @@ export class StatusListComponent implements OnInit {
   id: any
   @Input()
   relationship: any
+  likeStatuses:any
   statusz: Status = {
     owner: {
       id: 0,
@@ -40,7 +41,7 @@ export class StatusListComponent implements OnInit {
     content: "",
     createAt: "",
     id: 0,
-    status: ""
+    status: "",
   };
 
   statusForm: FormGroup = this.fb.group({
@@ -103,7 +104,9 @@ export class StatusListComponent implements OnInit {
 
   likeStatus(id:any){
     this.likeStatusService.likeStatus(id,this.currentID).subscribe(data=>{
-      console.log(data)
+      this.likeStatuses=data
+      window.location.reload()
     })
   }
+
 }

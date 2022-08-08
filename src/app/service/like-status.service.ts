@@ -13,4 +13,8 @@ export class LikeStatusService {
   likeStatus(idStatus:any,isUser:any){
     return this.httpClient.post(API_URL + "like-statuses?idStatus=" +idStatus + "&idUser=" + isUser,null)
   }
+
+  check(idStatus:any,isUser:any){
+    return this.httpClient.get(API_URL + "like-statuses/check?idStatus=" +idStatus + "&idUser=" + isUser)
+  }
 }
