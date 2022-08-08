@@ -31,7 +31,7 @@ export class CommentCreateComponent implements OnInit {
   }
 
   submit() {
-    if (this.commentId != 0) {
+    if (typeof this.commentId == "undefined" || this.commentId == 0) {
       this.comment = {
         content: this.commentForm.value.content,
         userComment: {
@@ -39,9 +39,6 @@ export class CommentCreateComponent implements OnInit {
         },
         status: {
           id: this.statusId,
-        },
-        comment: {
-          id: this.commentId
         },
         active: 1
       }
@@ -54,6 +51,9 @@ export class CommentCreateComponent implements OnInit {
         },
         status: {
           id: this.statusId,
+        },
+        comment: {
+          id: this.commentId
         },
         active: 1
       }
