@@ -1,0 +1,12 @@
+.child-comment-input {
+  display: none
+}
+
+.comment-content {
+  word-break: break-all;
+  white-space: break-spaces
+}
+
+.card-body {
+  padding-bottom: 0;
+}
