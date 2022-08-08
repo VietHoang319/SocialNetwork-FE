@@ -40,7 +40,9 @@ export class CommentCreateComponent implements OnInit {
         status: {
           id: this.statusId,
         },
-        comment: this.commentId,
+        comment: {
+          id: this.commentId
+        },
         active: 1
       }
     }
@@ -58,7 +60,6 @@ export class CommentCreateComponent implements OnInit {
     }
     console.log(this.comment)
     this.commentService.save(this.comment).subscribe(() => {
-      console.log(this.comment)
       this.commentForm.reset()
       this.reloadCurrentRoute()
     }, error => {

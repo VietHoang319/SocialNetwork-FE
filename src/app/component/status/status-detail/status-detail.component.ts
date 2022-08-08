@@ -12,6 +12,7 @@ import {RelationshipService} from "../../../service/relationship.service";
   styleUrls: ['./status-detail.component.css']
 })
 export class StatusDetailComponent implements OnInit {
+  commentId: any
   currentUserId: any
   relationship: any
   statusId: any
@@ -82,5 +83,9 @@ export class StatusDetailComponent implements OnInit {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);
     });
+  }
+
+  getCommentId(id) {
+    this.commentId = id
   }
 }
