@@ -10,3 +10,7 @@
 .card-body {
   padding-bottom: 0;
 }
+
+.comment-update {
+  display: none;
+}

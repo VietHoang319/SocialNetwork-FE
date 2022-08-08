@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CommentService} from "../../../service/comment.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
@@ -9,8 +9,10 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./comment-update.component.css']
 })
 export class CommentUpdateComponent implements OnInit {
-  comments: any;
+  comment: any;
+  @Input()
   id: any;
+
   constructor(private commentService: CommentService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -28,23 +30,12 @@ export class CommentUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     //lay gia tri
-    this.activatedRoute.paramMap.subscribe(paramap => {
-      const id = paramap.get('id');
-      console.log(id);
-      this.commentService.getById(id).subscribe(result => {
-        // @ts-ignore
-        this.comments = result;
-        console.log(result);
-      }, error => {
-        console.log(error);
-      })
-    })
-
-    this.comments = {
+    this.commentService.getById(this.id).subscribe(result => {
       // @ts-ignore
-      active: '',
-      content: ''
-    }
+      this.comment = result;
+    }, error => {
+      console.log(error);
+    })
   }
 
   editComment() {
@@ -57,12 +48,16 @@ export class CommentUpdateComponent implements OnInit {
     // @ts-ignore
 
     this.commentService.edit(this.id, comment).subscribe((data) => {
-      alert("Ok");
-      this.router.navigate(['/'])
-      // @ts-ignore
+      this.reloadCurrentRoute()
     }, error => {
       console.log(error);
     })
   }
 
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
 }

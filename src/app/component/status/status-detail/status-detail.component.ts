@@ -88,4 +88,18 @@ export class StatusDetailComponent implements OnInit {
   getCommentId(id) {
     this.commentId = id
   }
+
+  update(index) {
+    // @ts-ignore
+    document.getElementsByClassName("comment-content")[index].style.display = "none"
+    // @ts-ignore
+    document.getElementsByClassName("comment-update")[index].style.display = "block"
+  }
+
+  cancel(index) {
+    // @ts-ignore
+    document.getElementsByClassName("comment-content")[index].style.display = "block"
+    // @ts-ignore
+    document.getElementsByClassName("comment-update")[index].style.display = "none"
+  }
 }
