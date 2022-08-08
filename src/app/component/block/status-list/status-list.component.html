@@ -1,7 +1,7 @@
 <div *ngIf="currentID == id">
   <div class="card" *ngFor="let s of statusesOwner[0],index as i" >
     <!-- Card header START -->
-    <div >
+    <div *ngIf="(currentID == id) ||(currentID != id && relationship == null && s.status == 1) || (currentID != id && relationship != null && (s.status == 1 || s.status == 3))">
       <div class="card-header border-0 pb-0">
         <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center">
@@ -85,8 +85,8 @@
     <!-- Card body END -->
   </div>
 </div>
-<div *ngIf="currentID != id">
-  <div class="card" *ngFor="let s of statuses,index as i" >
+<div *ngIf="relationship == null">
+  <div class="card" *ngFor="let s of statuses[0],index as i" >
     <!-- Card header START -->
     <div >
       <div class="card-header border-0 pb-0">
@@ -143,8 +143,95 @@
         <!-- Card img -->
         <div class="card-body position-relative pt-0">
           <div class="row g-2">
-            <div *ngFor="let img of img" class="col-4" >
-              <img class="rounded img-fluid" src="{{img.image}}" *ngIf="this.statuz[1][i][i].status.id == this.statuz[0][i].id">
+            <div *ngFor="let img of statuses[1][i]" class="col-4" >
+              <img class="rounded img-fluid" src="{{img.image}}">
+            </div>
+          </div>
+        </div>
+
+        <!-- Feed react START -->
+        <ul class="nav nav-stack py-3 small">
+          <li class="nav-item">
+            <a class="nav-link active" href="#!"> <i class="bi bi-hand-thumbs-up-fill pe-1"></i>Thích (56)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#!"> <i class="bi bi-chat-fill pe-1"></i>Bình luận (12)</a>
+          </li>
+          <!-- Card share action START -->
+          <!--        <li class="nav-item dropdown ms-sm-auto">-->
+          <!--          <a class="nav-link mb-0" href="#" id="cardShareAction8" data-bs-toggle="dropdown" aria-expanded="false">-->
+          <!--            <i class="bi bi-reply-fill flip-horizontal ps-1"></i>Share (3)-->
+          <!--          </a>-->
+          <!--          &lt;!&ndash; Card share action dropdown menu &ndash;&gt;-->
+          <!--        </li>-->
+          <!-- Card share action END -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- Card body END -->
+  </div>
+</div>
+<div *ngIf="relationship != null">
+  <div class="card" *ngFor="let s of statuz[0],index as i" >
+    <!-- Card header START -->
+    <div >
+      <div class="card-header border-0 pb-0">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <!-- Avatar -->
+            <div class="avatar avatar-story me-2">
+              <a href="#!"> <img class="avatar-img rounded-circle" src="{{s.owner.avatar}}" alt=""> </a>
+            </div>
+            <!-- Info -->
+            <div>
+              <div class="nav nav-divider">
+                <h6 class="nav-item card-title mb-0"><a routerLink="/{{s.owner.id}}"> {{s.owner.fullname}} </a></h6>
+                <span class="nav-item small"> {{s.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</span>
+              </div>
+              <p class="mb-0 small" *ngIf="s.status == 1"><i class="fa-solid fa-globe"></i> Công khai</p>
+              <p class="mb-0 small" *ngIf="s.status == 2"><i class="fa-solid fa-lock"></i> Chỉ mình tôi</p>
+              <p class="mb-0 small" *ngIf="s.status == 3"><i class="fa-solid fa-user-group"></i> Bạn bè</p>
+            </div>
+          </div>
+          <!-- Card feed action dropdown START -->
+          <div class="dropdown" *ngIf="currentID == s.owner.id">
+            <a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2" id="cardFeedAction1"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-three-dots"></i>
+            </a>
+            <!-- Card feed action dropdown menu -->
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction1">
+              <div>
+                <li>
+                  <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateStatusModal"
+                          (click)="getStatus(s.id)"><i
+                    class="bi bi-pencil-fill pe-1"></i> Sửa bài đăng
+                  </button>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li>
+                  <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalDeleteStatus"
+                          (click)="getStatus(s.id)"><i class="fa-solid fa-trash"></i> Xóa bài đăng
+                  </button>
+                </li>
+              </div>
+            </ul>
+          </div>
+          <!-- Card feed action dropdown END -->
+        </div>
+      </div>
+      <!-- Card header END -->
+      <!-- Card body START -->
+      <div class="card-body">
+        <p>{{s.content}}</p>
+        <!-- Card img -->
+        <div class="card-body position-relative pt-0">
+          <div class="row g-2">
+            <div *ngFor="let img of statuz[1][i]" class="col-4" >
+              <img class="rounded img-fluid" src="{{img.image}}">
             </div>
           </div>
         </div>
