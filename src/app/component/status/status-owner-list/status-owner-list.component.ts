@@ -15,6 +15,7 @@ import {ImageService} from "../../../service/image.service";
 })
 export class StatusOwnerListComponent implements OnInit {
   statuses: Status [] = [];
+  statusesOwner : Status [] = [];
   currentId: any;
   id: any;
   relationship: any;
@@ -36,35 +37,38 @@ export class StatusOwnerListComponent implements OnInit {
     })
     this.relationshipService.getRelationship(this.currentId, this.id).subscribe(data => {
       this.relationship = data;
-      this.statusService.findAllByOwnerId(this.id).subscribe((status) => {
-        this.statuz = status;
-        for (let i = 0; i <= status.length; i++) {
-          if (this.currentId == this.id) {
-            this.statuses.push(status[i])
+    })
+    this.statusService.findAllByOwnerId(this.id).subscribe((status) => {
+      this.statuz = status;
+      for (let i = 0; i <= status.length; i++) {
+        if (this.currentId == this.id) {
+          this.statuses.push(status[i])
+          this.statuses.push(this.statuz[0][i])
+          console.log(this.statuses)
+          this.imageService.findByIdStatus(this.statuz[1][i][i].id).subscribe((images) => {
+            this.img.push(images)
+          })
+          console.log(this.statuses)
+        } else {
+          if (this.statuz[0][i].status == 1 && this.relationship == null) {
+            console.log(this.relationship)
             this.statuses.push(this.statuz[0][i])
             this.imageService.findByIdStatus(this.statuz[1][i][i].id).subscribe((images) => {
               this.img.push(images)
             })
-          } else {
-            console.log(this.relationship)
-            if (this.statuz[0][i].status == 1 && this.relationship == null) {
-              console.log(this.relationship)
-              this.statuses.push(this.statuz[0][i])
-              this.imageService.findByIdStatus(this.statuz[1][i][i].id).subscribe((images) => {
-                this.img.push(images)
-              })
-            }
-            if ((this.statuz[0][i].status == 1 && this.relationship.status == 2) || (this.statuz[0][i].status == 3 && this.relationship.status == 2)) {
-              this.statuses.push(this.statuz[0][i])
-              this.imageService.findByIdStatus(this.statuz[1][i][i].id).subscribe((images) => {
-                this.img.push(images)
-              })
-            }
+          }
+          if ((this.statuz[0][i].status == 1 && this.relationship.status == 2) || (this.statuz[0][i].status == 3 && this.relationship.status == 2)) {
+            this.statuses.push(this.statuz[0][i])
+            this.imageService.findByIdStatus(this.statuz[1][i][i].id).subscribe((images) => {
+              this.img.push(images)
+            })
           }
         }
-      })
+      }
     })
-
+    this.statusService.findAllByOwnerId(this.id).subscribe((status) => {
+     this.statusesOwner = status;
+    })
   }
 
 

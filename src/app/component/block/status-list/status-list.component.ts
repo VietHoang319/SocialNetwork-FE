@@ -24,6 +24,8 @@ export class StatusListComponent implements OnInit {
   relationship: any
   @Input()
   statuz : any;
+  @Input()
+  statusesOwner
   statusz: Status = {
     owner: {
       id: 0,
