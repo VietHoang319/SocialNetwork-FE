@@ -15,8 +15,15 @@ export class ImageService {
   findByIdStatus(id: any):Observable<any>{
     return this.httpClient.get(API_URL + `/status/${id}`);
   }
+
+  updateImage(id : any,image : any) : Observable<any>{
+    return this.httpClient.put(API_URL + `/${id}`,image)
+  }
   showFullStatus(id: any):Observable<any>{
     return this.httpClient.get(API_URL + `/${id}`);
+  }
+  deleteImage(id:any): Observable<any> {
+    return this.httpClient.delete<any>(API_URL+`/${id}`);
   }
 
 }

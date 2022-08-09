@@ -29,7 +29,6 @@ export class StatusOwnerListComponent implements OnInit {
       this.id = param.get("id");
       this.statusService.findAllByOwnerId(this.id).subscribe((status) =>{
         this.statuses = status;
-        console.log(status)
       })
     })
 
