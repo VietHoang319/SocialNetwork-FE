@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {StatusService} from "../../../service/status.service";
 import {Role} from "../../../model/role";
 import {NgToastService} from "ng-angular-popup";
+import {LikeStatusService} from "../../../service/like-status.service";
 
 @Component({
   selector: 'app-status-list',
@@ -19,11 +20,12 @@ export class StatusListComponent implements OnInit {
   @Input()
   id: any
   @Input()
-  img : any
+  img: any
   @Input()
   relationship: any
+  likeStatuses: any
   @Input()
-  statuz : any;
+  statuz: any;
   @Input()
   statusesOwner
   statusz: Status = {
@@ -58,7 +60,8 @@ export class StatusListComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private fb: FormBuilder,
-              private toast: NgToastService) {
+              private toast: NgToastService,
+              private likeStatusService: LikeStatusService) {
   }
 
   ngOnInit(): void {
@@ -103,5 +106,12 @@ export class StatusListComponent implements OnInit {
       this.toast.error({detail: "Thông Báo", summary: "Sửa bài đăng thất bại", duration: 3000})
       console.log(e);
     });
+  }
+
+  likeStatus(id: any, index) {
+    this.likeStatusService.likeStatus(id, this.currentID).subscribe(data => {
+      this.likeStatuses = data
+      this.statusesOwner[0][index].isLiked = !this.statusesOwner[0][index].isLiked
+    })
   }
 }

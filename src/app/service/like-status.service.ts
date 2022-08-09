@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
+import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+const API_URL = environment.apiUrl
 
-const API_URL = 'http://localhost:8080/like-statuses'
 @Injectable({
   providedIn: 'root'
 })
 export class LikeStatusService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
+  likeStatus(idStatus:any,isUser:any){
+    return this.httpClient.post(API_URL + "like-statuses?idStatus=" +idStatus + "&idUser=" + isUser,null)
+  }
 
-  findByStatusIdAndUserId(statusId : any,userId : any): Observable<any> {
-    return this.http.get(API_URL+`/check?idStatus=${statusId}&idUser=${userId}`);
-  };
+  check(idStatus:any,isUser:any){
+    return this.httpClient.get(API_URL + "like-statuses/check?idStatus=" +idStatus + "&idUser=" + isUser)
+  }
 }

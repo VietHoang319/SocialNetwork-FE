@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StatusService} from "../../../service/status.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
@@ -13,14 +13,15 @@ import {LikeStatusService} from "../../../service/like-status.service";
   styleUrls: ['./status-new-feed.component.css']
 })
 export class StatusNewFeedComponent implements OnInit {
-  statuses : any;
-  currentId : any;
-  id : any;
-  avatar :any
-  fullname : any;
+  statuses: any;
+  currentId: any;
+  id: any;
+  avatar: any
+  fullname: any;
   relationship: any;
   numberStatusOwner: any;
   numberFriend: any;
+  likeStatuses:any
   statusForm: FormGroup = this.fb.group({
       content: new FormControl(''),
       status: new FormControl(''),
@@ -47,9 +48,11 @@ export class StatusNewFeedComponent implements OnInit {
     id: 0,
     status: ""
   };
-  constructor(private statusService : StatusService,private activatedRoute : ActivatedRoute,private relationshipService: RelationshipService,private router: Router,
-              private fb: FormBuilder,private toast: NgToastService,
-              private likeStatusService : LikeStatusService) {
+
+  constructor(private statusService: StatusService, private activatedRoute: ActivatedRoute,
+              private relationshipService: RelationshipService, private router: Router,
+              private fb: FormBuilder, private toast: NgToastService,
+              private likeService: LikeStatusService) {
 
   }
 
@@ -58,12 +61,22 @@ export class StatusNewFeedComponent implements OnInit {
     this.fullname = localStorage.getItem("FULLNAME")
     this.currentId = localStorage.getItem("ID")
     this.activatedRoute.paramMap.subscribe((param) => {
-      this.id = param.get("id");
-      this.statusService.findAll(this.currentId).subscribe((status) =>{
+      // this.id = param.get("id");
+      this.statusService.findAll(this.currentId).subscribe((status) => {
         this.statuses = status;
+        for (let i = 0; i < this.statuses[0].length; i++) {
+          this.likeService.check(this.statuses[0][i].id, this.currentId).subscribe(data => {
+            this.statuses[0][i].isLiked = data;
+          }, error => (
+            console.log("err", error)
+          ))
+        }
+      }, error => {
+        console.log(error)
       })
+    }, error => {
+      console.log(error)
     })
-
     this.statusService.findAllByOwnerId(this.currentId).subscribe((status) => {
       this.numberStatusOwner = status;
     })
@@ -72,6 +85,7 @@ export class StatusNewFeedComponent implements OnInit {
       this.relationship = data;
     })
   }
+
   getStatus(id) {
     this.statusService.getById(id).subscribe(result => {
       this.statusz = result;
@@ -91,7 +105,9 @@ export class StatusNewFeedComponent implements OnInit {
     // @ts-ignore
     this.statusService.edit(this.statusz.id, status).subscribe(() => {
       this.toast.success({detail: "Thông Báo", summary: "Sửa bài đăng thành công", duration: 3000})
-      window.setTimeout(function(){location.reload()},1500)
+      window.setTimeout(function () {
+        location.reload()
+      }, 1500)
     }, error => {
       console.log(error);
     })
@@ -114,4 +130,10 @@ export class StatusNewFeedComponent implements OnInit {
     });
   }
 
+  likeStatus(id: any, index) {
+    this.likeService.likeStatus(id, this.currentId).subscribe(data => {
+      this.likeStatuses = data
+      this.statuses[0][index].isLiked = !this.statuses[0][index].isLiked
+    })
+  }
 }

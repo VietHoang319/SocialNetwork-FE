@@ -64,8 +64,11 @@
         <br>
         <!-- Feed react START -->
         <ul class="nav nav-pills nav-pills-light nav-fill nav-stack small border-top py-1">
-          <li class="nav-item">
-            <a class="nav-link mb-0" href="#!" style="color:#0f6fec;"> <i class="bi bi-heart pe-1"></i>Thích ({{statusesOwner[2][i]}})</a>
+          <li class="nav-item" *ngIf="!s.isLiked">
+            <a class="nav-link mb-0" (click)="likeStatus(s.id, i)"> <i class="bi bi-heart pe-1"></i>Thích ({{statusesOwner[0][i]}})</a>
+          </li>
+          <li class="nav-item" *ngIf="s.isLiked">
+            <a class="nav-link mb-0" style="color: red" (click)="likeStatus(s.id, i)"> <i class="bi bi-heart pe-1"></i>Thích (56)</a>
           </li>
           <li class="nav-item">
             <a class="nav-link mb-0" routerLink="/status/{{s.id}}"> <i class="bi bi-chat-fill pe-1"></i>Comment</a>
@@ -135,13 +138,13 @@
   </form>
 </div>
 
-<!-- Modal unfriend START -->
+<!-- Modal delete START -->
 <div class="modal fade" id="modalDeleteStatus" tabindex="-1" aria-labelledby="modalLabelUnfriend" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <!-- Modal feed header START -->
       <div class="modal-header">
-        <h3 id="modalLabelUnfriend" style="text-align: center">Bạn muốn hủy kết bạn</h3>
+        <h3 id="modalLabelUnfriend" style="text-align: center">Bạn muốn xóa bài đăng</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
