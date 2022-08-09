@@ -20,8 +20,14 @@ export class StatusListComponent implements OnInit {
   @Input()
   id: any
   @Input()
+  img : any
+  @Input()
   relationship: any
   likeStatuses:any
+  @Input()
+  statuz : any;
+  @Input()
+  statusesOwner
   statusz: Status = {
     owner: {
       id: 0,
@@ -41,7 +47,7 @@ export class StatusListComponent implements OnInit {
     content: "",
     createAt: "",
     id: 0,
-    status: "",
+    status: ""
   };
 
   statusForm: FormGroup = this.fb.group({
