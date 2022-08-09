@@ -57,6 +57,7 @@ export class StatusDetailComponent implements OnInit {
       })
       this.listImage = data[1]
       this.numberOfLikeOfStatus = data[2][0]
+      console.log(this.numberOfLikeOfStatus)
     }, error => {
       console.log(error)
     })
