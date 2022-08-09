@@ -153,12 +153,12 @@
               <!-- Feed react START -->
               <ul class="nav nav-pills nav-pills-light nav-fill nav-stack small border-top py-1">
                 <li class="nav-item" *ngIf="!s.isLiked">
-                  <a class="nav-link mb-0" (click)="likeStatus(s.id, i)"> <i class="bi bi-heart pe-1"></i>Thích ({{statuses[2][i]}})</a>
+                  <a class="nav-link mb-0" (click)="likeStatus(s.id, i)"> ({{statuses[2][i]}}) <i class="bi bi-heart pe-1"></i>Thích</a>
                 </li>
                 <li class="nav-item" *ngIf="s.isLiked">
-                  <a class="nav-link mb-0" style="color: red" (click)="likeStatus(s.id, i)"> <i class="bi bi-heart pe-1"></i>Thích (56)</a>
+                  <a class="nav-link mb-0" style="color: red" (click)="likeStatus(s.id, i)"> ({{statuses[2][i]}}) <i class="bi bi-heart pe-1"></i>Thích</a>
                 <li class="nav-item">
-                  <a class="nav-link mb-0" routerLink="/status/{{s.id}}"> <i class="bi bi-chat-fill pe-1"></i>Comment</a>
+                  <a class="nav-link mb-0" routerLink="/status/{{s.id}}"> <i class="bi bi-chat-fill pe-1"></i>Bình Luận</a>
                 </li>
               </ul>
               <!-- Feed react START -->
