@@ -22,6 +22,8 @@ export class StatusDetailComponent implements OnInit {
   listImage: Image[] = []
   listCommentOfStatus: any[] = []
   listCommentOfComment: any[] = []
+  listNumberOfParentComment: any[] = []
+  listNumberOfChildComment: any[] = []
   likeComments: any
   numberOfLikeOfStatus: any
   likeStatuses: any
@@ -65,9 +67,10 @@ export class StatusDetailComponent implements OnInit {
 
   getComment(id) {
     this.commentService.getAllByStatus(id).subscribe(data => {
-      for (let item of data) {
-        if (item.comment == null) {
-          this.listCommentOfStatus.push(item)
+      for (let i = 0; i < data[0].length; i++) {
+        if (data[0][i].comment == null) {
+          this.listCommentOfStatus.push(data[0][i])
+          this.listNumberOfParentComment.push(data[1][i])
           for (let i = 0; i < this.listCommentOfStatus.length; i++) {
             this.likeCommentService.check(this.listCommentOfStatus[i].id, this.currentUserId).subscribe(data => {
               this.listCommentOfStatus[i].isLikeComment = data;
@@ -76,7 +79,8 @@ export class StatusDetailComponent implements OnInit {
             ))
           }
         } else {
-          this.listCommentOfComment.push(item)
+          this.listCommentOfComment.push(data[0][i])
+          this.listNumberOfChildComment.push(data[1][i])
           for (let i = 0; i < this.listCommentOfComment.length; i++) {
             this.likeCommentService.check(this.listCommentOfComment[i].id, this.currentUserId).subscribe(data => {
               this.listCommentOfComment[i].isLike = data;
@@ -161,10 +165,20 @@ export class StatusDetailComponent implements OnInit {
       this.likeComments = data
       if (number == 1) {
         this.listCommentOfStatus[index].isLikeComment = !this.listCommentOfStatus[index].isLikeComment
+        if (this.listCommentOfStatus[index].isLikeComment == true) {
+          this.listNumberOfParentComment[index] += 1
+        } else {
+          this.listNumberOfParentComment[index] -= 1
+        }
       }
       if (number == 2) {
         console.log(this.listCommentOfComment[index])
         this.listCommentOfComment[index].isLike = !this.listCommentOfComment[index].isLike
+        if (this.listCommentOfComment[index].isLike == true) {
+          this.listNumberOfChildComment[index] += 1
+        } else {
+          this.listNumberOfChildComment[index] -= 1
+        }
       }
     })
   }
