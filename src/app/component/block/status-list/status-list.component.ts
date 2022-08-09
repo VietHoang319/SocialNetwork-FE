@@ -20,12 +20,12 @@ export class StatusListComponent implements OnInit {
   @Input()
   id: any
   @Input()
-  img : any
+  img: any
   @Input()
   relationship: any
-  likeStatuses:any
+  likeStatuses: any
   @Input()
-  statuz : any;
+  statuz: any;
   @Input()
   statusesOwner
   statusz: Status = {
@@ -61,7 +61,7 @@ export class StatusListComponent implements OnInit {
               private router: Router,
               private fb: FormBuilder,
               private toast: NgToastService,
-              private likeStatusService:LikeStatusService) {
+              private likeStatusService: LikeStatusService) {
   }
 
   ngOnInit(): void {
@@ -108,11 +108,10 @@ export class StatusListComponent implements OnInit {
     });
   }
 
-  likeStatus(id:any){
-    this.likeStatusService.likeStatus(id,this.currentID).subscribe(data=>{
-      this.likeStatuses=data
-      window.location.reload()
+  likeStatus(id: any, index) {
+    this.likeStatusService.likeStatus(id, this.currentID).subscribe(data => {
+      this.likeStatuses = data
+      this.statusesOwner[0][index].isLiked = !this.statusesOwner[0][index].isLiked
     })
   }
-
 }

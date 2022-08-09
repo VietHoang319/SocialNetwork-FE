@@ -21,6 +21,7 @@ export class StatusNewFeedComponent implements OnInit {
   relationship: any;
   numberStatusOwner: any;
   numberFriend: any;
+  likeStatuses:any
   statusForm: FormGroup = this.fb.group({
       content: new FormControl(''),
       status: new FormControl(''),
@@ -84,6 +85,7 @@ export class StatusNewFeedComponent implements OnInit {
       this.relationship = data;
     })
   }
+
   getStatus(id) {
     this.statusService.getById(id).subscribe(result => {
       this.statusz = result;
@@ -103,7 +105,9 @@ export class StatusNewFeedComponent implements OnInit {
     // @ts-ignore
     this.statusService.edit(this.statusz.id, status).subscribe(() => {
       this.toast.success({detail: "Thông Báo", summary: "Sửa bài đăng thành công", duration: 3000})
-      window.setTimeout(function(){location.reload()},1500)
+      window.setTimeout(function () {
+        location.reload()
+      }, 1500)
     }, error => {
       console.log(error);
     })
@@ -124,5 +128,12 @@ export class StatusNewFeedComponent implements OnInit {
       this.toast.error({detail: "Thông Báo", summary: "Sửa bài đăng thất bại", duration: 3000})
       console.log(e);
     });
+  }
+
+  likeStatus(id: any, index) {
+    this.likeService.likeStatus(id, this.currentId).subscribe(data => {
+      this.likeStatuses = data
+      this.statuses[0][index].isLiked = !this.statuses[0][index].isLiked
+    })
   }
 }

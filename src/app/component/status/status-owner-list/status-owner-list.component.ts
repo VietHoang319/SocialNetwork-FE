@@ -6,6 +6,7 @@ import {RelationshipService} from "../../../service/relationship.service";
 import {Status} from "../../../model/status";
 import {Image} from "../../../model/image";
 import {ImageService} from "../../../service/image.service";
+import {LikeStatusService} from "../../../service/like-status.service";
 
 
 @Component({
@@ -15,7 +16,7 @@ import {ImageService} from "../../../service/image.service";
 })
 export class StatusOwnerListComponent implements OnInit {
   statuses: Status [] = [];
-  statusesOwner : Status [] = [];
+  statusesOwner : any;
   currentId: any;
   id: any;
   relationship: any;
@@ -25,7 +26,8 @@ export class StatusOwnerListComponent implements OnInit {
 
   constructor(private statusService: StatusService, private activatedRoute: ActivatedRoute,
               private fb: FormBuilder, private router: Router, private relationshipService: RelationshipService,
-              private imageService: ImageService) {
+              private imageService: ImageService,
+              private likeService: LikeStatusService) {
 
   }
 
@@ -40,8 +42,13 @@ export class StatusOwnerListComponent implements OnInit {
     })
     this.statusService.findAllByOwnerId(this.id).subscribe((status) => {
      this.statusesOwner = status;
+      for (let i = 0; i < this.statusesOwner[0].length; i++) {
+        this.likeService.check(this.statusesOwner[0][i].id, this.currentId).subscribe(data => {
+          this.statusesOwner[0][i].isLiked = data;
+        }, error => (
+          console.log("err", error)
+        ))
+      }
     })
   }
-
-
 }
