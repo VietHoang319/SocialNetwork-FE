@@ -20,8 +20,7 @@ export class StatusOwnerListComponent implements OnInit {
   id: any;
   relationship: any;
   statuz: Status [] = [];
-  img: Image [] = [];
-  image: Image [] = [];
+  numberOfLike : any;
 
   constructor(private statusService: StatusService, private activatedRoute: ActivatedRoute,
               private fb: FormBuilder, private router: Router, private relationshipService: RelationshipService,

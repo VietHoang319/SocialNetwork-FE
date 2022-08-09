@@ -40,6 +40,7 @@ export class StatusDetailComponent implements OnInit {
   getStatus(id) {
     this.statusService.getById(id).subscribe(data => {
       this.status = data[0][0]
+      console.log(data)
       this.relationshipService.getRelationship(this.currentUserId, this.status.owner.id).subscribe(data => {
         this.relationship = data
       })

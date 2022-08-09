@@ -5,6 +5,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {RelationshipService} from "../../../service/relationship.service";
 import {Status} from "../../../model/status";
 import {NgToastService} from "ng-angular-popup";
+import {LikeStatusService} from "../../../service/like-status.service";
 
 @Component({
   selector: 'app-status-new-feed',
@@ -46,7 +47,9 @@ export class StatusNewFeedComponent implements OnInit {
     id: 0,
     status: ""
   };
-  constructor(private statusService : StatusService,private activatedRoute : ActivatedRoute,private relationshipService: RelationshipService,private router: Router,private fb: FormBuilder,private toast: NgToastService) {
+  constructor(private statusService : StatusService,private activatedRoute : ActivatedRoute,private relationshipService: RelationshipService,private router: Router,
+              private fb: FormBuilder,private toast: NgToastService,
+              private likeStatusService : LikeStatusService) {
 
   }
 
@@ -60,6 +63,7 @@ export class StatusNewFeedComponent implements OnInit {
         this.statuses = status;
       })
     })
+
     this.statusService.findAllByOwnerId(this.currentId).subscribe((status) => {
       this.numberStatusOwner = status;
     })
@@ -109,4 +113,5 @@ export class StatusNewFeedComponent implements OnInit {
       console.log(e);
     });
   }
+
 }

@@ -31,13 +31,13 @@ export class StatusService {
     return  this.httpClien.get<Status[]>(API_URL + `/find-all-by-user/${id}`)
   }
 
-  findAllByStrangerId(id : any) : Observable<Status[]>{
-    return  this.httpClien.get<Status[]>(API_URL + `/find-all-by-stranger/${id}`)
-  }
-
-  findAllByFriendId(id : any,currentId : any) : Observable<Status[]>{
-    return  this.httpClien.get<Status[]>(API_URL + `/find-all-by-friend/${id}?currentId=`+currentId)
-  }
+  // findAllByStrangerId(id : any) : Observable<Status[]>{
+  //   return  this.httpClien.get<Status[]>(API_URL + `/find-all-by-stranger/${id}`)
+  // }
+  //
+  // findAllByFriendId(id : any,currentId : any) : Observable<Status[]>{
+  //   return  this.httpClien.get<Status[]>(API_URL + `/find-all-by-friend/${id}?currentId=`+currentId)
+  // }
 
 
 
