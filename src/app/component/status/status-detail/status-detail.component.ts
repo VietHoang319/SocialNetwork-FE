@@ -5,6 +5,7 @@ import {Image} from "../../../model/image";
 import {CommentService} from "../../../service/comment.service";
 import {Comment} from "../../../model/comment";
 import {RelationshipService} from "../../../service/relationship.service";
+import {LikeCommentService} from "../../../service/like-comment.service";
 
 @Component({
   selector: 'app-status-detail',
@@ -20,11 +21,13 @@ export class StatusDetailComponent implements OnInit {
   listImage: Image[] = []
   listCommentOfStatus: any[] = []
   listCommentOfComment: any[] = []
+  likeComments: any
 
   constructor(private statusService: StatusService,
               private activatedRoute: ActivatedRoute,
               private commentService: CommentService,
-              private relationshipService : RelationshipService,
+              private likeCommentService: LikeCommentService,
+              private relationshipService: RelationshipService,
               private router: Router) {
   }
 
@@ -54,9 +57,22 @@ export class StatusDetailComponent implements OnInit {
       for (let item of data) {
         if (item.comment == null) {
           this.listCommentOfStatus.push(item)
-        }
-        else {
+          for (let i = 0; i < this.listCommentOfStatus.length; i++) {
+            this.likeCommentService.check(this.listCommentOfStatus[i].id, this.currentUserId).subscribe(data => {
+              this.listCommentOfStatus[i].isLikeComment = data;
+            }, error => (
+              console.log("err", error)
+            ))
+          }
+        } else {
           this.listCommentOfComment.push(item)
+          for (let i = 0; i < this.listCommentOfComment.length; i++) {
+            this.likeCommentService.check(this.listCommentOfComment[i].id, this.currentUserId).subscribe(data => {
+              this.listCommentOfComment[i].isLike = data;
+            }, error => (
+              console.log("err", error)
+            ))
+          }
         }
       }
       console.log(data)
@@ -115,5 +131,18 @@ export class StatusDetailComponent implements OnInit {
     document.getElementsByClassName("child-comment-content")[index].style.display = "block"
     // @ts-ignore
     document.getElementsByClassName("child-comment-update")[index].style.display = "none"
+  }
+
+  likeComment(id: any, index, number) {
+    this.likeCommentService.likeComment(id, this.currentUserId).subscribe(data => {
+      this.likeComments = data
+      if (number == 1) {
+        this.listCommentOfStatus[index].isLikeComment = !this.listCommentOfStatus[index].isLikeComment
+      }
+      if (number == 2) {
+        console.log(this.listCommentOfComment[index])
+        this.listCommentOfComment[index].isLike = !this.listCommentOfComment[index].isLike
+      }
+    })
   }
 }

@@ -112,12 +112,15 @@
 
                     <!-- Comment react -->
                     <ul class="nav nav-divider py-2 small">
-                      <li class="nav-item">
-                        <a class="nav-link" href="#!"> Thích (3)</a>
+                      <li class="nav-item" *ngIf="!commentOfStatus.isLikeComment">
+                        <a class="nav-link" (click)="likeComment(commentOfStatus.id, i, 1)"> Thích (3)</a>
+                      </li>
+                      <li class="nav-item" *ngIf="commentOfStatus.isLikeComment">
+                        <a class="nav-link" style="color: red" (click)="likeComment(commentOfStatus.id, i, 1)"> Thích (3)</a>
                       </li>
                       <li class="nav-item"
                           *ngIf="currentUserId == status.owner.id || (currentUserId != status.owner.id && relationship != null && relationship.status == 2)">
-                        <a class="nav-link" (click)="openChildCommentInput(i)"> Trả lời</a>
+                        <a class="nav-link" (click)="openChildCommentInput(i)">Trả lời</a>
                       </li>
                     </ul>
                   </div>
@@ -190,8 +193,11 @@
                         </div>
                         <!-- Comment react -->
                         <ul class="nav nav-divider py-2 small">
-                          <li class="nav-item">
-                            <a class="nav-link" href="#!"> Thích (5)</a>
+                          <li class="nav-item" *ngIf="!commentOfComment.isLike">
+                            <a class="nav-link" (click)="likeComment(commentOfComment.id, j, 2)"> Thích (5)</a>
+                          </li>
+                          <li class="nav-item" *ngIf="commentOfComment.isLike">
+                            <a class="nav-link" style="color: red" (click)="likeComment(commentOfComment.id, j, 2)"> Thích (5)</a>
                           </li>
                           <li class="nav-item"
                               *ngIf="currentUserId == status.owner.id || (currentUserId != status.owner.id && relationship != null && relationship.status == 2)">
