@@ -5,6 +5,8 @@ import {Image} from "../../../model/image";
 import {CommentService} from "../../../service/comment.service";
 import {Comment} from "../../../model/comment";
 import {RelationshipService} from "../../../service/relationship.service";
+import {LikeCommentService} from "../../../service/like-comment.service";
+import {LikeStatusService} from "../../../service/like-status.service";
 
 @Component({
   selector: 'app-status-detail',
@@ -20,12 +22,16 @@ export class StatusDetailComponent implements OnInit {
   listImage: Image[] = []
   listCommentOfStatus: any[] = []
   listCommentOfComment: any[] = []
+  likeComments: any
+  numberOfLikeOfStatus: any
+  likeStatuses: any
 
   constructor(private statusService: StatusService,
               private activatedRoute: ActivatedRoute,
               private commentService: CommentService,
-              private relationshipService : RelationshipService,
-              private router: Router) {
+              private likeCommentService: LikeCommentService,
+              private relationshipService: RelationshipService,
+              private router: Router, private likeStatusService : LikeStatusService) {
   }
 
   ngOnInit(): void {
@@ -43,8 +49,14 @@ export class StatusDetailComponent implements OnInit {
       console.log(data)
       this.relationshipService.getRelationship(this.currentUserId, this.status.owner.id).subscribe(data => {
         this.relationship = data
+        this.likeStatusService.check(this.status.id, this.currentUserId).subscribe(data => {
+          this.status.isLiked = data;
+        }, error => (
+          console.log("err", error)
+        ))
       })
       this.listImage = data[1]
+      this.numberOfLikeOfStatus = data[2][0]
     }, error => {
       console.log(error)
     })
@@ -55,9 +67,22 @@ export class StatusDetailComponent implements OnInit {
       for (let item of data) {
         if (item.comment == null) {
           this.listCommentOfStatus.push(item)
-        }
-        else {
+          for (let i = 0; i < this.listCommentOfStatus.length; i++) {
+            this.likeCommentService.check(this.listCommentOfStatus[i].id, this.currentUserId).subscribe(data => {
+              this.listCommentOfStatus[i].isLikeComment = data;
+            }, error => (
+              console.log("err", error)
+            ))
+          }
+        } else {
           this.listCommentOfComment.push(item)
+          for (let i = 0; i < this.listCommentOfComment.length; i++) {
+            this.likeCommentService.check(this.listCommentOfComment[i].id, this.currentUserId).subscribe(data => {
+              this.listCommentOfComment[i].isLike = data;
+            }, error => (
+              console.log("err", error)
+            ))
+          }
         }
       }
       console.log(data)
@@ -116,5 +141,30 @@ export class StatusDetailComponent implements OnInit {
     document.getElementsByClassName("child-comment-content")[index].style.display = "block"
     // @ts-ignore
     document.getElementsByClassName("child-comment-update")[index].style.display = "none"
+  }
+
+  likeStatus(id: any) {
+    this.likeStatusService.likeStatus(id, this.currentUserId).subscribe(data => {
+      this.likeStatuses = data
+      this.status.isLiked = !this.status.isLiked
+      if (this.status.isLiked == true) {
+        this.numberOfLikeOfStatus += 1
+      } else {
+        this.numberOfLikeOfStatus -= 1
+      }
+    })
+  }
+
+  likeComment(id: any, index, number) {
+    this.likeCommentService.likeComment(id, this.currentUserId).subscribe(data => {
+      this.likeComments = data
+      if (number == 1) {
+        this.listCommentOfStatus[index].isLikeComment = !this.listCommentOfStatus[index].isLikeComment
+      }
+      if (number == 2) {
+        console.log(this.listCommentOfComment[index])
+        this.listCommentOfComment[index].isLike = !this.listCommentOfComment[index].isLike
+      }
+    })
   }
 }
