@@ -66,10 +66,10 @@
         <ul class="nav nav-pills nav-pills-light nav-fill nav-stack small border-top py-1">
           <li></li>
           <li class="nav-item" *ngIf="!s.isLiked">
-            <a class="nav-link mb-0" (click)="likeStatus(s.id, i)"><i class="bi bi-heart pe-1"></i>Thích ({{statusesOwner[2][i]}})</a>
+            <a class="nav-link mb-0" (click)="likeStatus(s.id, i)"><i class="bi bi-heart pe-1"></i> Thích ({{statusesOwner[2][i]}})</a>
           </li>
           <li class="nav-item" *ngIf="s.isLiked">
-            <a class="nav-link mb-0" style="color: red" (click)="likeStatus(s.id, i)"><i class="bi bi-heart pe-1">Thích ({{statusesOwner[2][i]}}) </i></a>
+            <a class="nav-link mb-0" style="color: red" (click)="likeStatus(s.id, i)"><i class="bi bi-heart pe-1"> Thích ({{statusesOwner[2][i]}}) </i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link mb-0" routerLink="/status/{{s.id}}"> <i class="bi bi-chat-fill pe-1"></i>Bình Luận</a>
