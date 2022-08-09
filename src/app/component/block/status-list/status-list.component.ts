@@ -112,6 +112,11 @@ export class StatusListComponent implements OnInit {
     this.likeStatusService.likeStatus(id, this.currentID).subscribe(data => {
       this.likeStatuses = data
       this.statusesOwner[0][index].isLiked = !this.statusesOwner[0][index].isLiked
+      if (this.statusesOwner[0][index].isLiked == true) {
+        this.statusesOwner[2][index] += 1
+      } else {
+        this.statusesOwner[2][index] -= 1
+      }
     })
   }
 }

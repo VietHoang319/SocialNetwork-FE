@@ -134,6 +134,11 @@ export class StatusNewFeedComponent implements OnInit {
     this.likeService.likeStatus(id, this.currentId).subscribe(data => {
       this.likeStatuses = data
       this.statuses[0][index].isLiked = !this.statuses[0][index].isLiked
+      if (this.statuses[0][index].isLiked == true) {
+        this.statuses[2][index] += 1
+      } else {
+        this.statuses[2][index] -= 1
+      }
     })
   }
 }
