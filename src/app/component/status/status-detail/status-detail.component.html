@@ -115,7 +115,8 @@
                       <li class="nav-item">
                         <a class="nav-link" href="#!"> Thích (3)</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item"
+                          *ngIf="currentUserId == status.owner.id || (currentUserId != status.owner.id && relationship != null && relationship.status == 2)">
                         <a class="nav-link" (click)="openChildCommentInput(i)"> Trả lời</a>
                       </li>
                     </ul>
@@ -174,7 +175,8 @@
                             </a>
                             <!-- Card feed action dropdown menu -->
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="childCommentAction">
-                              <li><a class="dropdown-item" (click)="childUpdate(j)"> <i class="bi bi-pencil-fill pe-1"></i>
+                              <li><a class="dropdown-item" (click)="childUpdate(j)"> <i
+                                class="bi bi-pencil-fill pe-1"></i>
                                 Chỉnh sửa</a>
                               </li>
                               <li>
@@ -191,7 +193,8 @@
                           <li class="nav-item">
                             <a class="nav-link" href="#!"> Thích (5)</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item"
+                              *ngIf="currentUserId == status.owner.id || (currentUserId != status.owner.id && relationship != null && relationship.status == 2)">
                             <a class="nav-link" (click)="openChildCommentInput(i)"> Trả lời</a>
                           </li>
                         </ul>
