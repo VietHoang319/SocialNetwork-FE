@@ -101,7 +101,7 @@
                   <div>
                     <div class="nav nav-divider">
                       <h6 class="nav-item card-title mb-0"><a routerLink="/{{s.owner.id}}"> {{s.owner.fullname}} </a></h6>
-                      <span class="nav-item small"> {{s.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</span>
+                      <span class="nav-item small"> {{s.createAt | date: "hh:mm dd/MM/yyyy"}}</span>
                     </div>
                     <p class="mb-0 small" *ngIf="s.status == 1"><i class="fa-solid fa-globe"></i> Công khai</p>
                     <p class="mb-0 small" *ngIf="s.status == 2"><i class="fa-solid fa-lock"></i> Chỉ mình tôi</p>
