@@ -125,11 +125,6 @@ export class StatusListComponent implements OnInit {
     this.imgs.splice(i, 1)
   }
 
-  deleteImage(i : any){
-    this.imageService.deleteImage(i).subscribe((item) => {
-    });
-  }
-
   reloadCurrentRoute() {
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
@@ -160,7 +155,6 @@ export class StatusListComponent implements OnInit {
   }
 
   // upload ảnh
-  //chua chay
   async upload() {
     if (this.newSelectedImages.length !== 0) {
       for (let i = 0; i < this.newSelectedImages.length; i++) {

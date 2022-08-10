@@ -180,7 +180,7 @@
         <!-- Modal feed header START -->
         <div class="modal-header">
           <h5 class="modal-title" id="modalLabelCreateFeed">Sửa bài đăng</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetValue()"></button>
         </div>
         <!-- Modal feed header END -->
 
@@ -201,8 +201,29 @@
           </div>
           <!-- Feed rect START -->
           <div class="hstack gap-2">
-            <a class="icon-md bg-success bg-opacity-10 text-success rounded-circle" href="#" data-bs-toggle="tooltip"
-               data-bs-placement="top" title="Photo"> <i class="bi bi-image-fill"></i> </a>
+            <div class="card-body position-relative pt-0">
+              <div class="row g-2">
+                <!-- Photos item -->
+                <div class="col-12" style="height: 150px; overflow: auto">
+                  <img class="rounded img-fluid1 col-4" *ngFor="let img of imgs;let i = index;" src="{{img}}" alt=""
+                       style="height: 100%" (click)="deleteImg(i)">
+                  <!-- glightbox Albums left bar END  -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="custom-file">
+            <input type="file"
+                   #userPhoto
+                   multiple
+                   (change)="selectFile($event)"
+                   name="image"
+                   autocomplete="off" class="custom-file-input" id="inputGroupFile03"
+                   accept="image/png, image/gif, image/jpeg">
+            <label class="custom-file-label" for="inputGroupFile03"><span
+              class="icon-md bg-success bg-opacity-10 text-success rounded-circle" data-bs-toggle="tooltip"
+              data-bs-placement="top" title="Photo"> <i class="bi bi-image-fill"></i> </span></label>
           </div>
           <!-- Feed rect END -->
         </div>
