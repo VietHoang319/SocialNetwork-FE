@@ -42,9 +42,16 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
       }
     }, error => {
+      console.log(error)
+      if (error.status == 404) {
+        // @ts-ignore
+        document.getElementById("error").style.display = 'block'
+        document.getElementById("error1").style.display = 'none'
+      }
       if (error.status == 401) {
         // @ts-ignore
-        document.getElementById("error").style.visibility = 'visible'
+        document.getElementById("error1").style.display = 'block'
+        document.getElementById("error").style.display = 'none'
       }
     })
   }
