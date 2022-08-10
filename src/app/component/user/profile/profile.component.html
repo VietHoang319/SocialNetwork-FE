@@ -161,7 +161,8 @@
                 <!-- Photos item -->
                 <div class="col-6" *ngFor="let image of listImage ">
                   <a href="assets/assets/images/albums/01.jpg" data-gallery="image-popup" data-glightbox="">
-                    <img style="width: 150px;height: 150px" class="rounded img-fluid" src="{{image.image}}">
+                    <img style="width: 150px;height: 150px" class="rounded img-fluid" src="{{image.image}}"
+                         *ngIf="(currentId == id && relationship == null) || ( relationship !=null && relationship.status ==2)">
                   </a>
                 </div>
               </div>
