@@ -11,28 +11,23 @@ import {AuthGuard} from "../../helper/auth-guard";
 const routes: Routes = [
   {
     path: "setting-user",
-    canActivate: [AuthGuard],
     component: ProfileUpdateComponent
   },
   {
     path : "setting-password",
-    canActivate: [AuthGuard],
     component : ChangePasswordComponent
   },
   {
     path: ":id",
-    canActivate: [AuthGuard],
     component: ProfileComponent,
     loadChildren: () => import("./homepage/profile-routing.module").then(routes => routes.ProfileRoutingModule)
   },
   {
     path: "status/:id",
-    canActivate: [AuthGuard],
     component: StatusDetailComponent
   },
   {
     path :"",
-    canActivate: [AuthGuard],
     component : StatusNewFeedComponent
   }
 ];

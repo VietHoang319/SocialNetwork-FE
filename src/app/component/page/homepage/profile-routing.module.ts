@@ -9,17 +9,14 @@ import {AuthGuard} from "@angular/fire/auth-guard";
 const routes: Routes = [
   {
     path: "list-friend",
-    canActivate: [AuthGuard],
     component: RelationshipComponent
   },
   {
     path: "list-image",
-    canActivate: [AuthGuard],
     component: ImageComponent
   },
   {
     path: "",
-    canActivate: [AuthGuard],
     component: PostsComponent
   },
 ];
