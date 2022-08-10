@@ -30,4 +30,5 @@ export class CommentService {
   getAllByStatus(id:any): Observable<any> {
     return this.httpClient.get<any>(API_URL+`/find-all-by-status?statusId=${id}`);
   }
+
 }
