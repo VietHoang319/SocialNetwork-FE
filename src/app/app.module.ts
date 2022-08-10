@@ -28,6 +28,7 @@ import { CommentCreateComponent } from './component/comment/comment-create/comme
 import { StatusDetailComponent } from './component/status/status-detail/status-detail.component';
 import { CommentUpdateComponent } from './component/comment/comment-update/comment-update.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

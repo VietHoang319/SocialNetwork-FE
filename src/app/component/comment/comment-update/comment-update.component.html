@@ -1,18 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form [formGroup]="commentForm" (ngSubmit)="editComment()"  >
-        <div class="text-left" >
-          <label>Content</label>
-        </div>
-        <div class="font-group">
-          <input type="text" class="form-control" formControlName="content"
-                 id="content" placeholder="content" value="{{comments.content}}">
-        </div>
-        <button type="submit" class="btn btn-success">edit</button>
-      </form>
-    </div>
-    <div class="col-2"></div>
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="commentForm" (keydown.enter)="editComment()">
+      <div class="font-group">
+        <input type="text" class="form-control" formControlName="content"
+               id="content" placeholder="content" ngModel="{{comment.content}}">
+      </div>
+    </form>
   </div>
+  <div class="col-2"></div>
 </div>

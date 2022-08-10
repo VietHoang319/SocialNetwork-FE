@@ -16,10 +16,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "edit/:id",
-    component: CommentUpdateComponent
-  },
-  {
     path: "",
     component: HomepageComponent,
     loadChildren: () => import("./component/page/home-routing.module").then(module => module.HomeRoutingModule)

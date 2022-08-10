@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {StatusService} from "../../../service/status.service";
 import {Role} from "../../../model/role";
 import {NgToastService} from "ng-angular-popup";
+import {LikeStatusService} from "../../../service/like-status.service";
 import {ImageService} from "../../../service/image.service";
 import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
@@ -22,7 +23,14 @@ export class StatusListComponent implements OnInit {
   @Input()
   id: any
   @Input()
+  img: any
+  @Input()
   relationship: any
+  likeStatuses: any
+  @Input()
+  statuz: any;
+  @Input()
+  statusesOwner
   statusz: Status = {
     owner: {
       id: 0,
@@ -58,6 +66,7 @@ export class StatusListComponent implements OnInit {
               private router: Router,
               private fb: FormBuilder,
               private toast: NgToastService,
+              private likeStatusService: LikeStatusService,
               private imageService : ImageService,
               private storage : AngularFireStorage) {
   }
@@ -136,6 +145,18 @@ export class StatusListComponent implements OnInit {
       this.toast.error({detail: "Thông Báo", summary: "Sửa bài đăng thất bại", duration: 3000})
       console.log(e);
     });
+  }
+
+  likeStatus(id: any, index) {
+    this.likeStatusService.likeStatus(id, this.currentID).subscribe(data => {
+      this.likeStatuses = data
+      this.statusesOwner[0][index].isLiked = !this.statusesOwner[0][index].isLiked
+      if (this.statusesOwner[0][index].isLiked == true) {
+        this.statusesOwner[2][index] += 1
+      } else {
+        this.statusesOwner[2][index] -= 1
+      }
+    })
   }
 
   // upload ảnh

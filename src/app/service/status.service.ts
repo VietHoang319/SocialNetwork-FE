@@ -27,9 +27,19 @@ export class StatusService {
     return this.httpClien.delete<Status>(API_URL+`/${id}`);
   }
 
-  findAllByOwnerId(id : any) : Observable<Status>{
-    return  this.httpClien.get<Status>(API_URL + `/find-all-by-user/${id}`)
+  findAllByOwnerId(id : any) : Observable<Status[]>{
+    return  this.httpClien.get<Status[]>(API_URL + `/find-all-by-user/${id}`)
   }
+
+  // findAllByStrangerId(id : any) : Observable<Status[]>{
+  //   return  this.httpClien.get<Status[]>(API_URL + `/find-all-by-stranger/${id}`)
+  // }
+  //
+  // findAllByFriendId(id : any,currentId : any) : Observable<Status[]>{
+  //   return  this.httpClien.get<Status[]>(API_URL + `/find-all-by-friend/${id}?currentId=`+currentId)
+  // }
+
+
 
 
   // delete(id:string,status: Status): Observable<Status>{
