@@ -39,9 +39,9 @@ export class ProfileComponent implements OnInit {
       this.userService.getUserProfile(this.id).subscribe(data => {
         this.user = data
         this.getRelationship()
+        this.top5Image()
       })
     })
-    this.top5Image()
   }
 
   getRelationship() {
