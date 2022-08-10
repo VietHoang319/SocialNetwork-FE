@@ -20,11 +20,11 @@ export class ImageService {
   }
 
   findAllImageByUser(id:any){
-    this.httpClient.get(API_URL+"/"+ id + "/find-all-image-by-user")
+    return this.httpClient.get(API_URL+"/"+ id + "/find-all-image-by-user")
   }
 
   top5ImageByUser(id:any){
-    this.httpClient.get(API_URL+"/"+ id + "/top5-image-by-user")
+    return this.httpClient.get(API_URL+"/"+ id + "/top5-image-by-user")
   }
 
 }

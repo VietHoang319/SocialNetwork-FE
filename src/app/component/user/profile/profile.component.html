@@ -23,7 +23,7 @@
               <div *ngIf="currentId == id">
                 <input type="file" formControlName="avatar" (change)="onFileSelected($event)"
                        accept="image/png, image/gif, image/jpeg" id="avatar">
-<!--                <button (click)="updateAvatar(currentId)">Thay đổi</button>-->
+                <!--                <button (click)="updateAvatar(currentId)">Thay đổi</button>-->
               </div>
             </div>
             <div class="ms-sm-4 mt-sm-3">
@@ -82,7 +82,7 @@
             class="nav nav-bottom-line align-items-center justify-content-center justify-content-md-start mb-0 border-0">
             <li class="nav-item"><a class="nav-link" routerLink="/{{currentId}}"> Bài viết </a></li>
             <li class="nav-item"><a class="nav-link" routerLink="list-friend">Bạn bè </a></li>
-            <li class="nav-item"><a class="nav-link" href="my-profile-media.html"> Ảnh</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="list-image"> Ảnh</a></li>
           </ul>
         </div>
       </div>
@@ -152,42 +152,17 @@
             <!-- Card header START -->
             <div class="card-header d-sm-flex justify-content-between border-0">
               <h5 class="card-title">Ảnh</h5>
-              <a class="btn btn-primary-soft btn-sm" href="#!"> Xem tất cả</a>
+              <a class="btn btn-primary-soft btn-sm" routerLink="list-image"> Xem tất cả</a>
             </div>
             <!-- Card header END -->
             <!-- Card body START -->
             <div class="card-body position-relative pt-0">
               <div class="row g-2">
                 <!-- Photos item -->
-                <div class="col-6">
+                <div class="col-6" *ngFor="let image of listImage ">
                   <a href="assets/assets/images/albums/01.jpg" data-gallery="image-popup" data-glightbox="">
-                    <img class="rounded img-fluid" src="assets/assets/images/albums/01.jpg" alt="">
+                    <img style="width: 150px;height: 150px" class="rounded img-fluid" src="{{image.image}}">
                   </a>
-                </div>
-                <!-- Photos item -->
-                <div class="col-6">
-                  <a href="assets/assets/images/albums/02.jpg" data-gallery="image-popup" data-glightbox="">
-                    <img class="rounded img-fluid" src="assets/assets/images/albums/02.jpg" alt="">
-                  </a>
-                </div>
-                <!-- Photos item -->
-                <div class="col-4">
-                  <a href="assets/assets/images/albums/03.jpg" data-gallery="image-popup" data-glightbox="">
-                    <img class="rounded img-fluid" src="assets/assets/images/albums/03.jpg" alt="">
-                  </a>
-                </div>
-                <!-- Photos item -->
-                <div class="col-4">
-                  <a href="assets/assets/images/albums/04.jpg" data-gallery="image-popup" data-glightbox="">
-                    <img class="rounded img-fluid" src="assets/assets/images/albums/04.jpg" alt="">
-                  </a>
-                </div>
-                <!-- Photos item -->
-                <div class="col-4">
-                  <a href="assets/assets/images/albums/05.jpg" data-gallery="image-popup" data-glightbox="">
-                    <img class="rounded img-fluid" src="assets/assets/images/albums/05.jpg" alt="">
-                  </a>
-                  <!-- glightbox Albums left bar END  -->
                 </div>
               </div>
             </div>

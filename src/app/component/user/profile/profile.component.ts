@@ -6,6 +6,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {NgToastService} from "ng-angular-popup";
 import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {ImageService} from "../../../service/image.service";
 
 @Component({
   selector: 'app-profile',
@@ -19,13 +20,15 @@ export class ProfileComponent implements OnInit {
   relationship: any
   relationshipTemp: any
   userId1: any
+  listImage:any=[]
   userForm: FormGroup = new FormGroup({
     avatar: new FormControl(),
   })
 
   constructor(private userService: UserService,
               private relationshipService: RelationshipService,
-              private activatedRoute: ActivatedRoute, private toast: NgToastService, private storage: AngularFireStorage, private router: Router) {
+              private activatedRoute: ActivatedRoute, private toast: NgToastService, private storage: AngularFireStorage, private router: Router,
+              private imageService:ImageService) {
   }
 
   ngOnInit(): void {
@@ -38,6 +41,7 @@ export class ProfileComponent implements OnInit {
         this.getRelationship()
       })
     })
+    this.top5Image()
   }
 
   getRelationship() {
@@ -152,5 +156,13 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);
     });
+  }
+
+  top5Image(){
+    this.imageService.top5ImageByUser(this.id).subscribe(data=>{
+        this.listImage=data
+        console.log(this.listImage)
+      }
+    )
   }
 }
