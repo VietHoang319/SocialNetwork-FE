@@ -10,12 +10,12 @@
               <div class="d-flex align-items-center">
                 <!-- Avatar -->
                 <div class="avatar avatar-story me-2">
-                  <a href="#!"> <img class="avatar-img rounded-circle" src="{{status.owner.avatar}}" alt=""> </a>
+                  <a routerLink="/{{status.owner.id}}"> <img class="avatar-img rounded-circle" src="{{status.owner.avatar}}" alt=""> </a>
                 </div>
                 <!-- Info -->
                 <div>
                   <div class="nav nav-divider">
-                    <h6 class="nav-item card-title mb-0"><a href="#!"> {{status.owner.fullname}} </a></h6>
+                    <h6 class="nav-item card-title mb-0"><a routerLink="/{{status.owner.id}}"> {{status.owner.fullname}} </a></h6>
                     <span class="nav-item small"> {{status.createAt | date: "hh:mm dd/MM/yyyy"}}</span>
                   </div>
                   <p class="mb-0 small" *ngIf="status.status == 1"><i class="fa-solid fa-globe"></i> Công khai</p>
