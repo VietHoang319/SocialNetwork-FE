@@ -42,9 +42,18 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
       }
     }, error => {
+      // if (error.error == "Tên người dùng nhập sai "){
+      //   document.getElementById('check-username').style.display = "block";
+      //   document.getElementById('check-password').style.display = "none";
+      // }
+      // if (error.error == "Mật khẩu nhập sai "){
+      //   document.getElementById('check-password').style.display = "block";
+      //   document.getElementById('check-username').style.display = "none";
+      // }
       if (error.status == 401) {
+
         // @ts-ignore
-        document.getElementById("error").style.visibility = 'visible'
+        document.getElementById("error").style.display = 'block'
       }
     })
   }
