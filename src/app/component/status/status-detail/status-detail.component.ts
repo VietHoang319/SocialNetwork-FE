@@ -7,6 +7,7 @@ import {Comment} from "../../../model/comment";
 import {RelationshipService} from "../../../service/relationship.service";
 import {LikeCommentService} from "../../../service/like-comment.service";
 import {LikeStatusService} from "../../../service/like-status.service";
+import {NgToastService} from "ng-angular-popup";
 
 @Component({
   selector: 'app-status-detail',
@@ -33,7 +34,8 @@ export class StatusDetailComponent implements OnInit {
               private commentService: CommentService,
               private likeCommentService: LikeCommentService,
               private relationshipService: RelationshipService,
-              private router: Router, private likeStatusService : LikeStatusService) {
+              private router: Router, private likeStatusService : LikeStatusService,
+              private toast : NgToastService) {
   }
 
   ngOnInit(): void {
@@ -103,8 +105,10 @@ export class StatusDetailComponent implements OnInit {
 
   delete(id) {
     this.commentService.delete(id).subscribe(() => {
+      this.toast.success({detail: "Thông Báo", summary: "Xóa bình luận thành công", duration: 3000})
       this.reloadCurrentRoute()
     }, error => {
+      this.toast.error({detail: "Thông Báo", summary: "Xóa bình luận thất bại", duration: 3000})
       console.log(error)
     })
   }

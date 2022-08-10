@@ -84,6 +84,7 @@ export class ProfileComponent implements OnInit {
       if (((this.relationshipTemp != null && this.relationship != null) && (this.relationshipTemp.status == this.relationship.status)) || (this.relationshipTemp == null && this.relationship == null)) {
         this.relationshipService.deleteRelationship(this.relationship.id).subscribe(id => {
           this.relationship = null;
+          this.reloadCurrentRoute()
         })
       } else {
         this.reloadCurrentRoute()
