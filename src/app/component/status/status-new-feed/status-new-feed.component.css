@@ -10,3 +10,7 @@
 .card-body {
   padding-bottom: 0;
 }
+
+#inputGroupFile03{
+  display: none;
+}

@@ -29,8 +29,11 @@ export class StatusOwnerListComponent implements OnInit {
               private likeService: LikeStatusService) {
 
   }
-
-
+  statusForm: FormGroup = this.fb.group({
+      content: new FormControl(''),
+      status: new FormControl(''),
+    }
+  )
   ngOnInit(): void {
     this.currentId = localStorage.getItem("ID")
     this.activatedRoute.paramMap.subscribe((param) => {

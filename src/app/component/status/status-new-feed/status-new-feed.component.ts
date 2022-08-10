@@ -6,6 +6,9 @@ import {RelationshipService} from "../../../service/relationship.service";
 import {Status} from "../../../model/status";
 import {NgToastService} from "ng-angular-popup";
 import {LikeStatusService} from "../../../service/like-status.service";
+import {ImageService} from "../../../service/image.service";
+import {finalize} from "rxjs";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Component({
   selector: 'app-status-new-feed',
@@ -21,7 +24,10 @@ export class StatusNewFeedComponent implements OnInit {
   relationship: any;
   numberStatusOwner: any;
   numberFriend: any;
-  likeStatuses:any
+  likeStatuses: any
+  imgs: any [] = [];
+  newSelectedImages: [];
+  selectedImages: any[] = [];
   statusForm: FormGroup = this.fb.group({
       content: new FormControl(''),
       status: new FormControl(''),
@@ -52,7 +58,9 @@ export class StatusNewFeedComponent implements OnInit {
   constructor(private statusService: StatusService, private activatedRoute: ActivatedRoute,
               private relationshipService: RelationshipService, private router: Router,
               private fb: FormBuilder, private toast: NgToastService,
-              private likeService: LikeStatusService) {
+              private likeService: LikeStatusService,
+              private imageService: ImageService,
+              private storage: AngularFireStorage) {
 
   }
 
@@ -88,11 +96,18 @@ export class StatusNewFeedComponent implements OnInit {
 
   getStatus(id) {
     this.statusService.getById(id).subscribe(result => {
-      this.statusz = result;
-      console.log(result);
+      this.statusz = result[0][0];
+      for (let i = 0; i < result[1].length; i++) {
+        this.imgs.push(result[1][i].image)
+      }
+      console.log(this.imgs)
     }, error => {
       console.log(error);
     })
+  }
+
+  resetValue() {
+    this.imgs = [];
   }
 
   editStatus() {
@@ -102,15 +117,34 @@ export class StatusNewFeedComponent implements OnInit {
       status: this.statusForm.value.status,
     }
     console.log(status);
-    // @ts-ignore
-    this.statusService.edit(this.statusz.id, status).subscribe(() => {
-      this.toast.success({detail: "Thông Báo", summary: "Sửa bài đăng thành công", duration: 3000})
-      window.setTimeout(function () {
-        location.reload()
-      }, 1500)
-    }, error => {
-      console.log(error);
-    })
+    if (status.content == "" && this.imgs.length == 0) {
+
+    } else {
+      // @ts-ignore
+      this.statusService.edit(this.statusz.id, status).subscribe((data) => {
+        this.toast.success({detail: "Thông Báo", summary: "Sửa bài đăng thành công", duration: 3000})
+        window.setTimeout(function(){location.reload()},1500)
+        for (let item of this.imgs) {
+          const images = {
+            status: {
+              id: data.id
+            },
+            image: item
+          }
+          this.imageService.save(images).subscribe(() => {
+          });
+        }
+        this.statusForm.reset();
+        this.imgs = []
+        // this.reloadCurrentRoute()
+      }, error => {
+        console.log(error);
+      })
+    }
+  }
+
+  deleteImg(i: any) {
+    this.imgs.splice(i, 1)
   }
 
   reloadCurrentRoute() {
@@ -140,5 +174,43 @@ export class StatusNewFeedComponent implements OnInit {
         this.statuses[2][index] -= 1
       }
     })
+  }
+
+  // upload ảnh
+  async upload() {
+    if (this.newSelectedImages.length !== 0) {
+      for (let i = 0; i < this.newSelectedImages.length; i++) {
+        let selectedImage = this.newSelectedImages[i];
+        var n = Date.now();
+        const filePath = `RoomsImages/${n}`;
+        const fileRef = this.storage.ref(filePath);
+        await this.storage.upload(filePath, selectedImage).snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe(url => {
+              console.log(url);
+              this.imgs.push(url);
+            });
+          })
+        ).subscribe(() => {
+        });
+      }
+    }
+  }
+
+  // Chọn ảnh
+  selectFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      this.newSelectedImages = event.target.files;
+      for (let i = 0; i < event.target.files.length; i++) {
+        console.log(event.target.files[i])
+        this.selectedImages.push(event.target.files[i]);
+      }
+      //bi bo? qua
+      this.upload()
+    } else {
+      this.selectedImages = [];
+    }
   }
 }

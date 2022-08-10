@@ -3,6 +3,8 @@ import {Status} from "../../../model/status";
 import {StatusService} from "../../../service/status.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Image} from "../../../model/image";
+import {ImageService} from "../../../service/image.service";
 
 @Component({
   selector: 'app-status-update',
@@ -14,6 +16,7 @@ export class StatusUpdateComponent implements OnInit {
   id: any;
 
   constructor(private statusService: StatusService,
+              private imageService: ImageService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private fb: FormBuilder) {
@@ -22,9 +25,15 @@ export class StatusUpdateComponent implements OnInit {
     })
   }
 
+  imageForm: FormGroup = this.fb.group({
+    image: new FormControl('',),
+    status: new FormControl(''),
+  })
+
   statusForm: FormGroup = this.fb.group({
       content: new FormControl(''),
       status: new FormControl(''),
+      image: new FormControl('')
     }
   )
 
@@ -38,13 +47,13 @@ export class StatusUpdateComponent implements OnInit {
         console.log(result);
       }, error => {
         console.log(error);
-      })
-    })
-    // @ts-ignore
-    this.statusz = {
-      content: '',
-      status: ''
-    }
+      });
+    }),
+      // @ts-ignore
+      this.statusz = {
+        content: '',
+        status: '',
+      }
   }
 
   editStatus() {
@@ -63,4 +72,5 @@ export class StatusUpdateComponent implements OnInit {
       console.log(error);
     })
   }
+
 }

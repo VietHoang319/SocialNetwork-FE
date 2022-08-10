@@ -6,6 +6,9 @@ import {StatusService} from "../../../service/status.service";
 import {Role} from "../../../model/role";
 import {NgToastService} from "ng-angular-popup";
 import {LikeStatusService} from "../../../service/like-status.service";
+import {ImageService} from "../../../service/image.service";
+import {finalize} from "rxjs";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Component({
   selector: 'app-status-list',
@@ -49,10 +52,12 @@ export class StatusListComponent implements OnInit {
     id: 0,
     status: ""
   };
-
+  imgs: any [] = [];
+  newSelectedImages: [];
+  selectedImages: any[] = [];
   statusForm: FormGroup = this.fb.group({
       content: new FormControl(''),
-      status: new FormControl(''),
+      status: new FormControl('')
     }
   )
 
@@ -61,7 +66,9 @@ export class StatusListComponent implements OnInit {
               private router: Router,
               private fb: FormBuilder,
               private toast: NgToastService,
-              private likeStatusService: LikeStatusService) {
+              private likeStatusService: LikeStatusService,
+              private imageService : ImageService,
+              private storage : AngularFireStorage) {
   }
 
   ngOnInit(): void {
@@ -70,11 +77,18 @@ export class StatusListComponent implements OnInit {
   getStatus(id) {
     this.statusService.getById(id).subscribe(result => {
       this.statusz = result[0][0];
+      for(let i = 0; i < result[1].length; i++) {
+        this.imgs.push(result[1][i].image)
+      }
+      console.log(this.imgs)
     }, error => {
       console.log(error);
     })
   }
 
+  resetValue(){
+    this.imgs = [];
+  }
   editStatus() {
     // @ts-ignore
     const status: Status = {
@@ -82,13 +96,33 @@ export class StatusListComponent implements OnInit {
       status: this.statusForm.value.status,
     }
     console.log(status);
-    // @ts-ignore
-    this.statusService.edit(this.statusz.id, status).subscribe(() => {
-      this.toast.success({detail: "Thông Báo", summary: "Sửa bài đăng thành công", duration: 3000})
-      this.reloadCurrentRoute()
-    }, error => {
-      console.log(error);
-    })
+    if (status.content == "" && this.imgs.length == 0) {
+
+    } else {
+      // @ts-ignore
+      this.statusService.edit(this.statusz.id, status).subscribe((data) => {
+        this.toast.success({detail: "Thông Báo", summary: "Sửa bài đăng thành công", duration: 3000})
+        for (let item of this.imgs) {
+          const images = {
+            status: {
+              id: data.id
+            },
+            image: item
+          }
+          this.imageService.save(images).subscribe(() => {
+          });
+        }
+        this.statusForm.reset();
+        this.imgs = []
+        this.reloadCurrentRoute()
+      }, error => {
+        console.log(error);
+      })
+    }
+  }
+
+  deleteImg(i: any) {
+    this.imgs.splice(i, 1)
   }
 
   reloadCurrentRoute() {
@@ -118,5 +152,43 @@ export class StatusListComponent implements OnInit {
         this.statusesOwner[2][index] -= 1
       }
     })
+  }
+
+  // upload ảnh
+  async upload() {
+    if (this.newSelectedImages.length !== 0) {
+      for (let i = 0; i < this.newSelectedImages.length; i++) {
+        let selectedImage = this.newSelectedImages[i];
+        var n = Date.now();
+        const filePath = `RoomsImages/${n}`;
+        const fileRef = this.storage.ref(filePath);
+        await this.storage.upload(filePath, selectedImage).snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe(url => {
+              console.log(url);
+              this.imgs.push(url);
+            });
+          })
+        ).subscribe(() => {
+        });
+      }
+    }
+  }
+
+  // Chọn ảnh
+  selectFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      this.newSelectedImages = event.target.files;
+      for (let i = 0; i < event.target.files.length; i++) {
+        console.log(event.target.files[i])
+        this.selectedImages.push(event.target.files[i]);
+      }
+      //bi bo? qua
+      this.upload()
+    } else {
+      this.selectedImages = [];
+    }
   }
 }
