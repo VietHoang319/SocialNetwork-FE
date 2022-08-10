@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CommentService} from "../../../service/comment.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {NgToastService} from "ng-angular-popup";
 
 @Component({
   selector: 'app-comment-update',
@@ -16,7 +17,8 @@ export class CommentUpdateComponent implements OnInit {
   constructor(private commentService: CommentService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private toast : NgToastService) {
     this.activatedRoute.paramMap.subscribe((paraMap: ParamMap) => {
       this.id = +paraMap.get('id')
     })
@@ -48,9 +50,11 @@ export class CommentUpdateComponent implements OnInit {
     // @ts-ignore
 
     this.commentService.edit(this.id, comment).subscribe((data) => {
+      this.toast.success({detail: "Thông Báo", summary: "Sửa bình luận thành công", duration: 3000})
       this.reloadCurrentRoute()
     }, error => {
       console.log(error);
+      this.toast.error({detail: "Thông Báo", summary: "Sửa bình luận thất bại", duration: 3000})
     })
   }
 
