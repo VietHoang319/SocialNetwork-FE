@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RegisterComponent} from './component/page/register/register.component';
 import {LoginComponent} from './component/page/login/login.component';
@@ -28,6 +28,8 @@ import { CommentCreateComponent } from './component/comment/comment-create/comme
 import { StatusDetailComponent } from './component/status/status-detail/status-detail.component';
 import { CommentUpdateComponent } from './component/comment/comment-update/comment-update.component';
 import { ImageComponent } from './component/image/image.component';
+import {JwtInterceptor} from "./helper/jwt-interceptor";
+import {ErrorInterceptor} from "./helper/error-interceptor";
 
 
 @NgModule({
@@ -62,7 +64,15 @@ import { ImageComponent } from './component/image/image.component';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud")
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor, multi: true
+    }, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
