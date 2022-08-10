@@ -16,7 +16,7 @@
                 <div>
                   <div class="nav nav-divider">
                     <h6 class="nav-item card-title mb-0"><a href="#!"> {{status.owner.fullname}} </a></h6>
-                    <span class="nav-item small"> {{status.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</span>
+                    <span class="nav-item small"> {{status.createAt | date: "hh:mm dd/MM/yyyy"}}</span>
                   </div>
                   <p class="mb-0 small" *ngIf="status.status == 1"><i class="fa-solid fa-globe"></i> Công khai</p>
                   <p class="mb-0 small" *ngIf="status.status == 2"><i class="fa-solid fa-lock"></i> Chỉ mình tôi</p>
@@ -69,7 +69,7 @@
                             <h6 class="mb-1"><a
                               routerLink="/{{commentOfStatus.userComment.id}}"> {{commentOfStatus.userComment.fullname}} </a>
                             </h6>
-                            <small class="ms-2">{{commentOfStatus.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</small>
+                            <small class="ms-2">{{commentOfStatus.createAt | date: "hh:mm dd/MM/yyyy"}}</small>
                           </div>
                           <div>
                             <p class="small mb-0 comment-content">{{commentOfStatus.content}}</p>
@@ -106,7 +106,7 @@
                             <h6 class="mb-1"><a
                               routerLink="/{{commentOfStatus.userComment.id}}"> {{commentOfStatus.userComment.fullname}} </a>
                             </h6>
-                            <small class="ms-2">{{commentOfStatus.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</small>
+                            <small class="ms-2">{{commentOfStatus.createAt | date: "hh:mm dd/MM/yyyy"}}</small>
                           </div>
                           <p class="small mb-0 comment-content">{{commentOfStatus.content}}</p>
                         </div>
@@ -149,7 +149,7 @@
                                 <h6 class="mb-1"><a
                                   routerLink="/{{commentOfComment.userComment.id}}"> {{commentOfComment.userComment.fullname}} </a>
                                 </h6>
-                                <small class="ms-2">{{commentOfComment.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</small>
+                                <small class="ms-2">{{commentOfComment.createAt | date: "hh:mm dd/MM/yyyy"}}</small>
                               </div>
                               <p class="small mb-0 comment-content">{{commentOfComment.content}}</p>
                             </div>
@@ -162,7 +162,7 @@
                                 <h6 class="mb-1"><a
                                   routerLink="/{{commentOfComment.userComment.id}}"> {{commentOfComment.userComment.fullname}} </a>
                                 </h6>
-                                <small class="ms-2">{{commentOfComment.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</small>
+                                <small class="ms-2">{{commentOfComment.createAt | date: "hh:mm dd/MM/yyyy"}}</small>
                               </div>
                               <div>
                                 <p class="small mb-0 child-comment-content">{{commentOfComment.content}}</p>

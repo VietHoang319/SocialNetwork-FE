@@ -2,7 +2,6 @@
 <div class="card" xmlns="http://www.w3.org/1999/html">
   <!-- Card header START -->
   <div class="card-header border-0 pb-0">
-    <h5 class="card-title">Connections</h5>
     <!-- Tabs START -->
     <ul class="nav nav-tabs nav-justified mb-3" id="pills-tab" role="tablist" *ngIf="user.id==currentId || relationship.status==2">
       <li class="nav-item" role="presentation" *ngIf="user.id==currentId || user.id == id" >
@@ -20,7 +19,7 @@
       </li>
     </ul>
     <!-- Tabs contents -->
-    <div class="tab-content" id="pills-tabContent">
+    <div class="tab-content" id="pills-tabContent" style="padding-bottom: 0; margin-bottom: 0; padding-top: 0">
       <!-- Content -->
       <div class="tab-pane fade show active" id="pills-tab1" role="tabpanel" aria-labelledby="pills-tab-1">
         <div *ngIf="user.id == currentId || relationship.status == 2">
@@ -31,7 +30,7 @@
                 <div class="d-md-flex align-items-center mb-4" routerLink="/{{item.user2.id}}">
                   <!-- Avatar -->
                   <div class="avatar me-3 mb-3 mb-md-0">
-                    <a href="#!"> <img class="avatar-img rounded-circle" src="{{item.user2.avatar}}" alt=""> </a>
+                    <a> <img class="avatar-img rounded-circle" src="{{item.user2.avatar}}" alt=""> </a>
                   </div>
                   <!-- Info -->
                   <div class="w-100">
@@ -54,7 +53,7 @@
                 <div class="d-md-flex align-items-center mb-4" routerLink="/{{item.user1.id}}">
                   <!-- Avatar -->
                   <div class="avatar me-3 mb-3 mb-md-0">
-                    <a href="#!"> <img class="avatar-img rounded-circle" src="{{item.user1.avatar}}" alt=""> </a>
+                    <a routerLink="/{{item.user1.id}}"> <img class="avatar-img rounded-circle" src="{{item.user1.avatar}}" alt=""> </a>
                   </div>
                   <!-- Info -->
                   <div class="w-100">
@@ -84,10 +83,10 @@
             <div class="card-body" *ngFor="let item of listMutualFriend">
               <!-- Connections Item -->
               <div *ngIf="id == item.user1.id">
-                <div class="d-md-flex align-items-center mb-4" routerLink="/{{item.user2.id}}">
+                <div class="d-md-flex align-items-center mb-4"c>
                   <!-- Avatar -->
                   <div class="avatar me-3 mb-3 mb-md-0">
-                    <a href="#!"> <img class="avatar-img rounded-circle" src="{{item.user2.avatar}}" alt=""> </a>
+                    <a routerLink="/{{item.user2.id}}"> <img class="avatar-img rounded-circle" src="{{item.user2.avatar}}" alt=""> </a>
                   </div>
                   <!-- Info -->
                   <div class="w-100">
@@ -110,7 +109,7 @@
                 <div class="d-md-flex align-items-center mb-4" routerLink="/{{item.user1.id}}">
                   <!-- Avatar -->
                   <div class="avatar me-3 mb-3 mb-md-0">
-                    <a href="#!"> <img class="avatar-img rounded-circle" src="{{item.user1.avatar}}" alt=""> </a>
+                    <a> <img class="avatar-img rounded-circle" src="{{item.user1.avatar}}" alt=""> </a>
                   </div>
                   <!-- Info -->
                   <div class="w-100">

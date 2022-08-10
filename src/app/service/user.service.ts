@@ -26,4 +26,6 @@ export class UserService {
   updateAvatar(id : any,user : User) : Observable<User>{
     return this.http.put<User>(API_URL + `users/change-avatar/${id}`,user)
   }
+
+
 }

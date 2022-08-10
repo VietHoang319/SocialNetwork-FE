@@ -26,4 +26,12 @@ export class ImageService {
     return this.httpClient.delete<any>(API_URL+`/${id}`);
   }
 
+  findAllImageByUser(id:any){
+    return this.httpClient.get(API_URL+"/"+ id + "/find-all-image-by-user")
+  }
+
+  top5ImageByUser(id:any){
+    return this.httpClient.get(API_URL+"/"+ id + "/top5-image-by-user")
+  }
+
 }

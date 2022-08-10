@@ -101,7 +101,7 @@
                   <div>
                     <div class="nav nav-divider">
                       <h6 class="nav-item card-title mb-0"><a routerLink="/{{s.owner.id}}"> {{s.owner.fullname}} </a></h6>
-                      <span class="nav-item small"> {{s.createAt | date: "hh:mm:ss dd/MM/yyyy"}}</span>
+                      <span class="nav-item small"> {{s.createAt | date: "hh:mm dd/MM/yyyy"}}</span>
                     </div>
                     <p class="mb-0 small" *ngIf="s.status == 1"><i class="fa-solid fa-globe"></i> Công khai</p>
                     <p class="mb-0 small" *ngIf="s.status == 2"><i class="fa-solid fa-lock"></i> Chỉ mình tôi</p>
@@ -140,9 +140,9 @@
             <!-- Card header END -->
             <!-- Card body START -->
             <div class="card-body">
-              <p>{{s.content}}</p>
+              <p routerLink="/status/{{s.id}}">{{s.content}}</p>
               <!-- Card img -->
-              <div class="card-body position-relative pt-0">
+              <div class="card-body position-relative pt-0" routerLink="/status/{{s.id}}">
                 <div class="row g-2">
                   <div *ngFor="let img of statuses[1][i]" class="col-4">
                     <img class="rounded img-fluid" src="{{img.image}}">
@@ -194,7 +194,7 @@
             </div>
             <!-- Feed box  -->
             <form class="w-100">
-              <textarea class="form-control pe-4 fs-3 lh-1 border-0" rows="4" placeholder="Nội dung chỉnh sữa"
+              <textarea class="form-control pe-4 fs-3 lh-1 border-0" rows="4" placeholder="Nội dung chỉnh sửa"
                         formControlName="content"
                         ngModel="{{statusz.content}}"></textarea>
             </form>
@@ -256,7 +256,7 @@
     <div class="modal-content">
       <!-- Modal feed header START -->
       <div class="modal-header">
-        <h3 id="modalLabelUnfriend" style="text-align: center">Bạn muốn hủy kết bạn</h3>
+        <h3 id="modalLabelUnfriend" style="text-align: center">Bạn muốn xóa bài đăng</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -265,10 +265,10 @@
       <!-- Button -->
       <div class="modal-footer">
         <div class="col-lg-8 text-sm-end">
-          <button type="button" class="btn btn-danger-soft me-2" (click)="delete(statusz.id)" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-primary-soft me-2" (click)="delete(statusz.id)" data-bs-dismiss="modal">
             Xác nhận
           </button>
-          <button type="button" class="btn btn-success-soft" data-bs-dismiss="modal" aria-label="Close">Hủy
+          <button type="button" class="btn btn-danger-soft" data-bs-dismiss="modal" aria-label="Close">Hủy
           </button>
         </div>
       </div>

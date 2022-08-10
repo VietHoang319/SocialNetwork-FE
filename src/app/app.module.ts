@@ -27,6 +27,7 @@ import { StatusNewFeedComponent } from './component/status/status-new-feed/statu
 import { CommentCreateComponent } from './component/comment/comment-create/comment-create.component';
 import { StatusDetailComponent } from './component/status/status-detail/status-detail.component';
 import { CommentUpdateComponent } from './component/comment/comment-update/comment-update.component';
+import { ImageComponent } from './component/image/image.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { CommentUpdateComponent } from './component/comment/comment-update/comme
     StatusNewFeedComponent,
     StatusDetailComponent,
     CommentUpdateComponent,
+    ImageComponent,
   ],
   imports: [
     BrowserModule,
