@@ -140,9 +140,9 @@
             <!-- Card header END -->
             <!-- Card body START -->
             <div class="card-body">
-              <p>{{s.content}}</p>
+              <p routerLink="/status/{{s.id}}">{{s.content}}</p>
               <!-- Card img -->
-              <div class="card-body position-relative pt-0">
+              <div class="card-body position-relative pt-0" routerLink="/status/{{s.id}}">
                 <div class="row g-2">
                   <div *ngFor="let img of statuses[1][i]" class="col-4">
                     <img class="rounded img-fluid" src="{{img.image}}">
@@ -194,7 +194,7 @@
             </div>
             <!-- Feed box  -->
             <form class="w-100">
-              <textarea class="form-control pe-4 fs-3 lh-1 border-0" rows="4" placeholder="Nội dung chỉnh sữa"
+              <textarea class="form-control pe-4 fs-3 lh-1 border-0" rows="4" placeholder="Nội dung chỉnh sửa"
                         formControlName="content"
                         ngModel="{{statusz.content}}"></textarea>
             </form>
